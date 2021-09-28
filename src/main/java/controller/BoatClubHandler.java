@@ -3,6 +3,7 @@ package controller;
 import view.UserInterface;
 import view.UserInterface.Action;
 import view.UserInterface.MemberAction;
+import model.Member;
 
 public class BoatClubHandler {
   private UserInterface ui = new UserInterface();
@@ -50,7 +51,11 @@ public class BoatClubHandler {
       case VIEWALL:
         // return MemberAction.VIEWALL;
       case VIEWONE:
-        // return MemberAction.VIEWONE;
+        String memberId = ui.promptForMemberId();
+        Member member = memberHandler.showMember(memberId);
+        ui.printMember(member);
+        showSubMenu(Action.MEMBERS);
+        break;
       case DELETE:
         // return MemberAction.DELETE;
       case BACK:
