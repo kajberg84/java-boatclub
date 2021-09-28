@@ -19,5 +19,7 @@ public class App {
 
     // c.doSomethingSimple(m, v);
 
+    // IdHandler handler = new IdHandler();
+    // System.out.println(handler.generateUniqueId().getId());
   }
 }

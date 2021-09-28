@@ -4,10 +4,14 @@ import java.util.Random;
 import model.Id;
 
 public class IdHandler {  
-  private int length;
 
-  IdHandler(int length) {
-    this.length = length;
+  IdHandler() {
+    
+  }
+
+  private int getRandomNumber() {
+    Random randomNumber = new Random();
+    return randomNumber.nextInt(6) + 1;
   }
 
   public Id generateUniqueId(){
@@ -18,8 +22,9 @@ public class IdHandler {
     String lowerCase = upperCase.toLowerCase();
     String digits = "1234567890";
     String allChars = upperCase + lowerCase + digits;
+    int length = getRandomNumber();
 
-    for (int i = 0; i < this.length; i++) {
+    for (int i = 0; i < length; i++) {
       builder.append(allChars.charAt(random.nextInt(allChars.length())));
     }
     model.Id newId = new Id(builder.toString());
