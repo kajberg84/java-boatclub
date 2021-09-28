@@ -2,6 +2,8 @@ package view;
 
 import java.util.Scanner;
 
+import model.Member;
+
 public class UserInterface {
   Scanner scan = new Scanner(System.in);
   
@@ -109,5 +111,27 @@ public class UserInterface {
     System.out.print("Enter social security number: ");
     String number = getString();
     return number;
+  }
+
+  public String promptForMemberId() {
+    System.out.print("Enter member ID: ");
+    String memberId = getString();
+    return memberId;
+  }
+
+  public void printMember(Member member) {
+    if (member == null) {
+      System.out.println("***************");
+      System.out.println("MEMBER DETAILS");
+      System.out.println("***************");
+      System.out.println("No member found.\n");
+    } else {
+      System.out.println("***************");
+      System.out.println("MEMBER DETAILS");
+      System.out.println("***************");
+      System.out.println("Name: " + member.getName());
+      System.out.println("Social security number: " + member.getSocialSecurityNumber());
+      System.out.println("Member ID: " + member.getId() + "\n");
+    }
   }
 }
