@@ -54,8 +54,8 @@ public class BoatClubHandler {
       case DELETE:
         // return MemberAction.DELETE;
       case BACK:
-        //  showMainMenu();
-        // break;
+        showMainMenu();
+        break;
       default:
         break;
     }

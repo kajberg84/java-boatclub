@@ -22,9 +22,9 @@ public class UserInterface {
     None
   }
 
-  public void showMessage(String message) {
-    System.out.println(message);
-  }
+  // public void showMessage(String message) {
+  //   System.out.println(message);
+  // }
 
   public int getInt() {
     int i = 0;
