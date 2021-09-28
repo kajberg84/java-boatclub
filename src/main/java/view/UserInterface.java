@@ -37,6 +37,11 @@ public class UserInterface {
     return i;
   }
 
+  public String getString() {
+    String str = scan.nextLine();
+    return str;
+  }
+
   public Action promptForAction() {
     System.out.println("***************");
     System.out.println("MAIN MENU");
@@ -92,5 +97,17 @@ public class UserInterface {
         break;
     }
     return MemberAction.None;
+  }
+
+  public String promptForMemberName() {
+    System.out.print("Enter full member name: ");
+    String name = getString();
+    return name;
+  }
+
+  public String promptForSocialSecurityNumber() {
+    System.out.print("Enter social security number: ");
+    String number = getString();
+    return number;
   }
 }

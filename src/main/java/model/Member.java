@@ -2,10 +2,10 @@ package model;
 
 public class Member {
   private String name;
-  private int socialSecurityNumber;
+  private String socialSecurityNumber;
   private Id memberId;
 
-  public Member(String name, int socialSecurityNumber, Id memberId) {
+  public Member(String name, String socialSecurityNumber, Id memberId) {
     this.name = name;
     this.socialSecurityNumber = socialSecurityNumber;
     this.memberId = memberId;
@@ -19,15 +19,15 @@ public class Member {
     this.name = value;
   }
 
-  public int getSocialSecurityNumber() {
+  public String getSocialSecurityNumber() {
     return socialSecurityNumber;
   }
 
-  public void setSocialSecurityNumber(int value) {
+  public void setSocialSecurityNumber(String value) {
     this.socialSecurityNumber = value;
   }
 
-  public Id getId() {
-    return memberId;
+  public String getId() {
+    return memberId.getId();
   }
 }
