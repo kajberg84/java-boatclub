@@ -1,6 +1,6 @@
 package controller;
 
-import model.Id;
+// import model.Id;
 
 /**
  * Responsible for staring the application.
@@ -21,5 +21,8 @@ public class App {
 
     // IdHandler handler = new IdHandler();
     // System.out.println(handler.generateUniqueId().getId());
+
+    BoatClubHandler boatClubHandler = new BoatClubHandler();
+    boatClubHandler.start();
   }
 }
