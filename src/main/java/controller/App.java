@@ -1,5 +1,7 @@
 package controller;
 
+import model.Id;
+
 /**
  * Responsible for staring the application.
  */
@@ -17,7 +19,5 @@ public class App {
 
     // c.doSomethingSimple(m, v);
 
-      IdHandler handler = new IdHandler();
-      System.out.println(handler.generateUniqueId());
   }
 }

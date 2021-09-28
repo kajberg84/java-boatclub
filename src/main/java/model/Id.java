@@ -1,11 +1,9 @@
 package model;
 
-
-
 public class Id {
   private String id;
 
-  public Id( String id){
+  public Id(String id){
     this.id = id;
   }
 
