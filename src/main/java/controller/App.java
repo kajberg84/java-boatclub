@@ -11,10 +11,13 @@ public class App {
    */
   public static void main(String[] args) {
     // adapt to start the application in your way
-    model.Simple m = new model.Simple();
-    Simple c = new Simple();
-    view.Simple v = new view.Simple();
+    // model.Simple m = new model.Simple();
+    // Simple c = new Simple();
+    // view.Simple v = new view.Simple();
 
-    c.doSomethingSimple(m, v);
+    // c.doSomethingSimple(m, v);
+
+      IdHandler handler = new IdHandler();
+      System.out.println(handler.generateUniqueId());
   }
 }
