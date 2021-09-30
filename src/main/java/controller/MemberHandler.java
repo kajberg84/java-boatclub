@@ -21,6 +21,10 @@ public class MemberHandler {
     return registry.getMemberById(memberId);
   }
 
+  public ArrayList<Member> getAllMembers() {
+    return registry.getAllMembers();
+  }
+
   public void addNewBoat(String memberId, Boat boat) {
     Member memberToUpdate = getMember(memberId);
     ArrayList<Boat> boatsToUpdate = memberToUpdate.getBoats();
