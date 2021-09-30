@@ -2,9 +2,6 @@ package view;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import model.Boat;
 import model.Member;
 

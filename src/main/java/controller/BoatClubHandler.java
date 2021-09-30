@@ -4,8 +4,8 @@ import model.Boat;
 import model.Member;
 import view.UserInterface;
 import view.UserInterface.Action;
-import view.UserInterface.MemberAction;
 import view.UserInterface.BoatAction;
+import view.UserInterface.MemberAction;
 
 public class BoatClubHandler {
   private UserInterface ui = new UserInterface();
