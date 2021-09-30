@@ -5,10 +5,10 @@ package model;
 
 public class Boat {
   private int length;
-  // private BoatType type;
   private String type;
+  // private BoatType type;
 
-  public Boat(String type, int length) {
+  public Boat(int length, String type) {
     this.length = length;
     this.type = type;
   }

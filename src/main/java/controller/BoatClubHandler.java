@@ -4,7 +4,7 @@ import model.Member;
 import view.UserInterface;
 import view.UserInterface.Action;
 import view.UserInterface.MemberAction;
-
+import view.UserInterface.BoatAction;
 
 public class BoatClubHandler {
   private UserInterface ui = new UserInterface();
@@ -29,11 +29,30 @@ public class BoatClubHandler {
         handleMemberActions(memberAction);
         break;
       case BOATS:
-        System.out.println("boatmenu");
+        BoatAction boatAction = ui.promptForBoatAction();
+        handleBoatAction(boatAction);
         break;
       case EXIT:
         System.out.println("Goodbye!");
         break;
+      default:
+        break;
+    }
+  }
+
+  private void handleBoatAction(BoatAction action) {
+    switch (action) {
+      case ADD:
+        Member member;
+        do {
+          String memberId = ui.promptForMemberId();
+          member = memberHandler.getMember(memberId);
+        } while (member == null);
+        int length = ui.promptForBoatLength();
+        int type = ui.promptForBoatType();
+         
+        break;
+
       default:
         break;
     }
@@ -53,7 +72,7 @@ public class BoatClubHandler {
         // return MemberAction.VIEWALL;
       case VIEWONE:
         String memberId = ui.promptForMemberId();
-        Member member = memberHandler.showMember(memberId);
+        Member member = memberHandler.getMember(memberId);
         ui.printMember(member);
         showSubMenu(Action.MEMBERS);
         break;

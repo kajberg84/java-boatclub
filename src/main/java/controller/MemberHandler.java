@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.ArrayList;
+
+import model.Boat;
 import model.Member;
 
 public class MemberHandler {
@@ -15,7 +18,15 @@ public class MemberHandler {
     System.out.println(newMember.getId());
   }
 
-  public Member showMember(String memberId) {
+  public Member getMember(String memberId) {
     return registry.getMemberById(memberId);
   }
+
+  public void addNewBoat(String memberId, Boat boat) {
+    Member memberToUpdate = getMember(memberId);
+    ArrayList<Boat> boatsToUpdate = memberToUpdate.getBoats();
+    boatsToUpdate.add(boat);
+    memberToUpdate.setBoats(boatsToUpdate);
+  }
+
 }

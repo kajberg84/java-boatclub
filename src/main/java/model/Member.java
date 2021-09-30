@@ -38,4 +38,8 @@ public class Member {
   public ArrayList<Boat> getBoats() {
     return this.boats;
   }
+
+  public void setBoats(ArrayList<Boat> value) {
+    this.boats = value;
+  }
 }

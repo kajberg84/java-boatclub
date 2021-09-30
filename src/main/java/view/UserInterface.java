@@ -23,6 +23,10 @@ public class UserInterface {
     None
   }
 
+  public enum BoatAction {
+    ADD, EDIT, DELETE, BACK, None
+  }
+
   // public void showMessage(String message) {
   //   System.out.println(message);
   // }
@@ -132,5 +136,52 @@ public class UserInterface {
       System.out.println("Social security number: " + member.getSocialSecurityNumber());
       System.out.println("Member ID: " + member.getId() + "\n");
     }
+  }
+
+  public BoatAction promptForBoatAction() {
+    System.out.println("***************");
+    System.out.println("BOAT MENU");
+    System.out.println("***************");
+    System.out.println("1. Register boat");
+    System.out.println("2. Edit boat");
+    System.out.println("3. Delete boat");
+    System.out.println("0. Back");
+    System.out.print("Choose an option: ");
+
+    int userInput = getInt();
+
+    switch (userInput) {
+      case 1:
+        return BoatAction.ADD;
+      case 2:
+        return BoatAction.EDIT;
+      case 3:
+        return BoatAction.DELETE;
+      case 0:
+        return BoatAction.BACK;
+      default:
+        break;
+    }
+    return BoatAction.None;
+  }
+
+  public int promptForBoatLength() {
+    System.out.print("Enter boat length: ");
+    int userInput = getInt();
+    return userInput;
+  }
+
+  public int promptForBoatType() {
+do {
+  System.out.println("1. Sailboat");
+  System.out.println("2. Motorsailer");
+  System.out.println("3. Kayak / Canoe");
+  System.out.println("4. Other");
+  System.out.println("0. Back");
+  System.out.print("Choose boat type: ");
+  int userInput = getInt();
+} while (userInput > 4);
+
+    return userInput;
   }
 }
