@@ -1,9 +1,11 @@
 package view;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import model.Boat;
 import model.Member;
 
 public class UserInterface {
@@ -125,7 +127,7 @@ public class UserInterface {
     return memberId;
   }
 
-  public void printMember(Member member) {
+  public void printMemberVerbose(Member member) {
     if (member == null) {
       System.out.println("***************");
       System.out.println("MEMBER DETAILS");
@@ -137,7 +139,17 @@ public class UserInterface {
       System.out.println("***************");
       System.out.println("Name: " + member.getName());
       System.out.println("Social security number: " + member.getSocialSecurityNumber());
-      System.out.println("Member ID: " + member.getId() + "\n");
+      System.out.println("Member ID: " + member.getId());
+      printBoatDetails(member);
+    }
+  }
+
+  private void printBoatDetails(Member member) {
+    ArrayList<Boat> boats = member.getBoats();
+    System.out.println("Registered boats:");
+    for (int i = 0; i < boats.size(); i++) {
+      System.out.print("Boat " + (i + 1) + ". ");
+      System.out.println("type: " + boats.get(i).getBoatType() + ", length: " + boats.get(i).getLength());
     }
   }
 

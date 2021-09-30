@@ -83,7 +83,7 @@ public class BoatClubHandler {
       case VIEWONE:
         String memberId = ui.promptForMemberId();
         Member member = memberHandler.getMember(memberId);
-        ui.printMember(member);
+        ui.printMemberVerbose(member);
         showSubMenu(Action.MEMBERS);
         break;
       case DELETE:
