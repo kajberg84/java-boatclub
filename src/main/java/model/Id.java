@@ -3,11 +3,11 @@ package model;
 public class Id {
   private String id;
 
-  public Id(String id){
+  public Id(String id) {
     this.id = id;
   }
 
-  public String getId(){
+  public String getId() {
     return this.id;
   }
 

@@ -1,15 +1,18 @@
 package controller;
 
+import model.Boat;
+import model.Member;
 import view.UserInterface;
 import view.UserInterface.Action;
+import view.UserInterface.BoatAction;
 import view.UserInterface.MemberAction;
-import model.Member;
 
 public class BoatClubHandler {
   private UserInterface ui = new UserInterface();
   private MemberHandler memberHandler = new MemberHandler();
+  private BoatHandler boatHandler = new BoatHandler();
 
-  public BoatClubHandler () {
+  public BoatClubHandler() {
   }
   
   public void start() {
@@ -28,10 +31,37 @@ public class BoatClubHandler {
         handleMemberActions(memberAction);
         break;
       case BOATS:
-        System.out.println("boatmenu");
+        BoatAction boatAction = ui.promptForBoatAction();
+        handleBoatAction(boatAction);
         break;
       case EXIT:
         System.out.println("Goodbye!");
+        break;
+      default:
+        break;
+    }
+  }
+
+  private void handleBoatAction(BoatAction action) {
+    switch (action) {
+      case ADD:
+        Member member;
+        do {
+          String memberId = ui.promptForMemberId();
+          member = memberHandler.getMember(memberId);
+        } while (member == null);
+        int length = ui.promptForBoatLength();
+        int type = ui.promptForBoatType();
+        Boat boat = boatHandler.createBoat(length, type);
+        memberHandler.addNewBoat(member.getId(), boat);
+        showSubMenu(Action.BOATS);
+        break;
+      case EDIT:
+        // To do.
+      case DELETE:
+        // To do.
+      case BACK:
+        showMainMenu();
         break;
       default:
         break;
@@ -52,8 +82,8 @@ public class BoatClubHandler {
         // return MemberAction.VIEWALL;
       case VIEWONE:
         String memberId = ui.promptForMemberId();
-        Member member = memberHandler.showMember(memberId);
-        ui.printMember(member);
+        Member member = memberHandler.getMember(memberId);
+        ui.printMemberVerbose(member);
         showSubMenu(Action.MEMBERS);
         break;
       case DELETE:
