@@ -78,12 +78,23 @@ public class BoatClubHandler {
         showSubMenu(Action.MEMBERS);
         break;
       case EDIT:
-        // return MemberAction.EDIT;
+        Member memberToEdit;
+        do {
+          String memberId = ui.promptForMemberId();
+          memberToEdit = memberHandler.getMember(memberId);
+        } while (memberToEdit == null);
+        int editOption = ui.promptForEditMemberOptions(memberToEdit.getName());
+        if (editOption > 0) {
+          ui.printHeader("edit member");
+          handleEditMember(editOption, memberToEdit);
+        } 
+        showSubMenu(Action.MEMBERS);
+        break;
       case VIEWALL:
-        int option = ui.promptForListOptions();
-        if (option > 0) {
+        int viewOption = ui.promptForListOptions();
+        if (viewOption > 0) {
           ui.printHeader("all members");
-          handlePrintAllMembers(option);
+          handlePrintAllMembers(viewOption);
         } 
         showSubMenu(Action.MEMBERS);
         break;
@@ -103,6 +114,20 @@ public class BoatClubHandler {
         break;
       default:
         break;
+    }
+  }
+
+  private void handleEditMember(int option, Member member) {
+    switch (option) {
+      case 1: 
+        String name = ui.promptForMemberName();
+        memberHandler.editName(member, name);
+        break;
+      case 2:
+        String socialSecurityNumber = ui.promptForSocialSecurityNumber();
+        memberHandler.editSocialSecurityNumber(member, socialSecurityNumber);
+        break;
+      default: break;
     }
   }
 
