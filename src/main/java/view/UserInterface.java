@@ -1,6 +1,9 @@
 package view;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import model.Member;
 
 public class UserInterface {
@@ -172,16 +175,16 @@ public class UserInterface {
   }
 
   public int promptForBoatType() {
-do {
-  System.out.println("1. Sailboat");
-  System.out.println("2. Motorsailer");
-  System.out.println("3. Kayak / Canoe");
-  System.out.println("4. Other");
-  System.out.println("0. Back");
-  System.out.print("Choose boat type: ");
-  int userInput = getInt();
-} while (userInput > 4);
-
+    int userInput;
+    do {
+      System.out.println("1. Sailboat");
+      System.out.println("2. Motorsailer");
+      System.out.println("3. Kayak / Canoe");
+      System.out.println("4. Other");
+      System.out.println("0. Back");
+      System.out.print("Choose boat type: ");
+      userInput = getInt();
+    } while (userInput > 4);
     return userInput;
   }
 }

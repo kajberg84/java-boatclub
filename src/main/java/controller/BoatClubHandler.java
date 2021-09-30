@@ -1,5 +1,6 @@
 package controller;
 
+import model.Boat;
 import model.Member;
 import view.UserInterface;
 import view.UserInterface.Action;
@@ -9,6 +10,7 @@ import view.UserInterface.BoatAction;
 public class BoatClubHandler {
   private UserInterface ui = new UserInterface();
   private MemberHandler memberHandler = new MemberHandler();
+  private BoatHandler boatHandler = new BoatHandler();
 
   public BoatClubHandler() {
   }
@@ -50,9 +52,17 @@ public class BoatClubHandler {
         } while (member == null);
         int length = ui.promptForBoatLength();
         int type = ui.promptForBoatType();
-         
+        Boat boat = boatHandler.createBoat(length, type);
+        memberHandler.addNewBoat(member.getId(), boat);
+        showSubMenu(Action.BOATS);
         break;
-
+      case EDIT:
+        // To do.
+      case DELETE:
+        // To do.
+      case BACK:
+        showMainMenu();
+        break;
       default:
         break;
     }
