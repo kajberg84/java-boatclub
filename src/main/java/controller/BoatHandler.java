@@ -8,7 +8,7 @@ public class BoatHandler {
 
   }
 
-  public Boat createBoat(int length, int type) {
+  public Boat createBoat(int type, int length) {
     String boatType = convertToString(type);
     return new Boat(length, boatType);
   }
