@@ -108,11 +108,11 @@ public class BoatClubHandler {
 
   private void handleDeleteMember() {
     Member member;
-      do {
-        String memberId = ui.promptForMemberId();
-        member = memberHandler.getMember(memberId);
-      } while (member == null);
-      memberHandler.deleteMember(member);
+    do {
+      String memberId = ui.promptForMemberId();
+      member = memberHandler.getMember(memberId);
+    } while (member == null);
+    memberHandler.deleteMember(member);
   }
 
   private void handlePrintAllMembers(int option) {
