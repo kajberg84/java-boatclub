@@ -6,7 +6,11 @@ import model.Boat;
 import model.Member;
 
 public class UserInterface {
-  Scanner scan = new Scanner(System.in);
+  private Scanner scan;
+
+  public UserInterface(Scanner scan) {
+    this.scan = scan;
+  }
   
   public enum Action {
     MEMBERS,
@@ -28,10 +32,6 @@ public class UserInterface {
   public enum BoatAction {
     ADD, EDIT, DELETE, BACK, None
   }
-
-  // public void showMessage(String message) {
-  //   System.out.println(message);
-  // }
 
   public int getInt() {
     int i = 0;
@@ -234,6 +234,4 @@ public class UserInterface {
     int userInput = getInt();
     return userInput;
   }
-
-
 }

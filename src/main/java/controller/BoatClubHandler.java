@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 import model.Boat;
 import model.Member;
 import view.UserInterface;
@@ -9,7 +10,8 @@ import view.UserInterface.BoatAction;
 import view.UserInterface.MemberAction;
 
 public class BoatClubHandler {
-  private UserInterface ui = new UserInterface();
+  private Scanner scan = new Scanner(System.in, "UTF-8");
+  private UserInterface ui = new UserInterface(scan);
   private MemberHandler memberHandler = new MemberHandler();
   private BoatHandler boatHandler = new BoatHandler();
 
@@ -36,6 +38,7 @@ public class BoatClubHandler {
         handleBoatAction(boatAction);
         break;
       case EXIT:
+        scan.close();
         System.out.println("Goodbye!");
         break;
       default:
@@ -121,13 +124,13 @@ public class BoatClubHandler {
     
     switch (editOption) {
       case 1: 
-      String name = ui.promptForMemberName();
-      memberHandler.editName(member, name);
-      break;
+        String name = ui.promptForMemberName();
+        memberHandler.editName(member, name);
+        break;
       case 2:
-      String socialSecurityNumber = ui.promptForSocialSecurityNumber();
-      memberHandler.editSocialSecurityNumber(member, socialSecurityNumber);
-      break;
+        String socialSecurityNumber = ui.promptForSocialSecurityNumber();
+        memberHandler.editSocialSecurityNumber(member, socialSecurityNumber);
+        break;
       default: break;
     }
   }
@@ -172,5 +175,4 @@ public class BoatClubHandler {
     member = askForValidMember();
     memberHandler.deleteMember(member);
   }
-
 }
