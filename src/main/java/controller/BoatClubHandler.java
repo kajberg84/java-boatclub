@@ -46,12 +46,7 @@ public class BoatClubHandler {
   private void handleBoatAction(BoatAction action) {
     switch (action) {
       case ADD:
-        Member member;
-        member = askForValidMember();
-        int type = ui.promptForBoatType();
-        int length = ui.promptForBoatLength();
-        Boat boat = boatHandler.createBoat(type, length);
-        memberHandler.addNewBoat(member.getId(), boat);
+        handleAddBoat();
         showSubMenu(Action.BOATS);
         break;
       case EDIT:
@@ -64,6 +59,14 @@ public class BoatClubHandler {
       default:
         break;
     }
+  }
+
+  private void handleAddBoat() {
+    Member member = askForValidMember();
+    int type = ui.promptForBoatType();
+    int length = ui.promptForBoatLength();
+    Boat boat = boatHandler.createBoat(type, length);
+    memberHandler.addNewBoat(member.getId(), boat);
   }
 
   public void handleMemberActions(MemberAction action) {
