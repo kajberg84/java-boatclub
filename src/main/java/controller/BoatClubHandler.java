@@ -1,7 +1,6 @@
 package controller;
 
 import java.util.ArrayList;
-
 import model.Boat;
 import model.Member;
 import view.UserInterface;
