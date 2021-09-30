@@ -6,7 +6,7 @@ public class MemberHandler {
   private IdHandler handler = new IdHandler();
   private MemberRegistry registry = new MemberRegistry();
 
-  public void createMember(String name, String socialSecurityNumber){
+  public void createMember(String name, String socialSecurityNumber) {
     model.Id memberId = handler.generateUniqueId();
     model.Member newMember = new model.Member(name, socialSecurityNumber, memberId);
     registry.addMember(newMember);

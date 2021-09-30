@@ -1,15 +1,16 @@
 package controller;
 
+import model.Member;
 import view.UserInterface;
 import view.UserInterface.Action;
 import view.UserInterface.MemberAction;
-import model.Member;
+
 
 public class BoatClubHandler {
   private UserInterface ui = new UserInterface();
   private MemberHandler memberHandler = new MemberHandler();
 
-  public BoatClubHandler () {
+  public BoatClubHandler() {
   }
   
   public void start() {

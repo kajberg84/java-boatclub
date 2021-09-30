@@ -1,7 +1,6 @@
 package view;
 
 import java.util.Scanner;
-
 import model.Member;
 
 public class UserInterface {
@@ -55,7 +54,7 @@ public class UserInterface {
 
     int userInput = getInt();
 
-    switch(userInput) {
+    switch (userInput) {
       case 1:
         return Action.MEMBERS;
       case 2:
@@ -82,7 +81,7 @@ public class UserInterface {
 
     int userInput = getInt();
 
-    switch(userInput) {
+    switch (userInput) {
       case 1:
         return MemberAction.ADD;
       case 2:

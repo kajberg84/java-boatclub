@@ -1,6 +1,6 @@
 package controller;
-import java.util.Random;
 
+import java.util.Random;
 import model.Id;
 
 public class IdHandler {  
@@ -14,7 +14,7 @@ public class IdHandler {
     return randomNumber.nextInt(6) + 1;
   }
 
-  public Id generateUniqueId(){
+  public Id generateUniqueId() {
     StringBuilder builder = new StringBuilder();
     Random random = new Random();
 
