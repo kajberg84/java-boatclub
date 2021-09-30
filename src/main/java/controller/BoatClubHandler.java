@@ -47,10 +47,7 @@ public class BoatClubHandler {
     switch (action) {
       case ADD:
         Member member;
-        do {
-          String memberId = ui.promptForMemberId();
-          member = memberHandler.getMember(memberId);
-        } while (member == null);
+        member = askForValidMember();
         int type = ui.promptForBoatType();
         int length = ui.promptForBoatLength();
         Boat boat = boatHandler.createBoat(type, length);
@@ -72,37 +69,19 @@ public class BoatClubHandler {
   public void handleMemberActions(MemberAction action) {
     switch (action) {
       case ADD:
-        String name = ui.promptForMemberName();
-        String number = ui.promptForSocialSecurityNumber();
-        memberHandler.createMember(name, number);
+        handleAddMember();
         showSubMenu(Action.MEMBERS);
         break;
       case EDIT:
-        Member memberToEdit;
-        do {
-          String memberId = ui.promptForMemberId();
-          memberToEdit = memberHandler.getMember(memberId);
-        } while (memberToEdit == null);
-        int editOption = ui.promptForEditMemberOptions(memberToEdit.getName());
-        if (editOption > 0) {
-          ui.printHeader("edit member");
-          handleEditMember(editOption, memberToEdit);
-        } 
+        handleEditMember();
         showSubMenu(Action.MEMBERS);
         break;
       case VIEWALL:
-        int viewOption = ui.promptForListOptions();
-        if (viewOption > 0) {
-          ui.printHeader("all members");
-          handlePrintAllMembers(viewOption);
-        } 
+        handleViewAllMembers();
         showSubMenu(Action.MEMBERS);
         break;
       case VIEWONE:
-        String memberId = ui.promptForMemberId();
-        Member member = memberHandler.getMember(memberId);
-        ui.printHeader("member details");
-        ui.printMemberDetailed(member);
+        handleViewMember();
         showSubMenu(Action.MEMBERS);
         break;
       case DELETE:
@@ -117,31 +96,59 @@ public class BoatClubHandler {
     }
   }
 
-  private void handleEditMember(int option, Member member) {
-    switch (option) {
+  private Member askForValidMember() {
+    Member memberToEdit;
+    do {
+      String memberId = ui.promptForMemberId();
+      memberToEdit = memberHandler.getMember(memberId);
+    } while (memberToEdit == null);
+    return memberToEdit;
+  }
+  
+  private void handleAddMember() {
+    String name = ui.promptForMemberName();
+    String number = ui.promptForSocialSecurityNumber();
+    memberHandler.createMember(name, number);
+  }
+  
+  private void handleEditMember() {
+    ui.printHeader("edit member");
+    Member member = askForValidMember();
+    int editOption = ui.promptForEditMemberOptions(member.getName());
+    
+    switch (editOption) {
       case 1: 
-        String name = ui.promptForMemberName();
-        memberHandler.editName(member, name);
-        break;
+      String name = ui.promptForMemberName();
+      memberHandler.editName(member, name);
+      break;
       case 2:
-        String socialSecurityNumber = ui.promptForSocialSecurityNumber();
-        memberHandler.editSocialSecurityNumber(member, socialSecurityNumber);
-        break;
+      String socialSecurityNumber = ui.promptForSocialSecurityNumber();
+      memberHandler.editSocialSecurityNumber(member, socialSecurityNumber);
+      break;
       default: break;
     }
   }
 
-  private void handleDeleteMember() {
-    Member member;
-    do {
-      String memberId = ui.promptForMemberId();
-      member = memberHandler.getMember(memberId);
-    } while (member == null);
-    memberHandler.deleteMember(member);
+  private void handleViewMember() {
+    String memberId = ui.promptForMemberId();
+    Member member = memberHandler.getMember(memberId);
+    ui.printHeader("member details");
+    ui.printMemberDetailed(member);
+  }
+  
+  private void handleViewAllMembers() {
+    int viewOption = ui.promptForListOptions();
+    if (viewOption > 0) {
+      ui.printHeader("all members");
+      handlePrintAllMembers(viewOption);
+    }
   }
 
   private void handlePrintAllMembers(int option) {
     ArrayList<Member> members = memberHandler.getAllMembers();
+    if (members.size() == 0) {
+      ui.printNoMemberFound();
+    }
     switch (option) {
       case 1: 
         for (Member member : members) {
@@ -156,4 +163,11 @@ public class BoatClubHandler {
       default: break;
     }
   }
+
+  private void handleDeleteMember() {
+    Member member;
+    member = askForValidMember();
+    memberHandler.deleteMember(member);
+  }
+
 }

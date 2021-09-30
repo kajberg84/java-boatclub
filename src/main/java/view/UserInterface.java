@@ -126,7 +126,7 @@ public class UserInterface {
     return memberId;
   }
   
-  private void printNoMemberFound() {
+  public void printNoMemberFound() {
     System.out.println("No member found.\n");
   }
 
