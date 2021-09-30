@@ -32,4 +32,14 @@ public class MemberHandler {
     memberToUpdate.setBoats(boatsToUpdate);
   }
 
+  public void deleteMember(Member member) {
+    ArrayList<Member> members = registry.getAllMembers();
+    members.remove(member);
+    // for (Member m : members) {
+    //   if (m.getId().equals(member.getId())) {
+    //     members.remove(m);
+    //   }
+    // }
+  } 
+
 }

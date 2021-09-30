@@ -51,9 +51,9 @@ public class BoatClubHandler {
           String memberId = ui.promptForMemberId();
           member = memberHandler.getMember(memberId);
         } while (member == null);
-        int length = ui.promptForBoatLength();
         int type = ui.promptForBoatType();
-        Boat boat = boatHandler.createBoat(length, type);
+        int length = ui.promptForBoatLength();
+        Boat boat = boatHandler.createBoat(type, length);
         memberHandler.addNewBoat(member.getId(), boat);
         showSubMenu(Action.BOATS);
         break;
@@ -80,7 +80,7 @@ public class BoatClubHandler {
       case EDIT:
         // return MemberAction.EDIT;
       case VIEWALL:
-        int option = ui.promptForPrintOptions();
+        int option = ui.promptForListOptions();
         if (option > 0) {
           ui.printHeader("all members");
           handlePrintAllMembers(option);
@@ -91,11 +91,13 @@ public class BoatClubHandler {
         String memberId = ui.promptForMemberId();
         Member member = memberHandler.getMember(memberId);
         ui.printHeader("member details");
-        ui.printMemberVerbose(member);
+        ui.printMemberDetailed(member);
         showSubMenu(Action.MEMBERS);
         break;
       case DELETE:
-        // return MemberAction.DELETE;
+        handleDeleteMember();
+        showSubMenu(Action.MEMBERS);
+        break;
       case BACK:
         showMainMenu();
         break;
@@ -104,17 +106,26 @@ public class BoatClubHandler {
     }
   }
 
+  private void handleDeleteMember() {
+    Member member;
+    do {
+      String memberId = ui.promptForMemberId();
+      member = memberHandler.getMember(memberId);
+    } while (member == null);
+    memberHandler.deleteMember(member);
+  }
+
   private void handlePrintAllMembers(int option) {
     ArrayList<Member> members = memberHandler.getAllMembers();
     switch (option) {
       case 1: 
         for (Member member : members) {
-          ui.printMemberVerbose(member);
+          ui.printMemberDetailed(member);
         }
         break;
       case 2:
         for (Member member : members) {
-          ui.printMemberCompact(member);
+          ui.printMemberBasic(member);
         }
         break;
       default: break;

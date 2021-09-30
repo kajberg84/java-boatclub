@@ -43,12 +43,18 @@ public class UserInterface {
     } while (i < 0);
     return i;
   }
-
+  
   public String getString() {
     String str = scan.nextLine();
     return str;
   }
-
+  
+  public void printHeader(String header) {
+    System.out.println("***************");
+    System.out.println(header.toUpperCase());
+    System.out.println("***************");
+  }
+  
   public Action promptForAction() {
     printHeader("main menu");
     System.out.println("1. Handle members");
@@ -119,28 +125,24 @@ public class UserInterface {
     String memberId = getString();
     return memberId;
   }
-
-  public void printHeader(String header) {
-    System.out.println("***************");
-    System.out.println(header.toUpperCase());
-    System.out.println("***************");
-  }
-
-  public void printMemberCompact(Member member) {
-    if (member == null) {
-      printNoMemberFound();
-    } else {
-      System.out.println("Name: " + member.getName());
-      System.out.println("Member ID: " + member.getId());
-      System.out.println("Registered boats: " + member.getBoats().size() + "\n");
-    }
-  }
-
+  
   private void printNoMemberFound() {
     System.out.println("No member found.\n");
   }
 
-  public void printMemberVerbose(Member member) {
+  public int promptForListOptions() {
+    int userInput;
+    do {
+      System.out.println("What do you want to list?");
+      System.out.println("1. Detailed list");
+      System.out.println("2. Basic list");
+      System.out.println("0. Back");
+      userInput = getInt();
+    } while (userInput > 2);
+    return userInput;
+  }
+  
+  public void printMemberDetailed(Member member) {
     if (member == null) {
       printNoMemberFound();
     } else {
@@ -153,6 +155,16 @@ public class UserInterface {
         System.out.println("No registered boats.");
       }
       System.out.println();
+    }
+  }
+
+  public void printMemberBasic(Member member) {
+    if (member == null) {
+      printNoMemberFound();
+    } else {
+      System.out.println("Name: " + member.getName());
+      System.out.println("Member ID: " + member.getId());
+      System.out.println("Registered boats: " + member.getBoats().size() + "\n");
     }
   }
 
@@ -190,12 +202,6 @@ public class UserInterface {
     return BoatAction.None;
   }
 
-  public int promptForBoatLength() {
-    System.out.print("Enter boat length: ");
-    int userInput = getInt();
-    return userInput;
-  }
-
   public int promptForBoatType() {
     int userInput;
     do {
@@ -210,15 +216,10 @@ public class UserInterface {
     return userInput;
   }
 
-  public int promptForPrintOptions() {
-    int userInput;
-    do {
-      System.out.println("What do you want to list?");
-      System.out.println("1. Detailed list");
-      System.out.println("2. Basic list");
-      System.out.println("0. Back");
-      userInput = getInt();
-    } while (userInput > 2);
+  public int promptForBoatLength() {
+    System.out.print("Enter boat length: ");
+    int userInput = getInt();
     return userInput;
   }
+
 }
