@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import model.Boat;
 import model.Member;
 import view.UserInterface;
@@ -79,10 +80,17 @@ public class BoatClubHandler {
       case EDIT:
         // return MemberAction.EDIT;
       case VIEWALL:
-        // return MemberAction.VIEWALL;
+        int option = ui.promptForPrintOptions();
+        if (option > 0) {
+          ui.printHeader("all members");
+          handlePrintAllMembers(option);
+        } 
+        showSubMenu(Action.MEMBERS);
+        break;
       case VIEWONE:
         String memberId = ui.promptForMemberId();
         Member member = memberHandler.getMember(memberId);
+        ui.printHeader("member details");
         ui.printMemberVerbose(member);
         showSubMenu(Action.MEMBERS);
         break;
@@ -93,6 +101,23 @@ public class BoatClubHandler {
         break;
       default:
         break;
+    }
+  }
+
+  private void handlePrintAllMembers(int option) {
+    ArrayList<Member> members = memberHandler.getAllMembers();
+    switch (option) {
+      case 1: 
+        for (Member member : members) {
+          ui.printMemberVerbose(member);
+        }
+        break;
+      case 2:
+        for (Member member : members) {
+          ui.printMemberCompact(member);
+        }
+        break;
+      default: break;
     }
   }
 }

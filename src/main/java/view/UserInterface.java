@@ -50,9 +50,7 @@ public class UserInterface {
   }
 
   public Action promptForAction() {
-    System.out.println("***************");
-    System.out.println("MAIN MENU");
-    System.out.println("***************");
+    printHeader("main menu");
     System.out.println("1. Handle members");
     System.out.println("2. Handle boats");
     System.out.println("0. Exit");
@@ -74,9 +72,7 @@ public class UserInterface {
   }
 
   public MemberAction promptForMemberAction() {
-    System.out.println("***************");
-    System.out.println("MEMBERS MENU");
-    System.out.println("***************");
+    printHeader("member menu");
     System.out.println("1. Add new member");
     System.out.println("2. Edit member details");
     System.out.println("3. View all members");
@@ -124,20 +120,39 @@ public class UserInterface {
     return memberId;
   }
 
+  public void printHeader(String header) {
+    System.out.println("***************");
+    System.out.println(header.toUpperCase());
+    System.out.println("***************");
+  }
+
+  public void printMemberCompact(Member member) {
+    if (member == null) {
+      printNoMemberFound();
+    } else {
+      System.out.println("Name: " + member.getName());
+      System.out.println("Member ID: " + member.getId());
+      System.out.println("Registered boats: " + member.getBoats().size() + "\n");
+    }
+  }
+
+  private void printNoMemberFound() {
+    System.out.println("No member found.\n");
+  }
+
   public void printMemberVerbose(Member member) {
     if (member == null) {
-      System.out.println("***************");
-      System.out.println("MEMBER DETAILS");
-      System.out.println("***************");
-      System.out.println("No member found.\n");
+      printNoMemberFound();
     } else {
-      System.out.println("***************");
-      System.out.println("MEMBER DETAILS");
-      System.out.println("***************");
       System.out.println("Name: " + member.getName());
       System.out.println("Social security number: " + member.getSocialSecurityNumber());
       System.out.println("Member ID: " + member.getId());
-      printBoatDetails(member);
+      if (member.getBoats().size() > 0) {
+        printBoatDetails(member);
+      } else {
+        System.out.println("No registered boats.");
+      }
+      System.out.println();
     }
   }
 
@@ -151,9 +166,7 @@ public class UserInterface {
   }
 
   public BoatAction promptForBoatAction() {
-    System.out.println("***************");
-    System.out.println("BOAT MENU");
-    System.out.println("***************");
+    printHeader("boat menu");
     System.out.println("1. Register boat");
     System.out.println("2. Edit boat");
     System.out.println("3. Delete boat");
@@ -194,6 +207,18 @@ public class UserInterface {
       System.out.print("Choose boat type: ");
       userInput = getInt();
     } while (userInput > 4);
+    return userInput;
+  }
+
+  public int promptForPrintOptions() {
+    int userInput;
+    do {
+      System.out.println("What do you want to list?");
+      System.out.println("1. Detailed list");
+      System.out.println("2. Basic list");
+      System.out.println("0. Back");
+      userInput = getInt();
+    } while (userInput > 2);
     return userInput;
   }
 }
