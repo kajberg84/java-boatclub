@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 import model.Boat;
 import model.Member;
 import view.UserInterface;
@@ -9,7 +10,8 @@ import view.UserInterface.BoatAction;
 import view.UserInterface.MemberAction;
 
 public class BoatClubHandler {
-  private UserInterface ui = new UserInterface();
+  private Scanner scan = new Scanner(System.in, "UTF-8");
+  private UserInterface ui = new UserInterface(scan);
   private MemberHandler memberHandler = new MemberHandler();
   private BoatHandler boatHandler = new BoatHandler();
 
@@ -36,6 +38,7 @@ public class BoatClubHandler {
         handleBoatAction(boatAction);
         break;
       case EXIT:
+        scan.close();
         System.out.println("Goodbye!");
         break;
       default:
@@ -46,15 +49,7 @@ public class BoatClubHandler {
   private void handleBoatAction(BoatAction action) {
     switch (action) {
       case ADD:
-        Member member;
-        do {
-          String memberId = ui.promptForMemberId();
-          member = memberHandler.getMember(memberId);
-        } while (member == null);
-        int type = ui.promptForBoatType();
-        int length = ui.promptForBoatLength();
-        Boat boat = boatHandler.createBoat(type, length);
-        memberHandler.addNewBoat(member.getId(), boat);
+        handleAddBoat();
         showSubMenu(Action.BOATS);
         break;
       case EDIT:
@@ -69,29 +64,30 @@ public class BoatClubHandler {
     }
   }
 
+  private void handleAddBoat() {
+    Member member = askForValidMember();
+    int type = ui.promptForBoatType();
+    int length = ui.promptForBoatLength();
+    Boat boat = boatHandler.createBoat(type, length);
+    memberHandler.addNewBoat(member.getId(), boat);
+  }
+
   public void handleMemberActions(MemberAction action) {
     switch (action) {
       case ADD:
-        String name = ui.promptForMemberName();
-        String number = ui.promptForSocialSecurityNumber();
-        memberHandler.createMember(name, number);
+        handleAddMember();
         showSubMenu(Action.MEMBERS);
         break;
       case EDIT:
-        // return MemberAction.EDIT;
+        handleEditMember();
+        showSubMenu(Action.MEMBERS);
+        break;
       case VIEWALL:
-        int option = ui.promptForListOptions();
-        if (option > 0) {
-          ui.printHeader("all members");
-          handlePrintAllMembers(option);
-        } 
+        handleViewAllMembers();
         showSubMenu(Action.MEMBERS);
         break;
       case VIEWONE:
-        String memberId = ui.promptForMemberId();
-        Member member = memberHandler.getMember(memberId);
-        ui.printHeader("member details");
-        ui.printMemberDetailed(member);
+        handleViewMember();
         showSubMenu(Action.MEMBERS);
         break;
       case DELETE:
@@ -106,17 +102,59 @@ public class BoatClubHandler {
     }
   }
 
-  private void handleDeleteMember() {
-    Member member;
+  private Member askForValidMember() {
+    Member memberToEdit;
     do {
       String memberId = ui.promptForMemberId();
-      member = memberHandler.getMember(memberId);
-    } while (member == null);
-    memberHandler.deleteMember(member);
+      memberToEdit = memberHandler.getMember(memberId);
+    } while (memberToEdit == null);
+    return memberToEdit;
+  }
+  
+  private void handleAddMember() {
+    String name = ui.promptForMemberName();
+    String number = ui.promptForSocialSecurityNumber();
+    memberHandler.createMember(name, number);
+  }
+  
+  private void handleEditMember() {
+    ui.printHeader("edit member");
+    Member member = askForValidMember();
+    int editOption = ui.promptForEditMemberOptions(member.getName());
+    
+    switch (editOption) {
+      case 1: 
+        String name = ui.promptForMemberName();
+        memberHandler.editName(member, name);
+        break;
+      case 2:
+        String socialSecurityNumber = ui.promptForSocialSecurityNumber();
+        memberHandler.editSocialSecurityNumber(member, socialSecurityNumber);
+        break;
+      default: break;
+    }
+  }
+
+  private void handleViewMember() {
+    String memberId = ui.promptForMemberId();
+    Member member = memberHandler.getMember(memberId);
+    ui.printHeader("member details");
+    ui.printMemberDetailed(member);
+  }
+  
+  private void handleViewAllMembers() {
+    int viewOption = ui.promptForListOptions();
+    if (viewOption > 0) {
+      ui.printHeader("all members");
+      handlePrintAllMembers(viewOption);
+    }
   }
 
   private void handlePrintAllMembers(int option) {
     ArrayList<Member> members = memberHandler.getAllMembers();
+    if (members.size() == 0) {
+      ui.printNoMemberFound();
+    }
     switch (option) {
       case 1: 
         for (Member member : members) {
@@ -130,5 +168,11 @@ public class BoatClubHandler {
         break;
       default: break;
     }
+  }
+
+  private void handleDeleteMember() {
+    Member member;
+    member = askForValidMember();
+    memberHandler.deleteMember(member);
   }
 }

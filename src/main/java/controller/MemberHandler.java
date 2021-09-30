@@ -12,9 +12,7 @@ public class MemberHandler {
     model.Id memberId = handler.generateUniqueId();
     model.Member newMember = new model.Member(name, socialSecurityNumber, memberId);
     registry.addMember(newMember);
-    System.out.println(newMember.getName());
-    System.out.println(newMember.getSocialSecurityNumber());
-    System.out.println(newMember.getId());
+    System.out.println("ID: " + newMember.getId());
   }
 
   public Member getMember(String memberId) {
@@ -35,11 +33,13 @@ public class MemberHandler {
   public void deleteMember(Member member) {
     ArrayList<Member> members = registry.getAllMembers();
     members.remove(member);
-    // for (Member m : members) {
-    //   if (m.getId().equals(member.getId())) {
-    //     members.remove(m);
-    //   }
-    // }
-  } 
+  }
 
+  public void editName(Member member, String name) {
+    member.setName(name);
+  }
+
+  public void editSocialSecurityNumber(Member member, String number) {
+    member.setSocialSecurityNumber(number);
+  }
 }

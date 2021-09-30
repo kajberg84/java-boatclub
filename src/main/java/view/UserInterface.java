@@ -6,7 +6,11 @@ import model.Boat;
 import model.Member;
 
 public class UserInterface {
-  Scanner scan = new Scanner(System.in);
+  private Scanner scan;
+
+  public UserInterface(Scanner scan) {
+    this.scan = scan;
+  }
   
   public enum Action {
     MEMBERS,
@@ -28,10 +32,6 @@ public class UserInterface {
   public enum BoatAction {
     ADD, EDIT, DELETE, BACK, None
   }
-
-  // public void showMessage(String message) {
-  //   System.out.println(message);
-  // }
 
   public int getInt() {
     int i = 0;
@@ -119,17 +119,29 @@ public class UserInterface {
     String number = getString();
     return number;
   }
-
+  
   public String promptForMemberId() {
     System.out.print("Enter member ID: ");
     String memberId = getString();
     return memberId;
   }
   
-  private void printNoMemberFound() {
+  public void printNoMemberFound() {
     System.out.println("No member found.\n");
   }
 
+  public int promptForEditMemberOptions(String name) {
+    int userInput;
+    do {
+      System.out.println("What do you want to edit for " + name + "?");
+      System.out.println("1. Name");
+      System.out.println("2. Social security number");
+      System.out.println("0. Back");
+      userInput = getInt();
+    } while (userInput > 2);
+    return userInput;
+  }
+  
   public int promptForListOptions() {
     int userInput;
     do {
@@ -142,6 +154,7 @@ public class UserInterface {
     return userInput;
   }
   
+
   public void printMemberDetailed(Member member) {
     if (member == null) {
       printNoMemberFound();
@@ -221,5 +234,4 @@ public class UserInterface {
     int userInput = getInt();
     return userInput;
   }
-
 }
