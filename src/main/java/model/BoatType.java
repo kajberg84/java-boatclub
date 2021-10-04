@@ -12,6 +12,9 @@ public class BoatType {
     this.input = input;
   }
 
+  /**
+   * @return Type
+   */
   public Type getBoatType() {
     switch (input) {
       case 1:

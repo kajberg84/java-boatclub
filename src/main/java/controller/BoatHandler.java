@@ -8,11 +8,22 @@ public class BoatHandler {
 
   }
 
+  /**
+   * @param type
+   * @param length
+   * @return Boat
+   */
   public Boat createBoat(int type, int length) {
     String boatType = convertToString(type);
     return new Boat(length, boatType);
   }
 
+  
+
+  /**
+   * @param type
+   * @return String
+   */
   private String convertToString(int type) {
     switch (type) {
       case 1:

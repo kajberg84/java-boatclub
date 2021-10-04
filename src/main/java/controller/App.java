@@ -1,14 +1,15 @@
 package controller;
 
 /**
- * Responsible for staring the application.
+ * Responsible for starting the application.
  */
 public class App {
   /**
    * Application starting point.
-
-   * @param args command line arguments.
+   * @param args command lin1e arguments.
    */
+
+
   public static void main(String[] args) {
     // adapt to start the application in your way
     // model.Simple m = new model.Simple();
