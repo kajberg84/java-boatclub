@@ -225,7 +225,7 @@ public class UserInterface {
     ArrayList<Boat> boats = member.getBoats();
     System.out.println("Registered boats:");
     for (int i = 0; i < boats.size(); i++) {
-      System.out.print("Boat " + (i + 1) + ". ");
+      System.out.print((i + 1) + ". ");
       System.out.println("type: " + boats.get(i).getBoatType() + ", length: " + boats.get(i).getLength());
     }
   }
@@ -282,5 +282,23 @@ public class UserInterface {
     System.out.print("Enter boat length: ");
     int userInput = getInt();
     return userInput;
+  }
+
+  /**
+   * @param member
+   * @return int
+   */
+  public int promptForBoatToDelete(Member member) {
+    printBoatDetails(member);
+    int memberBoatsLength = member.getBoats().size();
+    int userInput;
+
+    do {
+      System.out.println("Which do you want to delete?");
+      System.out.print("Enter number: ");
+      userInput = getInt();
+    } while (userInput > memberBoatsLength || userInput == 0);
+
+    return userInput - 1;
   }
 }

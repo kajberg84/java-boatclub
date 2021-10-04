@@ -16,6 +16,8 @@ public class Member {
   }
 
   /**
+   * Getname.
+   * 
    * @return String
    */
   public String getName() {
@@ -58,7 +60,7 @@ public class Member {
   }
 
   /**
-   * @param value
+   * @param value 
    */
   public void setBoats(ArrayList<Boat> value) {
     this.boats = value;

@@ -45,6 +45,17 @@ public class MemberHandler {
     memberToUpdate.setBoats(boatsToUpdate);
   }
 
+  
+  /** 
+   * @param member
+   * @param boatIndex
+   */
+  public void deleteBoat(Member member, int boatIndex) {
+    ArrayList<Boat> boatsToUpdate = member.getBoats();
+    boatsToUpdate.remove(boatIndex);
+    member.setBoats(boatsToUpdate);
+    }
+
   /**
    * @param member
    */

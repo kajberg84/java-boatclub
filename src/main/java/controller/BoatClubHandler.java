@@ -28,7 +28,7 @@ public class BoatClubHandler {
   }
 
   /**
-   * @param action
+   * @param action - Action
    */
   public void showSubMenu(Action action) {
     switch (action) {
@@ -61,13 +61,21 @@ public class BoatClubHandler {
       case EDIT:
         // To do.
       case DELETE:
-        // To do.
+        handleDeleteBoat();
+        showSubMenu(Action.BOATS);
+        break;
       case BACK:
         showMainMenu();
         break;
       default:
         break;
     }
+  }
+
+  private void handleDeleteBoat() {
+    Member member = askForValidMember();
+    int boatIndex = ui.promptForBoatToDelete(member);
+    memberHandler.deleteBoat(member, boatIndex);
   }
 
   private void handleAddBoat() {

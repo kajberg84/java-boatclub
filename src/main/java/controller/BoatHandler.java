@@ -18,6 +18,8 @@ public class BoatHandler {
     return new Boat(length, boatType);
   }
 
+  
+
   /**
    * @param type
    * @return String
