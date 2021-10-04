@@ -33,6 +33,9 @@ public class UserInterface {
     ADD, EDIT, DELETE, BACK, None
   }
 
+  /**
+   * @return int
+   */
   public int getInt() {
     int i = 0;
     do {
@@ -44,17 +47,26 @@ public class UserInterface {
     return i;
   }
   
+  /**
+   * @return String
+   */
   public String getString() {
     String str = scan.nextLine();
     return str;
   }
   
+  /**
+   * @param header
+   */
   public void printHeader(String header) {
     System.out.println("***************");
     System.out.println(header.toUpperCase());
     System.out.println("***************");
   }
   
+  /**
+   * @return Action
+   */
   public Action promptForAction() {
     printHeader("main menu");
     System.out.println("1. Handle members");
@@ -77,6 +89,9 @@ public class UserInterface {
     return Action.None;
   }
 
+  /**
+   * @return MemberAction
+   */
   public MemberAction promptForMemberAction() {
     printHeader("member menu");
     System.out.println("1. Add new member");
@@ -108,18 +123,27 @@ public class UserInterface {
     return MemberAction.None;
   }
 
+  /**
+   * @return String
+   */
   public String promptForMemberName() {
     System.out.print("Enter full member name: ");
     String name = getString();
     return name;
   }
 
+  /**
+   * @return String
+   */
   public String promptForSocialSecurityNumber() {
     System.out.print("Enter social security number: ");
     String number = getString();
     return number;
   }
   
+  /**
+   * @return String
+   */
   public String promptForMemberId() {
     System.out.print("Enter member ID: ");
     String memberId = getString();
@@ -130,6 +154,10 @@ public class UserInterface {
     System.out.println("No member found.\n");
   }
 
+  /**
+   * @param name
+   * @return int
+   */
   public int promptForEditMemberOptions(String name) {
     int userInput;
     do {
@@ -142,6 +170,9 @@ public class UserInterface {
     return userInput;
   }
   
+  /**
+   * @return int
+   */
   public int promptForListOptions() {
     int userInput;
     do {
@@ -155,6 +186,9 @@ public class UserInterface {
   }
   
 
+  /**
+   * @param member
+   */
   public void printMemberDetailed(Member member) {
     if (member == null) {
       printNoMemberFound();
@@ -171,6 +205,9 @@ public class UserInterface {
     }
   }
 
+  /**
+   * @param member
+   */
   public void printMemberBasic(Member member) {
     if (member == null) {
       printNoMemberFound();
@@ -181,6 +218,9 @@ public class UserInterface {
     }
   }
 
+  /**
+   * @param member
+   */
   private void printBoatDetails(Member member) {
     ArrayList<Boat> boats = member.getBoats();
     System.out.println("Registered boats:");
@@ -190,6 +230,9 @@ public class UserInterface {
     }
   }
 
+  /**
+   * @return BoatAction
+   */
   public BoatAction promptForBoatAction() {
     printHeader("boat menu");
     System.out.println("1. Register boat");
@@ -215,6 +258,9 @@ public class UserInterface {
     return BoatAction.None;
   }
 
+  /**
+   * @return int
+   */
   public int promptForBoatType() {
     int userInput;
     do {
@@ -229,6 +275,9 @@ public class UserInterface {
     return userInput;
   }
 
+  /**
+   * @return int
+   */
   public int promptForBoatLength() {
     System.out.print("Enter boat length: ");
     int userInput = getInt();

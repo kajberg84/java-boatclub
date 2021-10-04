@@ -1,7 +1,7 @@
 package controller;
 
 /**
- * Responsible for staring the application.
+ * Responsible for starting the application.
  */
 public class App {
   /**

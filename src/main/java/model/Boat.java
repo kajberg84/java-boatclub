@@ -13,18 +13,30 @@ public class Boat {
     this.type = type;
   }
 
+  /**
+   * @return int
+   */
   public int getLength() {
     return length;
   }
 
+  /**
+   * @param value
+   */
   public void setLength(int value) {
     this.length = value;
   }
 
+  /**
+   * @return String
+   */
   public String getBoatType() {
     return type;
   }
 
+  /**
+   * @param value
+   */
   public void setBoatType(String value) {
     this.type = value;
   }

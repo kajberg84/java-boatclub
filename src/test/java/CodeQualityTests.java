@@ -51,6 +51,10 @@ public class CodeQualityTests {
     assertTrue(errors < maxQualityErrors, "Max amount (" + maxQualityErrors +") of quality issues exceeded:" + errors);
   }
 
+  
+  /** 
+   * @return int
+   */
   public int findBugsTest() {
     DocumentBuilder dBuilder = null;
     int errors = 0;
@@ -133,6 +137,10 @@ public class CodeQualityTests {
     return errors;
   }
 
+  
+  /** 
+   * @param values
+   */
   private void reportTestCaseToConsole(Collection<TestCase> values) {
     for(TestCase t : values) {
       System.out.println(t.failures.size() + " " + t.className + " in " + t.fileName);
@@ -142,6 +150,11 @@ public class CodeQualityTests {
     }
   }
 
+  
+  /** 
+   * @param str
+   * @return String
+   */
   private String fixBugPatternText(String str) {
 
     // we can treat this text as an hmtl (xml) document to and do the rendering based on this...
@@ -186,6 +199,11 @@ public class CodeQualityTests {
     return ret;
   }
 
+  
+  /** 
+   * @param item
+   * @return String
+   */
   private String getHTMLNodeText(Node item) {
     if (item.getNodeName() == "pre") {
       return System.lineSeparator() + item.getTextContent();
@@ -203,6 +221,10 @@ public class CodeQualityTests {
     return item.getNodeName().equalsIgnoreCase("p") ? System.lineSeparator() + text + System.lineSeparator() : text;
   }
 
+  
+  /** 
+   * @return int
+   */
   public int checkStyleTest() {
     ArrayList<TestCase> testCases = new ArrayList<>();
     int errors = 0;
@@ -264,6 +286,12 @@ public class CodeQualityTests {
     return errors;
   }
 
+  
+  /** 
+   * @param str
+   * @param maxLen
+   * @return String
+   */
   private String fixSingleStringLength(String str, final int maxLen) {
     str = str.replace("    ", "\t");
     String[] parts = str.split(" ");
@@ -284,6 +312,12 @@ public class CodeQualityTests {
     return ret.replace("\t", "  ");
   }
 
+  
+  /** 
+   * @param str
+   * @param maxLen
+   * @return String
+   */
   private String fixStringLength(final String str, final int maxLen) {
     String[] parts = str.split("\r\n|\n");
     String ret = "";
@@ -299,6 +333,14 @@ public class CodeQualityTests {
     return ret.trim();
   }
 
+  
+  /** 
+   * @param testCases
+   * @param a_fileName
+   * @param suitePackage
+   * @param suiteName
+   * @throws IOException
+   */
   private void saveTestCasesAsXML(Collection<TestCase> testCases, String a_fileName, String suitePackage, String suiteName) throws IOException {
 
     final String ls = System.lineSeparator();
@@ -333,6 +375,11 @@ public class CodeQualityTests {
 
   }
 
+  
+  /** 
+   * @return DocumentBuilder
+   * @throws ParserConfigurationException
+   */
   private DocumentBuilder getDocumentBuilder() throws ParserConfigurationException {
     DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
     return dbFactory.newDocumentBuilder();

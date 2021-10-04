@@ -9,11 +9,17 @@ public class IdHandler {
     
   }
 
+  /**
+   * @return int
+   */
   private int getRandomNumber() {
     Random randomNumber = new Random();
     return randomNumber.nextInt(6) + 1;
   }
 
+  /**
+   * @return Id
+   */
   public Id generateUniqueId() {
     StringBuilder builder = new StringBuilder();
     Random random = new Random();

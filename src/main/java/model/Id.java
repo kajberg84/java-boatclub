@@ -7,6 +7,9 @@ public class Id {
     this.id = id;
   }
 
+  /**
+   * @return String
+   */
   public String getId() {
     return this.id;
   }

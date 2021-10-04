@@ -27,6 +27,9 @@ public class BoatClubHandler {
     showSubMenu(action);
   }
 
+  /**
+   * @param action
+   */
   public void showSubMenu(Action action) {
     switch (action) {
       case MEMBERS:
@@ -46,6 +49,9 @@ public class BoatClubHandler {
     }
   }
 
+  /**
+   * @param action
+   */
   private void handleBoatAction(BoatAction action) {
     switch (action) {
       case ADD:
@@ -72,6 +78,9 @@ public class BoatClubHandler {
     memberHandler.addNewBoat(member.getId(), boat);
   }
 
+  /**
+   * @param action
+   */
   public void handleMemberActions(MemberAction action) {
     switch (action) {
       case ADD:
@@ -102,6 +111,9 @@ public class BoatClubHandler {
     }
   }
 
+  /**
+   * @return Member
+   */
   private Member askForValidMember() {
     Member memberToEdit;
     do {
@@ -150,6 +162,9 @@ public class BoatClubHandler {
     }
   }
 
+  /**
+   * @param option
+   */
   private void handlePrintAllMembers(int option) {
     ArrayList<Member> members = memberHandler.getAllMembers();
     if (members.size() == 0) {
