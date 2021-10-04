@@ -6,7 +6,8 @@ package controller;
 public class App {
   /**
    * Application starting point.
-   * @param args command lin1e arguments.
+
+   * @param args command line arguments.
    */
 
 

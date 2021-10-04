@@ -4,13 +4,18 @@ import java.util.ArrayList;
 import model.Boat;
 import model.Member;
 
+/** 
+ * Responsible for member operations.
+ */
 public class MemberHandler {
   private IdHandler handler = new IdHandler();
   private MemberRegistry registry = new MemberRegistry();
 
   /**
-   * @param name
-   * @param socialSecurityNumber
+   * Creates a new member.
+
+   * @param name The name of the new member.
+   * @param socialSecurityNumber The social security number of the new member.
    */
   public void createMember(String name, String socialSecurityNumber) {
     model.Id memberId = handler.generateUniqueId();
@@ -20,7 +25,9 @@ public class MemberHandler {
   }
 
   /**
-   * @param memberId
+   * Returns a member by member ID.
+
+   * @param memberId The ID of the member to get.
    * @return Member
    */
   public Member getMember(String memberId) {
@@ -28,15 +35,19 @@ public class MemberHandler {
   }
 
   /**
-   * @return ArrayList<Member>
+   * Returns all members.
+
+   * @return ArrayList
    */
   public ArrayList<Member> getAllMembers() {
     return registry.getAllMembers();
   }
 
   /**
-   * @param memberId
-   * @param boat
+   * Registers a new boat to a member.
+
+   * @param memberId The ID of the member to register the boat to.
+   * @param boat The boat to register.
    */
   public void addNewBoat(String memberId, Boat boat) {
     Member memberToUpdate = getMember(memberId);
@@ -47,17 +58,21 @@ public class MemberHandler {
 
   
   /** 
-   * @param member
-   * @param boatIndex
+   * Deletes a boat from a member.
+
+   * @param member The member to delete the boat from.
+   * @param boatIndex The index of the boat to delete.
    */
   public void deleteBoat(Member member, int boatIndex) {
     ArrayList<Boat> boatsToUpdate = member.getBoats();
     boatsToUpdate.remove(boatIndex);
     member.setBoats(boatsToUpdate);
-    }
+  }
 
   /**
-   * @param member
+   * Deletes a member.
+
+   * @param member The member to delete.
    */
   public void deleteMember(Member member) {
     ArrayList<Member> members = registry.getAllMembers();
@@ -65,16 +80,20 @@ public class MemberHandler {
   }
 
   /**
-   * @param member
-   * @param name
+   * Edits a member's name.
+
+   * @param member The member to edit.
+   * @param name The new name of the member.
    */
   public void editName(Member member, String name) {
     member.setName(name);
   }
 
   /**
-   * @param member
-   * @param number
+   * Edits a member's social security number.
+
+   * @param member The member to edit.
+   * @param number The new social security number of the member.
    */
   public void editSocialSecurityNumber(Member member, String number) {
     member.setSocialSecurityNumber(number);

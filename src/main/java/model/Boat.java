@@ -3,17 +3,28 @@ package model;
 // import model.BoatType;
 // import model.BoatType.Type;
 
+/** 
+ * A class representing a boat.
+ */
 public class Boat {
   private int length;
   private String type;
   // private BoatType type;
 
+  /**
+   * A boat object.
+
+   * @param length The length of the boat.
+   * @param type The type of the boat.
+   */
   public Boat(int length, String type) {
     this.length = length;
     this.type = type;
   }
 
   /**
+   * Gets the length of the boat.
+
    * @return int
    */
   public int getLength() {
@@ -21,13 +32,17 @@ public class Boat {
   }
 
   /**
-   * @param value
+   * Sets the length of the boat to an integer.
+
+   * @param value An integer.
    */
   public void setLength(int value) {
     this.length = value;
   }
 
   /**
+   * Gets the type of the boat.
+
    * @return String
    */
   public String getBoatType() {
@@ -35,7 +50,9 @@ public class Boat {
   }
 
   /**
-   * @param value
+   * Sets the type of the boat.
+
+   * @param value A string.
    */
   public void setBoatType(String value) {
     this.type = value;

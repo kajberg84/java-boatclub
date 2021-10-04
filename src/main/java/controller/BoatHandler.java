@@ -2,6 +2,9 @@ package controller;
 
 import model.Boat;
 
+/** 
+ * Responsible for boat operations.
+ */
 public class BoatHandler {
 
   public BoatHandler() {
@@ -9,8 +12,10 @@ public class BoatHandler {
   }
 
   /**
-   * @param type
-   * @param length
+   * Creates a new object of type Boat and returns it.
+
+   * @param type The type of the boat that is created.
+   * @param length The length of the boat that is created.
    * @return Boat
    */
   public Boat createBoat(int type, int length) {
@@ -18,10 +23,10 @@ public class BoatHandler {
     return new Boat(length, boatType);
   }
 
-  
-
   /**
-   * @param type
+   * Returns a type of boat as a string.
+
+   * @param type Integer-coded type of boat.
    * @return String
    */
   private String convertToString(int type) {

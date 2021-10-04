@@ -9,6 +9,9 @@ import view.UserInterface.Action;
 import view.UserInterface.BoatAction;
 import view.UserInterface.MemberAction;
 
+/**
+ * Responsible for main operations in the boat club application.
+ */
 public class BoatClubHandler {
   private Scanner scan = new Scanner(System.in, "UTF-8");
   private UserInterface ui = new UserInterface(scan);
@@ -28,7 +31,9 @@ public class BoatClubHandler {
   }
 
   /**
-   * @param action - Action
+   * Shows a sub menu to the user.
+
+   * @param action The action chosen by the user.
    */
   public void showSubMenu(Action action) {
     switch (action) {
@@ -50,7 +55,9 @@ public class BoatClubHandler {
   }
 
   /**
-   * @param action
+   * Handles adding, editing and deleting boats.
+
+   * @param action The action chosen by the user.
    */
   private void handleBoatAction(BoatAction action) {
     switch (action) {
@@ -87,7 +94,9 @@ public class BoatClubHandler {
   }
 
   /**
-   * @param action
+   * Handles adding, editing, viewing and deleting members.
+
+   * @param action The action chosen by the user.
    */
   public void handleMemberActions(MemberAction action) {
     switch (action) {
@@ -120,6 +129,8 @@ public class BoatClubHandler {
   }
 
   /**
+   * Asks for a member and returns it.
+
    * @return Member
    */
   private Member askForValidMember() {
@@ -171,7 +182,9 @@ public class BoatClubHandler {
   }
 
   /**
-   * @param option
+   * Handles the printing of member details.
+
+   * @param option The print view style chosen by the user.
    */
   private void handlePrintAllMembers(int option) {
     ArrayList<Member> members = memberHandler.getAllMembers();
