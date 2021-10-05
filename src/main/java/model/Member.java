@@ -2,12 +2,22 @@ package model;
 
 import java.util.ArrayList;
 
+/** 
+ * A class representing a member.
+ */
 public class Member {
   private String name;
   private String socialSecurityNumber;
   private Id memberId;
   private ArrayList<Boat> boats; 
 
+  /**
+   * A member object.
+
+   * @param name The name of the member.
+   * @param socialSecurityNumber The social security number of the member.
+   * @param memberId The ID of the member.
+   */
   public Member(String name, String socialSecurityNumber, Id memberId) {
     this.name = name;
     this.socialSecurityNumber = socialSecurityNumber;
@@ -16,8 +26,8 @@ public class Member {
   }
 
   /**
-   * Getname.
-   * 
+   * Gets a member's name.
+
    * @return String
    */
   public String getName() {
@@ -25,13 +35,17 @@ public class Member {
   }
 
   /**
-   * @param value
+   * Sets a member's name.
+
+   * @param value The member's new name.
    */
   public void setName(String value) {
     this.name = value;
   }
 
   /**
+   * Gets a member's social security number.
+
    * @return String
    */
   public String getSocialSecurityNumber() {
@@ -39,13 +53,17 @@ public class Member {
   }
 
   /**
-   * @param value
+   * Sets a member's social security number.
+
+   * @param value The new social security number.
    */
   public void setSocialSecurityNumber(String value) {
     this.socialSecurityNumber = value;
   }
 
   /**
+   * Gets a member's ID.
+
    * @return String
    */
   public String getId() {
@@ -53,14 +71,18 @@ public class Member {
   }
 
   /**
-   * @return ArrayList<Boat>
+   * Returns an ArrayList of all boats registered to a member.
+
+   * @return ArrayList
    */
   public ArrayList<Boat> getBoats() {
     return this.boats;
   }
 
   /**
-   * @param value 
+   * Sets all boats registered to a member.
+
+   * @param value An ArrayList of boat objects.
    */
   public void setBoats(ArrayList<Boat> value) {
     this.boats = value;

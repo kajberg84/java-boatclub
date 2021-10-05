@@ -3,15 +3,27 @@ package view;
 import java.util.ArrayList;
 import java.util.Scanner;
 import model.Boat;
+import model.BoatType;
 import model.Member;
 
+/** 
+ * A class representing a user interface.
+ */
 public class UserInterface {
   private Scanner scan;
 
+  /**
+   * An instance of a user interface.
+
+   * @param scan A scanner to get user input from.
+   */
   public UserInterface(Scanner scan) {
     this.scan = scan;
   }
   
+  /**
+   * Actions to choose from in the main menu.
+   */
   public enum Action {
     MEMBERS,
     BOATS,
@@ -19,6 +31,9 @@ public class UserInterface {
     None
   }
 
+  /** 
+   * Actions to choose from in the members sub menu.
+   */
   public enum MemberAction {
     ADD,
     EDIT,
@@ -29,11 +44,20 @@ public class UserInterface {
     None
   }
 
+  /** 
+   * Actions to choose from in the boats sub menu.
+   */
   public enum BoatAction {
-    ADD, EDIT, DELETE, BACK, None
+    ADD, 
+    EDIT, 
+    DELETE, 
+    BACK, 
+    None
   }
 
   /**
+   * Returns an integer scanned from user input in the console.
+
    * @return int
    */
   public int getInt() {
@@ -48,6 +72,8 @@ public class UserInterface {
   }
   
   /**
+   * Returns a string scanned from user input in the console.
+
    * @return String
    */
   public String getString() {
@@ -56,7 +82,9 @@ public class UserInterface {
   }
   
   /**
-   * @param header
+   * Prints a header in the console.
+
+   * @param header The header text string.
    */
   public void printHeader(String header) {
     System.out.println("***************");
@@ -65,6 +93,8 @@ public class UserInterface {
   }
   
   /**
+   * Prints the main menu in the console and prompts for an action to be taken.
+
    * @return Action
    */
   public Action promptForAction() {
@@ -90,6 +120,8 @@ public class UserInterface {
   }
 
   /**
+   * Prints the members sub menu in the console and prompts for an action to be taken.
+
    * @return MemberAction
    */
   public MemberAction promptForMemberAction() {
@@ -124,6 +156,8 @@ public class UserInterface {
   }
 
   /**
+   * Prompts the user for a member's name.
+
    * @return String
    */
   public String promptForMemberName() {
@@ -133,6 +167,8 @@ public class UserInterface {
   }
 
   /**
+   * Prompts the user for a member's social security number.
+
    * @return String
    */
   public String promptForSocialSecurityNumber() {
@@ -142,6 +178,8 @@ public class UserInterface {
   }
   
   /**
+   * Prompts the user for a member's ID.
+
    * @return String
    */
   public String promptForMemberId() {
@@ -150,12 +188,17 @@ public class UserInterface {
     return memberId;
   }
   
+  /**
+   * Prints in the console that no member was found.
+   */
   public void printNoMemberFound() {
     System.out.println("No member found.\n");
   }
 
   /**
-   * @param name
+   * Prints the edit member menu in the console and prompts for an action to be taken.
+
+   * @param name The name of the member to edit.
    * @return int
    */
   public int promptForEditMemberOptions(String name) {
@@ -165,12 +208,16 @@ public class UserInterface {
       System.out.println("1. Name");
       System.out.println("2. Social security number");
       System.out.println("0. Back");
+      System.out.print("Choose an option: ");
       userInput = getInt();
     } while (userInput > 2);
     return userInput;
   }
   
   /**
+   * Prints the options for viewing all members in the console 
+   * and prompts for an action to be taken.
+
    * @return int
    */
   public int promptForListOptions() {
@@ -187,7 +234,9 @@ public class UserInterface {
   
 
   /**
-   * @param member
+   * Prints a detailed view of a specific member in the console.
+
+   * @param member The member to view.
    */
   public void printMemberDetailed(Member member) {
     if (member == null) {
@@ -206,7 +255,9 @@ public class UserInterface {
   }
 
   /**
-   * @param member
+   * Prints a basic view of a specific member in the console.
+
+   * @param member The member to view.
    */
   public void printMemberBasic(Member member) {
     if (member == null) {
@@ -219,7 +270,9 @@ public class UserInterface {
   }
 
   /**
-   * @param member
+   * Prints the details for all boats registered to a member.
+
+   * @param member The member whose boats to view.
    */
   private void printBoatDetails(Member member) {
     ArrayList<Boat> boats = member.getBoats();
@@ -231,6 +284,8 @@ public class UserInterface {
   }
 
   /**
+   * Prints the boats sub menu in the console and prompts for an action to be taken.
+
    * @return BoatAction
    */
   public BoatAction promptForBoatAction() {
@@ -259,23 +314,28 @@ public class UserInterface {
   }
 
   /**
+   * Prompts the user for a boat's type and returns an integer representing that type.
+
    * @return int
    */
-  public int promptForBoatType() {
+  public BoatType promptForBoatType() {
     int userInput;
+    BoatType[] types = BoatType.values();
     do {
-      System.out.println("1. Sailboat");
-      System.out.println("2. Motorsailer");
-      System.out.println("3. Kayak / Canoe");
-      System.out.println("4. Other");
-      System.out.println("0. Back");
+      int index = 0;
+      for (BoatType type : types) {
+        System.out.println((index + 1) + ". " + type.label);
+        index++;
+      }
       System.out.print("Choose boat type: ");
       userInput = getInt();
-    } while (userInput > 4);
-    return userInput;
+    } while (userInput > types.length);
+    return types[(userInput - 1)];
   }
 
   /**
+   * Prompts the user for a boat's length.
+
    * @return int
    */
   public int promptForBoatLength() {
@@ -285,20 +345,40 @@ public class UserInterface {
   }
 
   /**
-   * @param member
+   * Prompts the user for a boat and returns the index of that boat.
+
+   * @param member The member owning the boat.
    * @return int
    */
-  public int promptForBoatToDelete(Member member) {
+  public int promptForBoat(Member member) {
     printBoatDetails(member);
     int memberBoatsLength = member.getBoats().size();
     int userInput;
 
     do {
-      System.out.println("Which do you want to delete?");
+      System.out.println("\nChoose a boat.");
       System.out.print("Enter number: ");
       userInput = getInt();
     } while (userInput > memberBoatsLength || userInput == 0);
 
     return userInput - 1;
+  }
+
+  /**
+   * Prints the edit boat menu in the console and prompts for an action to be taken.
+
+   * @return int
+   */
+  public int promptForEditBoatOptions() {
+    int userInput;
+    do {
+      System.out.println("What do you want to edit?");
+      System.out.println("1. Type");
+      System.out.println("2. Length");
+      System.out.println("0. Back");
+      System.out.print("Choose an option: ");
+      userInput = getInt();
+    } while (userInput > 2);
+    return userInput;
   }
 }

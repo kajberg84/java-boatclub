@@ -3,6 +3,9 @@ package controller;
 import java.util.ArrayList;
 import model.Member;
 
+/** 
+ * Responsible for member registry operations.
+ */
 public class MemberRegistry {
   private ArrayList<Member> members = new ArrayList<>();
   
@@ -10,21 +13,27 @@ public class MemberRegistry {
   }
 
   /**
-   * @return ArrayList<Member>
+   * Returns all members.
+
+   * @return ArrayList
    */
   public ArrayList<Member> getAllMembers() {
     return members;
   }
   
   /**
-   * @param newMember
+   * Adds a new member to the registry.
+
+   * @param newMember The new member to add.
    */
   public void addMember(Member newMember) {
     members.add(newMember);
   }
 
   /**
-   * @param memberId
+   * Gets a member by member ID.
+
+   * @param memberId The ID of the member to get.
    * @return Member
    */
   public Member getMemberById(String memberId) {

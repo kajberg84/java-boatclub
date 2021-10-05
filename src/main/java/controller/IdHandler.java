@@ -3,6 +3,9 @@ package controller;
 import java.util.Random;
 import model.Id;
 
+/** 
+ * Responsible for handling an ID.
+ */
 public class IdHandler {  
 
   IdHandler() {
@@ -10,6 +13,8 @@ public class IdHandler {
   }
 
   /**
+   * Returns a random integer between 1 and 6.
+
    * @return int
    */
   private int getRandomNumber() {
@@ -18,6 +23,8 @@ public class IdHandler {
   }
 
   /**
+   * Returns an alphanumeric ID of up to 6 characters.
+
    * @return Id
    */
   public Id generateUniqueId() {
