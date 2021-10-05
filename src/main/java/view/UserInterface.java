@@ -227,6 +227,7 @@ public class UserInterface {
       System.out.println("1. Detailed list");
       System.out.println("2. Basic list");
       System.out.println("0. Back");
+      System.out.print("Choose an option: ");
       userInput = getInt();
     } while (userInput > 2);
     return userInput;

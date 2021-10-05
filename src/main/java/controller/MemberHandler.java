@@ -22,7 +22,7 @@ public class MemberHandler {
     model.Id memberId = handler.generateUniqueId();
     model.Member newMember = new model.Member(name, socialSecurityNumber, memberId);
     registry.addMember(newMember);
-    System.out.println("ID: " + newMember.getId());
+    System.out.println("ID: " + newMember.getId()); // TILL FÖR TESTNING
   }
 
   /**
