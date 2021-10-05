@@ -20,26 +20,6 @@ public class BoatHandler {
    * @return Boat
    */
   public Boat createBoat(BoatType type, int length) {
-    // String boatType = convertToString(type);
     return new Boat(length, type);
   }
-
-  /**
-   * Returns a type of boat as a string.
-
-   * @param type Integer-coded type of boat.
-   * @return String
-   */
-  /* private String convertToString(int type) {
-    switch (type) {
-      case 1:
-        return "sailboat";
-      case 2:
-        return "motorsailer";
-      case 3:
-        return "kayak/canoe";
-      default:
-        return "other";
-    }
-  } */
 }

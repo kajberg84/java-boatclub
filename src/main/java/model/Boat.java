@@ -44,8 +44,8 @@ public class Boat {
 
    * @return String
    */
-  public BoatType getBoatType() {
-    return type;
+  public String getBoatType() {
+    return type.label;
   }
 
   /**

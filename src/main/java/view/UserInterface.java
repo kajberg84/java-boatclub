@@ -319,23 +319,17 @@ public class UserInterface {
    */
   public BoatType promptForBoatType() {
     int userInput;
-    BoatType types[] = BoatType.values();
-    int index = 0;
+    BoatType[] types = BoatType.values();
     do {
+      int index = 0;
       for (BoatType type : types) {
         System.out.println((index + 1) + ". " + type.label);
         index++;
       }
-      /* System.out.println("1. Sailboat");
-      System.out.println("2. Motorsailer");
-      System.out.println("3. Kayak / Canoe");
-      System.out.println("4. Other");
-      System.out.println("0. Back"); */
       System.out.print("Choose boat type: ");
       userInput = getInt();
-    } while (userInput > 4);
-    /* return userInput; */
-    return types.get(userInput - 1);
+    } while (userInput > types.length);
+    return types[(userInput - 1)];
   }
 
   /**
