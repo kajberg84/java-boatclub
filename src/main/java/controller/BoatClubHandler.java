@@ -67,7 +67,9 @@ public class BoatClubHandler {
         showSubMenu(Action.BOATS);
         break;
       case EDIT:
-        // To do.
+        handleEditBoat();
+        showSubMenu(Action.BOATS);
+        break;
       case DELETE:
         handleDeleteBoat();
         showSubMenu(Action.BOATS);
@@ -80,18 +82,36 @@ public class BoatClubHandler {
     }
   }
 
-  private void handleDeleteBoat() {
-    Member member = askForValidMember();
-    int boatIndex = ui.promptForBoatToDelete(member);
-    memberHandler.deleteBoat(member, boatIndex);
-  }
-
   private void handleAddBoat() {
     Member member = askForValidMember();
     BoatType type = ui.promptForBoatType();
     int length = ui.promptForBoatLength();
     Boat boat = boatHandler.createBoat(type, length);
     memberHandler.addNewBoat(member.getId(), boat);
+  }
+
+  private void handleEditBoat() {
+    Member member = askForValidMember();
+    int boatIndex = ui.promptForBoat(member);
+    int editOption = ui.promptForEditBoatOptions();
+    
+    switch (editOption) {
+      case 1: 
+        String name = ui.promptForMemberName();
+        memberHandler.editName(member, name);
+        break;
+      case 2:
+        String socialSecurityNumber = ui.promptForSocialSecurityNumber();
+        memberHandler.editSocialSecurityNumber(member, socialSecurityNumber);
+        break;
+      default: break;
+    }
+  }
+
+  private void handleDeleteBoat() {
+    Member member = askForValidMember();
+    int boatIndex = ui.promptForBoat(member);
+    memberHandler.deleteBoat(member, boatIndex);
   }
 
   /**

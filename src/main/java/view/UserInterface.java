@@ -349,13 +349,13 @@ public class UserInterface {
    * @param member The member owning the boat to delete.
    * @return int
    */
-  public int promptForBoatToDelete(Member member) {
+  public int promptForBoat(Member member) {
     printBoatDetails(member);
     int memberBoatsLength = member.getBoats().size();
     int userInput;
 
     do {
-      System.out.println("Which do you want to delete?");
+      System.out.println("Choose a boat.");
       System.out.print("Enter number: ");
       userInput = getInt();
     } while (userInput > memberBoatsLength || userInput == 0);
