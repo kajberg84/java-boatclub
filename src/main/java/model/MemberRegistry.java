@@ -18,7 +18,8 @@ public class MemberRegistry {
    * @return ArrayList
    */
   public ArrayList<Member> getAllMembers() {
-    return members;
+    ArrayList<Member> membersCopy = members;
+    return membersCopy;
   }
   
   /**
@@ -96,5 +97,14 @@ public class MemberRegistry {
       }
     }
     return true;
+  }
+
+  /**
+   * Deletes a member.
+
+   * @param member The member to delete.
+   */
+  public void deleteMember(Member member) {
+    members.remove(member);
   }
 }

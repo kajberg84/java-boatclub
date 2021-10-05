@@ -54,7 +54,6 @@ public class MemberHandler {
     memberToUpdate.setBoats(boatsToUpdate);
   }
 
-  
   /** 
    * Deletes a boat from a member.
 
@@ -73,8 +72,7 @@ public class MemberHandler {
    * @param member The member to delete.
    */
   public void deleteMember(Member member) {
-    ArrayList<Member> members = registry.getAllMembers();
-    members.remove(member);
+    registry.deleteMember(member);
   }
 
   /**
