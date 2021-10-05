@@ -102,7 +102,7 @@ public class MemberHandler {
 
   /**
    * Edits a boat's type.
-  
+
    * @param member The member owning the boat to edit.
    * @param boatIndex The index of the boat to edit.
    * @param type The new type of the boat.
