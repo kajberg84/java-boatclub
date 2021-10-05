@@ -1,13 +1,10 @@
 package model;
 
-// import model.BoatType;
-
 /** 
  * A class representing a boat.
  */
 public class Boat {
   private int length;
-  // private String type;
   private BoatType type;
 
   /**
@@ -56,16 +53,4 @@ public class Boat {
   public void setBoatType(BoatType value) {
     this.type = value;
   }
-  // private BoatType convertEnumToString(BoatType boattype) {
-  // // return boattype;
-  // switch (boattype) {
-  // case SAILBOAT:
-  // return boattype;
-  // break;
-
-  // default:
-  // break;
-  // }
-  // return boattype;
-  // }
 }

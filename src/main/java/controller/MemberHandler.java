@@ -2,6 +2,7 @@ package controller;
 
 import java.util.ArrayList;
 import model.Boat;
+import model.BoatType;
 import model.Member;
 
 /** 
@@ -97,5 +98,31 @@ public class MemberHandler {
    */
   public void editSocialSecurityNumber(Member member, String number) {
     member.setSocialSecurityNumber(number);
+  }
+
+  /**
+   * Edits a boat's type.
+  
+   * @param member The member owning the boat to edit.
+   * @param boatIndex The index of the boat to edit.
+   * @param type The new type of the boat.
+   */
+  public void editBoatType(Member member, int boatIndex, BoatType type) {
+    ArrayList<Boat> boats = member.getBoats();
+    Boat boatToEdit = boats.get(boatIndex);
+    boatToEdit.setBoatType(type);
+  }
+
+  /**
+   * Edits a boat's length.
+
+   * @param member The member owning the boat to edit.
+   * @param boatIndex The index of the boat to edit.
+   * @param length The new length of the boat.
+   */
+  public void editBoatLength(Member member, int boatIndex, int length) {
+    ArrayList<Boat> boats = member.getBoats();
+    Boat boatToEdit = boats.get(boatIndex);
+    boatToEdit.setLength(length);
   }
 }

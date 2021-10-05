@@ -208,6 +208,7 @@ public class UserInterface {
       System.out.println("1. Name");
       System.out.println("2. Social security number");
       System.out.println("0. Back");
+      System.out.print("Choose an option: ");
       userInput = getInt();
     } while (userInput > 2);
     return userInput;
@@ -344,9 +345,9 @@ public class UserInterface {
   }
 
   /**
-   * Prompts the user for a boat to delete and returns the index of that boat.
+   * Prompts the user for a boat and returns the index of that boat.
 
-   * @param member The member owning the boat to delete.
+   * @param member The member owning the boat.
    * @return int
    */
   public int promptForBoat(Member member) {
@@ -355,11 +356,29 @@ public class UserInterface {
     int userInput;
 
     do {
-      System.out.println("Choose a boat.");
+      System.out.println("\nChoose a boat.");
       System.out.print("Enter number: ");
       userInput = getInt();
     } while (userInput > memberBoatsLength || userInput == 0);
 
     return userInput - 1;
+  }
+
+  /**
+   * Prints the edit boat menu in the console and prompts for an action to be taken.
+
+   * @return int
+   */
+  public int promptForEditBoatOptions() {
+    int userInput;
+    do {
+      System.out.println("What do you want to edit?");
+      System.out.println("1. Type");
+      System.out.println("2. Length");
+      System.out.println("0. Back");
+      System.out.print("Choose an option: ");
+      userInput = getInt();
+    } while (userInput > 2);
+    return userInput;
   }
 }
