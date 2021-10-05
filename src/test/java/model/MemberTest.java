@@ -1,6 +1,5 @@
 package model;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +10,7 @@ public class MemberTest {
     MockId memberId = new MockId("123456");
     MockMember m = new MockMember("Ellen Nu", "911224", memberId);
 
-    assertFalse(m.getName().equals("Ellen Nu"), "Member's name should be 'Ellen Nu'");
+    assertTrue(m.getName().equals("Ellen Nu"), "Member's name should be 'Ellen Nu'");
   };
 
   @Test

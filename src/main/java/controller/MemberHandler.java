@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import model.Boat;
 import model.BoatType;
 import model.Member;
+import model.MemberRegistry;
 
 /** 
  * Responsible for member operations.
  */
 public class MemberHandler {
-  private IdHandler handler = new IdHandler();
   private MemberRegistry registry = new MemberRegistry();
 
   /**
@@ -19,10 +19,7 @@ public class MemberHandler {
    * @param socialSecurityNumber The social security number of the new member.
    */
   public void createMember(String name, String socialSecurityNumber) {
-    model.Id memberId = handler.generateUniqueId();
-    model.Member newMember = new model.Member(name, socialSecurityNumber, memberId);
-    registry.addMember(newMember);
-    System.out.println("ID: " + newMember.getId()); // TILL FÖR TESTNING
+    registry.addMember(name, socialSecurityNumber);
   }
 
   /**
