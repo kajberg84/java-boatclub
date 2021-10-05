@@ -2,6 +2,8 @@ package view;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import controller.MemberHandler;
 import model.Boat;
 import model.BoatType;
 import model.Member;
@@ -9,16 +11,18 @@ import model.Member;
 /** 
  * A class representing a user interface.
  */
-public class UserInterface {
+class UserInterface {
   private Scanner scan;
+  private MemberHandler memberHandler;
 
   /**
    * An instance of a user interface.
 
    * @param scan A scanner to get user input from.
    */
-  public UserInterface(Scanner scan) {
+  public UserInterface(Scanner scan, MemberHandler memberHandler) {
     this.scan = scan;
+    this.memberHandler = memberHandler;
   }
   
   /**
@@ -315,37 +319,6 @@ public class UserInterface {
   }
 
   /**
-   * Prompts the user for a boat's type and returns an integer representing that type.
-
-   * @return int
-   */
-  public BoatType promptForBoatType() {
-    int userInput;
-    BoatType[] types = BoatType.values();
-    do {
-      int index = 0;
-      for (BoatType type : types) {
-        System.out.println((index + 1) + ". " + type.label);
-        index++;
-      }
-      System.out.print("Choose boat type: ");
-      userInput = getInt();
-    } while (userInput > types.length);
-    return types[(userInput - 1)];
-  }
-
-  /**
-   * Prompts the user for a boat's length.
-
-   * @return int
-   */
-  public int promptForBoatLength() {
-    System.out.print("Enter boat length: ");
-    int userInput = getInt();
-    return userInput;
-  }
-
-  /**
    * Prompts the user for a boat and returns the index of that boat.
 
    * @param member The member owning the boat.
@@ -381,5 +354,19 @@ public class UserInterface {
       userInput = getInt();
     } while (userInput > 2);
     return userInput;
+  }
+
+  /**
+   * Asks for a member and returns it.
+   * 
+   * @return Member
+   */
+  public Member askForValidMember() {
+    Member memberToEdit;
+    do {
+      String memberId = promptForMemberId();
+      memberToEdit = memberHandler.getMember(memberId);
+    } while (memberToEdit == null);
+    return memberToEdit;
   }
 }

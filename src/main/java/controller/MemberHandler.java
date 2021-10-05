@@ -41,18 +41,7 @@ public class MemberHandler {
     return registry.getAllMembers();
   }
 
-  /**
-   * Registers a new boat to a member.
 
-   * @param memberId The ID of the member to register the boat to.
-   * @param boat The boat to register.
-   */
-  public void addNewBoat(String memberId, Boat boat) {
-    Member memberToUpdate = getMember(memberId);
-    ArrayList<Boat> boatsToUpdate = memberToUpdate.getBoats();
-    boatsToUpdate.add(boat);
-    memberToUpdate.setBoats(boatsToUpdate);
-  }
 
   /** 
    * Deletes a boat from a member.
