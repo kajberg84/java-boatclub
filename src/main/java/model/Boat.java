@@ -1,15 +1,14 @@
 package model;
 
 // import model.BoatType;
-// import model.BoatType.Type;
 
 /** 
  * A class representing a boat.
  */
 public class Boat {
   private int length;
-  private String type;
-  // private BoatType type;
+  // private String type;
+  private BoatType type;
 
   /**
    * A boat object.
@@ -17,7 +16,7 @@ public class Boat {
    * @param length The length of the boat.
    * @param type The type of the boat.
    */
-  public Boat(int length, String type) {
+  public Boat(int length, BoatType type) {
     this.length = length;
     this.type = type;
   }
@@ -45,7 +44,7 @@ public class Boat {
 
    * @return String
    */
-  public String getBoatType() {
+  public BoatType getBoatType() {
     return type;
   }
 
@@ -54,7 +53,7 @@ public class Boat {
 
    * @param value A string.
    */
-  public void setBoatType(String value) {
+  public void setBoatType(BoatType value) {
     this.type = value;
   }
   // private BoatType convertEnumToString(BoatType boattype) {

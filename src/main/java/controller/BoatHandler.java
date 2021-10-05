@@ -1,6 +1,7 @@
 package controller;
 
 import model.Boat;
+import model.BoatType;
 
 /** 
  * Responsible for boat operations.
@@ -18,9 +19,9 @@ public class BoatHandler {
    * @param length The length of the boat that is created.
    * @return Boat
    */
-  public Boat createBoat(int type, int length) {
-    String boatType = convertToString(type);
-    return new Boat(length, boatType);
+  public Boat createBoat(BoatType type, int length) {
+    // String boatType = convertToString(type);
+    return new Boat(length, type);
   }
 
   /**
@@ -29,7 +30,7 @@ public class BoatHandler {
    * @param type Integer-coded type of boat.
    * @return String
    */
-  private String convertToString(int type) {
+  /* private String convertToString(int type) {
     switch (type) {
       case 1:
         return "sailboat";
@@ -40,5 +41,5 @@ public class BoatHandler {
       default:
         return "other";
     }
-  }
+  } */
 }

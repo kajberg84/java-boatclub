@@ -1,21 +1,25 @@
 package model;
 
-public class BoatType {
+public enum BoatType {
+  SAILBOAT("sailboat"), 
+  MOTORSAILER("motorsailer"), 
+  KAYAKCANOE("kayak/canoe"), 
+  OTHER("other");
 
-  private int input;
+  public final String label;
 
-  public enum Type {
-    SAILBOAT, MOTORSAILER, KAYAKCANOE, OTHER, None;
+  private BoatType(String label) {
+    this.label = label;
   }
 
-  public BoatType(int input) {
+  /* public BoatType(int input) {
     this.input = input;
-  }
+  } */
 
   /**
    * @return Type
    */
-  public Type getBoatType() {
+  /* public Type getBoatType() {
     switch (input) {
       case 1:
         return Type.SAILBOAT;
@@ -29,6 +33,6 @@ public class BoatType {
         break;
     }
     return Type.None;
-  }
+  } */
 
 }

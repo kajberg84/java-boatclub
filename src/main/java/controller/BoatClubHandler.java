@@ -3,6 +3,7 @@ package controller;
 import java.util.ArrayList;
 import java.util.Scanner;
 import model.Boat;
+import model.BoatType;
 import model.Member;
 import view.UserInterface;
 import view.UserInterface.Action;
@@ -87,7 +88,7 @@ public class BoatClubHandler {
 
   private void handleAddBoat() {
     Member member = askForValidMember();
-    int type = ui.promptForBoatType();
+    BoatType type = ui.promptForBoatType();
     int length = ui.promptForBoatLength();
     Boat boat = boatHandler.createBoat(type, length);
     memberHandler.addNewBoat(member.getId(), boat);

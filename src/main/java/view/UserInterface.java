@@ -3,6 +3,7 @@ package view;
 import java.util.ArrayList;
 import java.util.Scanner;
 import model.Boat;
+import model.BoatType;
 import model.Member;
 
 /** 
@@ -47,7 +48,11 @@ public class UserInterface {
    * Actions to choose from in the boats sub menu.
    */
   public enum BoatAction {
-    ADD, EDIT, DELETE, BACK, None
+    ADD, 
+    EDIT, 
+    DELETE, 
+    BACK, 
+    None
   }
 
   /**
@@ -312,18 +317,25 @@ public class UserInterface {
 
    * @return int
    */
-  public int promptForBoatType() {
+  public BoatType promptForBoatType() {
     int userInput;
+    BoatType types[] = BoatType.values();
+    int index = 0;
     do {
-      System.out.println("1. Sailboat");
+      for (BoatType type : types) {
+        System.out.println((index + 1) + ". " + type.label);
+        index++;
+      }
+      /* System.out.println("1. Sailboat");
       System.out.println("2. Motorsailer");
       System.out.println("3. Kayak / Canoe");
       System.out.println("4. Other");
-      System.out.println("0. Back");
+      System.out.println("0. Back"); */
       System.out.print("Choose boat type: ");
       userInput = getInt();
     } while (userInput > 4);
-    return userInput;
+    /* return userInput; */
+    return types.get(userInput - 1);
   }
 
   /**
