@@ -29,17 +29,12 @@ public class BoatClubHandler {
     showMainMenu();
   }
 
-  public void showMainMenu() {
+  private void showMainMenu() {
     Action action = boatUi.promptForMainAction();
     showSubMenu(action);
   }
 
-  /**
-   * Shows a sub menu to the user.
-
-   * @param action The action chosen by the user.
-   */
-  public void showSubMenu(Action action) {
+  private void showSubMenu(Action action) {
     switch (action) {
       case MEMBERS:
         MemberAction memberAction = boatUi.promptForMemberAction();
@@ -58,11 +53,6 @@ public class BoatClubHandler {
     }
   }
 
-  /**
-   * Handles adding, editing and deleting boats.
-
-   * @param action The action chosen by the user.
-   */
   private void handleBoatAction(BoatAction action) {
     switch (action) {
       case ADD:
@@ -103,12 +93,7 @@ public class BoatClubHandler {
     boatHandler.deleteBoat(member);
   }
 
-  /**
-   * Handles adding, editing, viewing and deleting members.
-
-   * @param action The action chosen by the user.
-   */
-  public void handleMemberActions(MemberAction action) {
+  private void handleMemberActions(MemberAction action) {
     switch (action) {
       case ADD:
         handleAddMember();

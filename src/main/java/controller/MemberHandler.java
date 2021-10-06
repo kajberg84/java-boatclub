@@ -26,12 +26,6 @@ public class MemberHandler {
     createMember(name, number);
   }
   
-  /**
-   * Creates a new member.
-
-   * @param name The name of the new member.
-   * @param socialSecurityNumber The social security number of the new member.
-   */
   private void createMember(String name, String socialSecurityNumber) {
     registry.addMember(name, socialSecurityNumber);
   }
@@ -55,21 +49,11 @@ public class MemberHandler {
     }
   }
 
-  /**
-   * Edits a member's name.
-
-   * @param member The member to edit.
-   */
   private void editName(Member member) {
     String name = ui.promptForMemberName();
     member.setName(name);
   }
 
-  /**
-   * Edits a member's social security number.
-
-   * @param member The member to edit.
-   */
   private void editSocialSecurityNumber(Member member) {
     String socialSecurityNumber = ui.promptForSocialSecurityNumber();
     member.setSocialSecurityNumber(socialSecurityNumber);
@@ -99,12 +83,6 @@ public class MemberHandler {
     }
   }
 
-  /**
-   * Prints a list of members based on selected print option.
-
-   * @param viewOption The chosen print option.
-   * @param members The members to print.
-   */
   private void printMemberList(int viewOption, ArrayList<Member> members) {
     switch (viewOption) {
       case 1: 
@@ -121,22 +99,11 @@ public class MemberHandler {
     }
   }
 
-  /**
-   * Returns a member by member ID.
-
-   * @param memberId The ID of the member to get.
-   * @return Member
-   */
-  public Member getMember(String memberId) {
+  private Member getMember(String memberId) {
     return registry.getMemberById(memberId);
   }
 
-  /**
-   * Returns all members.
-
-   * @return ArrayList
-   */
-  public ArrayList<Member> getAllMembers() {
+  private ArrayList<Member> getAllMembers() {
     return registry.getAllMembers();
   }
   

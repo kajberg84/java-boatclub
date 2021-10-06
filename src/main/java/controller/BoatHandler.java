@@ -26,11 +26,6 @@ public class BoatHandler {
     member.setBoats(boatsToUpdate);
   }
 
-  /**
-   * Prompts for new boat details and returns a new boat.
-
-   * @return Boat
-   */
   private Boat promptForBoatDetails() {
     BoatType type = ui.promptForBoatType();
     int length = ui.promptForBoatLength();
@@ -38,13 +33,6 @@ public class BoatHandler {
     return boat;
   }
 
-  /**
-   * Creates a new object of type Boat and returns it.
-
-   * @param type The type of the boat that is created.
-   * @param length The length of the boat that is created.
-   * @return Boat
-   */
   private Boat createBoat(BoatType type, int length) {
     return new Boat(length, type);
   }
@@ -69,26 +57,12 @@ public class BoatHandler {
     }
   }
 
-  /**
-   * Edits a boat's type.
-
-   * @param member The member owning the boat to edit.
-   * @param boatIndex The index of the boat to edit.
-   * @param type The new type of the boat.
-   */
   private void editBoatType(Member member, int boatIndex, BoatType type) {
     ArrayList<Boat> boats = member.getBoats();
     Boat boatToEdit = boats.get(boatIndex);
     boatToEdit.setBoatType(type);
   }
 
-  /**
-  * Edits a boat's length.
-
-  * @param member The member owning the boat to edit.
-  * @param boatIndex The index of the boat to edit.
-  * @param length The new length of the boat.
-  */
   private void editBoatLength(Member member, int boatIndex, int length) {
     ArrayList<Boat> boats = member.getBoats();
     Boat boatToEdit = boats.get(boatIndex);

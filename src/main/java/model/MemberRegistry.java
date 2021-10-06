@@ -50,11 +50,6 @@ public class MemberRegistry {
     return m;
   }
 
-  /**
-   * Returns an alphanumeric ID of up to 6 characters.
-
-   * @return Id
-   */
   private Id generateUniqueId() {
     StringBuilder builder = new StringBuilder();
     Random random = new Random();
@@ -75,21 +70,11 @@ public class MemberRegistry {
     return newId;
   }
 
-  /**
-   * Returns a random integer between 1 and 6.
-
-   * @return int
-   */
   private int getRandomNumber() {
     Random randomNumber = new Random();
     return randomNumber.nextInt(6) + 1;
   }
 
-  /**
-   * Returns true if Id is unique.
-
-   * @return boolean
-   */
   private boolean isUniqueId(Id id) {
     for (Member m : members) {
       if (m.getId().equals(id.toString())) {

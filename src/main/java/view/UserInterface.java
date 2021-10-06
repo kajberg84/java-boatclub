@@ -23,11 +23,6 @@ class UserInterface {
     this.scan = scan;
   }
 
-  /**
-   * Returns an integer scanned from user input in the console.
-
-   * @return int
-   */
   protected int getInt() {
     int i = 0;
     do {
@@ -38,17 +33,12 @@ class UserInterface {
     } while (i < 0);
     return i;
   }
-  
-  /**
-   * Returns a string scanned from user input in the console.
 
-   * @return String
-   */
   protected String getString() {
     String str = scan.nextLine();
     return str;
   }
-  
+
   /**
    * Prints a header in the console.
 
@@ -59,7 +49,7 @@ class UserInterface {
     System.out.println(header.toUpperCase());
     System.out.println("***************");
   }
-  
+
   /**
    * Prints the main menu in the console and prompts for an action to be taken.
 
@@ -113,7 +103,7 @@ class UserInterface {
     System.out.println("MEMBER MENU");
     System.out.println("***************");
   }
-  
+
   /**
    * Prints the boats sub menu in the console and prompts for an action to be taken.
 
@@ -152,11 +142,6 @@ class UserInterface {
     return memberId;
   }
 
-  /**
-   * Prints the details for all boats registered to a member.
-
-   * @param member The member whose boats to view.
-   */
   protected void printBoatDetails(Member member) {
     ArrayList<Boat> boats = member.getBoats();
     System.out.println("Registered boats:");
