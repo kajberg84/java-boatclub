@@ -58,10 +58,10 @@ public class MemberView extends UserInterface {
       System.out.println("\nWhat do you want to edit for " + name + "?");
       System.out.println("1. Name");
       System.out.println("2. Social security number");
-      System.out.println("0. Back");
+      System.out.println("3. Back");
       System.out.print("Choose an option: ");
       userInput = getInt();
-    } while (userInput > 2);
+    } while (!isValidInput(userInput, 3));
     return userInput;
   }
 
@@ -77,10 +77,10 @@ public class MemberView extends UserInterface {
       System.out.println("\nWhat do you want to list?");
       System.out.println("1. Detailed list");
       System.out.println("2. Basic list");
-      System.out.println("0. Back");
+      System.out.println("3. Back");
       System.out.print("Choose an option: ");
       userInput = getInt();
-    } while (userInput > 2);
+    } while (!isValidInput(userInput, 3));
     return userInput;
   }
 

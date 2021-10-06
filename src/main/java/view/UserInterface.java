@@ -29,6 +29,9 @@ class UserInterface {
       if (scan.hasNextInt()) {
         i = scan.nextInt();
         scan.nextLine();
+      } else {
+        scan.nextLine();
+        return 0;
       }
     } while (i < 0);
     return i;
@@ -40,26 +43,15 @@ class UserInterface {
   }
 
   /**
-   * Prints a header in the console.
-
-   * @param header The header text string.
-   */
-  public void printHeader(String header) {
-    System.out.println("\n***************");
-    System.out.println(header.toUpperCase());
-    System.out.println("***************");
-  }
-
-  /**
    * Prints the main menu in the console and prompts for an action to be taken.
 
    * @return Action
    */
   public Action promptForMainAction() {
-    printMainMenuHeader();
     int userInput; 
     Action[] actions = Action.values();
     do {
+      printMainMenuHeader();
       int index = 0;
       for (Action action : actions) {
         System.out.println((index + 1) + ". " + action.label);
@@ -67,8 +59,18 @@ class UserInterface {
       }
       System.out.print("Choose an option: ");
       userInput = getInt();
-    } while (userInput > actions.length);
+    } while (!isValidInput(userInput, actions.length));
     return actions[(userInput - 1)];
+  }
+
+  protected boolean isValidInput(int input, int length) {
+    boolean isValid = true;
+    if (input < 1) {
+      isValid = false;
+    } else if (input > length) {
+      isValid = false;
+    }
+    return isValid;
   }
 
   private void printMainMenuHeader() {
@@ -83,10 +85,10 @@ class UserInterface {
    * @return MemberAction
    */
   public MemberAction promptForMemberAction() {
-    printMemberMenuHeader();
     int userInput;
     MemberAction[] memberActions = MemberAction.values();
     do {
+      printMemberMenuHeader();
       int index = 0;
       for (MemberAction memberAction : memberActions) {
         System.out.println((index + 1) + ". " + memberAction.label);
@@ -94,7 +96,7 @@ class UserInterface {
       }
       System.out.print("Choose an option: ");
       userInput = getInt();
-    } while (userInput > memberActions.length);
+    } while (userInput > memberActions.length || userInput == 0);
     return memberActions[(userInput - 1)];
   }
 
@@ -110,10 +112,10 @@ class UserInterface {
    * @return BoatAction
    */
   public BoatAction promptForBoatAction() {
-    printBoatMenuHeader();
     int userInput;
     BoatAction[] boatActions = BoatAction.values();
     do {
+      printBoatMenuHeader();
       int index = 0;
       for (BoatAction boatAction : boatActions) {
         System.out.println((index + 1) + ". " + boatAction.label);
@@ -121,7 +123,7 @@ class UserInterface {
       }
       System.out.print("Choose an option: ");
       userInput = getInt();
-    } while (userInput > boatActions.length);
+    } while (userInput > boatActions.length || userInput == 0);
     return boatActions[(userInput - 1)];
   }
 

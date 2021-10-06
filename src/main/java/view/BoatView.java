@@ -32,7 +32,7 @@ public class BoatView extends UserInterface {
       System.out.println("\nChoose a boat.");
       System.out.print("Enter number: ");
       userInput = getInt();
-    } while (userInput > memberBoatsLength || userInput == 0);
+    } while (!isValidInput(userInput, memberBoatsLength));
     return userInput - 1;
   }
 
@@ -53,7 +53,7 @@ public class BoatView extends UserInterface {
       }
       System.out.print("Choose boat type: ");
       userInput = getInt();
-    } while (userInput > types.length);
+    } while (!isValidInput(userInput, types.length));
     return types[(userInput - 1)];
   }
 
@@ -63,8 +63,11 @@ public class BoatView extends UserInterface {
    * @return int
    */
   public int promptForBoatLength() {
-    System.out.print("Enter boat length: ");
-    int userInput = getInt();
+    int userInput;
+    do {
+      System.out.print("Enter boat length: ");
+      userInput = getInt();
+    } while (userInput < 1);
     return userInput;
   }
 
@@ -82,7 +85,7 @@ public class BoatView extends UserInterface {
       System.out.println("3. Back");
       System.out.print("Choose an option: ");
       userInput = getInt();
-    } while (userInput > 3);
+    } while (!isValidInput(userInput, 3));
     return userInput;
   }
 
