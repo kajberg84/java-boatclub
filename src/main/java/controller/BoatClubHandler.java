@@ -1,6 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 import model.Action;
 import model.BoatAction;
@@ -15,9 +14,9 @@ import view.MemberView;
  */
 public class BoatClubHandler {
   private Scanner scan = new Scanner(System.in, "UTF-8");
-  private MemberHandler memberHandler = new MemberHandler();
-  private BoatView boatUi = new BoatView(scan, memberHandler);
-  private MemberView memberUi = new MemberView(scan, memberHandler);
+  private MemberView memberUi = new MemberView(scan);
+  private MemberHandler memberHandler = new MemberHandler(memberUi);
+  private BoatView boatUi = new BoatView(scan);
   private BoatHandler boatHandler = new BoatHandler(boatUi);
   private PersistentData persistentData;
 
@@ -87,15 +86,21 @@ public class BoatClubHandler {
   }
 
   private void handleAddBoat() {
-    boatHandler.addNewBoat();
+    boatUi.printRegisterBoatHeader();
+    Member member = memberHandler.askForValidMember();
+    boatHandler.addNewBoat(member);
   }
 
   private void handleEditBoat() {
-    boatHandler.editBoat();
+    boatUi.printEditBoatHeader();
+    Member member = memberHandler.askForValidMember();
+    boatHandler.editBoat(member);
   }
 
   private void handleDeleteBoat() {
-    boatHandler.deleteBoat();
+    boatUi.printDeleteBoatHeader();
+    Member member = memberHandler.askForValidMember();
+    boatHandler.deleteBoat(member);
   }
 
   /**
@@ -133,88 +138,23 @@ public class BoatClubHandler {
     }
   }
 
-  /**
-   * Asks for a member and returns it.
-
-   * @return Member
-   */
-  private Member askForValidMember() {
-    Member memberToEdit;
-    do {
-      String memberId = boatUi.promptForMemberId();
-      memberToEdit = memberHandler.getMember(memberId);
-    } while (memberToEdit == null);
-    return memberToEdit;
-  }
-  
   private void handleAddMember() {
-    boatUi.printHeader("register member");
-    String name = memberUi.promptForMemberName();
-    String number = memberUi.promptForSocialSecurityNumber();
-    memberHandler.createMember(name, number);
+    memberHandler.registerMember();
   }
   
   private void handleEditMember() {
-    boatUi.printHeader("edit member");
-    Member member = askForValidMember();
-    int editOption = memberUi.promptForEditMemberOptions(member.getName());
-    
-    switch (editOption) {
-      case 1: 
-        String name = memberUi.promptForMemberName();
-        memberHandler.editName(member, name);
-        break;
-      case 2:
-        String socialSecurityNumber = memberUi.promptForSocialSecurityNumber();
-        memberHandler.editSocialSecurityNumber(member, socialSecurityNumber);
-        break;
-      default: break;
-    }
+    memberHandler.editMember();
   }
 
   private void handleViewMember() {
-    String memberId = boatUi.promptForMemberId();
-    Member member = memberHandler.getMember(memberId);
-    boatUi.printHeader("member details");
-    memberUi.printMemberDetailed(member);
+    memberHandler.viewMember();
   }
   
   private void handleViewAllMembers() {
-    int viewOption = memberUi.promptForListOptions();
-    if (viewOption > 0) {
-      boatUi.printHeader("all members");
-      handlePrintAllMembers(viewOption);
-    }
-  }
-
-  /**
-   * Handles the printing of member details.
-
-   * @param option The print view style chosen by the user.
-   */
-  private void handlePrintAllMembers(int option) {
-    ArrayList<Member> members = memberHandler.getAllMembers();
-    if (members.size() == 0) {
-      memberUi.printNoMemberFound();
-    }
-    switch (option) {
-      case 1: 
-        for (Member member : members) {
-          memberUi.printMemberDetailed(member);
-        }
-        break;
-      case 2:
-        for (Member member : members) {
-          memberUi.printMemberBasic(member);
-        }
-        break;
-      default: break;
-    }
+    memberHandler.viewAllMembers();
   }
 
   private void handleDeleteMember() {
-    boatUi.printHeader("delete member");
-    Member member = askForValidMember();
-    memberHandler.deleteMember(member);
+    memberHandler.deleteMember();
   }
 }

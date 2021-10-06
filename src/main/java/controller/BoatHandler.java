@@ -10,18 +10,16 @@ import view.BoatView;
  * Responsible for boat operations.
  */
 public class BoatHandler {
-  BoatView boatUi;
+  BoatView ui;
 
-  public BoatHandler(BoatView boatUi) {
-    this.boatUi = boatUi;
+  public BoatHandler(BoatView ui) {
+    this.ui = ui;
   }
 
   /**
    * Registers a new boat to a member.
    */
-  public void addNewBoat() {
-    boatUi.printRegisterBoatHeader();
-    Member member = boatUi.askForValidMember();
+  public void addNewBoat(Member member) {
     Boat boat = promptForBoatDetails();
     ArrayList<Boat> boatsToUpdate = member.getBoats();
     boatsToUpdate.add(boat);
@@ -34,8 +32,8 @@ public class BoatHandler {
    * @return Boat
    */
   private Boat promptForBoatDetails() {
-    BoatType type = boatUi.promptForBoatType();
-    int length = boatUi.promptForBoatLength();
+    BoatType type = ui.promptForBoatType();
+    int length = ui.promptForBoatLength();
     Boat boat = createBoat(type, length);
     return boat;
   }
@@ -54,19 +52,17 @@ public class BoatHandler {
   /**
    * Edits a boat.
    */
-  public void editBoat() {
-    boatUi.printEditBoatHeader();
-    Member member = boatUi.askForValidMember();
-    int boatIndex = boatUi.promptForBoat(member);
-    int editOption = boatUi.promptForEditBoatOptions();
+  public void editBoat(Member member) {
+    int boatIndex = ui.promptForBoat(member);
+    int editOption = ui.promptForEditBoatOptions();
 
     switch (editOption) {
       case 1: 
-        BoatType type = boatUi.promptForBoatType();
+        BoatType type = ui.promptForBoatType();
         editBoatType(member, boatIndex, type);
         break;
       case 2:
-        int length = boatUi.promptForBoatLength();
+        int length = ui.promptForBoatLength();
         editBoatLength(member, boatIndex, length);
         break;
       default: break;
@@ -102,10 +98,8 @@ public class BoatHandler {
   /** 
    * Deletes a boat from a member.
    */
-  public void deleteBoat() {
-    boatUi.printDeleteBoatHeader();
-    Member member = boatUi.askForValidMember();
-    int boatIndex = boatUi.promptForBoat(member);
+  public void deleteBoat(Member member) {
+    int boatIndex = ui.promptForBoat(member);
     ArrayList<Boat> boatsToUpdate = member.getBoats();
     boatsToUpdate.remove(boatIndex);
     member.setBoats(boatsToUpdate);

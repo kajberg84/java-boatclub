@@ -20,9 +20,9 @@ public class PersistentData {
    * Loads persistent data.
    */
   public void load() {
-    memberHandler.createMember("Ellen Nu", "931224");
-    memberHandler.createMember("John Doe", "870101");
-    memberHandler.createMember("Jane Doe", "860606");
+    // memberHandler.createMember("Ellen Nu", "931224");
+    // memberHandler.createMember("John Doe", "870101");
+    // memberHandler.createMember("Jane Doe", "860606");
     // ArrayList<Member> members = memberHandler.getAllMembers();
     // boatHandler.addNewBoat(members.get(0).getId(), new Boat(12, BoatType.SAILBOAT));
     // memberHandler.addNewBoat(members.get(0).getId(), new Boat(6, BoatType.KAYAKCANOE));

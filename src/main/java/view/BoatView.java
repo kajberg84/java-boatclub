@@ -1,23 +1,21 @@
 package view;
 
-import controller.MemberHandler;
 import java.util.Scanner;
 import model.BoatType;
 import model.Member;
 
 /**
- * A class representing a boat interface.
+ * A class representing a boat view.
  */
 public class BoatView extends UserInterface {
 
   /**
-   * An instance of a boat interface.
+   * An instance of a boat view.
 
    * @param scan A scanner to get input from.
-   * @param memberHandler A member handler.
    */
-  public BoatView(Scanner scan, MemberHandler memberHandler) {
-    super(scan, memberHandler);
+  public BoatView(Scanner scan) {
+    super(scan);
   }
 
   /**
@@ -78,13 +76,13 @@ public class BoatView extends UserInterface {
   public int promptForEditBoatOptions() {
     int userInput;
     do {
-      System.out.println("What do you want to edit?");
+      System.out.println("\nWhat do you want to edit?");
       System.out.println("1. Type");
       System.out.println("2. Length");
-      System.out.println("0. Back");
+      System.out.println("3. Back");
       System.out.print("Choose an option: ");
       userInput = getInt();
-    } while (userInput > 2);
+    } while (userInput > 3);
     return userInput;
   }
 
@@ -92,7 +90,7 @@ public class BoatView extends UserInterface {
    * Prints a register boat header.
    */
   public void printRegisterBoatHeader() {
-    System.out.println("***************");
+    System.out.println("\n***************");
     System.out.println("REGISTER BOAT");
     System.out.println("***************");
   }
@@ -101,7 +99,7 @@ public class BoatView extends UserInterface {
    * Prints an edit boat header.
    */
   public void printEditBoatHeader() {
-    System.out.println("***************");
+    System.out.println("\n***************");
     System.out.println("EDIT BOAT");
     System.out.println("***************");
   }
@@ -110,7 +108,7 @@ public class BoatView extends UserInterface {
    * Prints a delete boat header.
    */
   public void printDeleteBoatHeader() {
-    System.out.println("***************");
+    System.out.println("\n***************");
     System.out.println("DELETE BOAT");
     System.out.println("***************");
   }

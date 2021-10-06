@@ -1,6 +1,5 @@
 package view;
 
-import controller.MemberHandler;
 import java.util.ArrayList;
 import java.util.Scanner;
 import model.Action;
@@ -14,16 +13,14 @@ import model.MemberAction;
  */
 class UserInterface {
   private Scanner scan;
-  private MemberHandler memberHandler;
 
   /**
    * An instance of a user interface.
 
    * @param scan A scanner to get user input from.
    */
-  public UserInterface(Scanner scan, MemberHandler memberHandler) {
+  public UserInterface(Scanner scan) {
     this.scan = scan;
-    this.memberHandler = memberHandler;
   }
 
   /**
@@ -58,7 +55,7 @@ class UserInterface {
    * @param header The header text string.
    */
   public void printHeader(String header) {
-    System.out.println("***************");
+    System.out.println("\n***************");
     System.out.println(header.toUpperCase());
     System.out.println("***************");
   }
@@ -85,7 +82,7 @@ class UserInterface {
   }
 
   private void printMainMenuHeader() {
-    System.out.println("***************");
+    System.out.println("\n***************");
     System.out.println("MAIN MENU");
     System.out.println("***************");
   }
@@ -112,7 +109,7 @@ class UserInterface {
   }
 
   private void printMemberMenuHeader() {
-    System.out.println("***************");
+    System.out.println("\n***************");
     System.out.println("MEMBER MENU");
     System.out.println("***************");
   }
@@ -139,12 +136,11 @@ class UserInterface {
   }
 
   private void printBoatMenuHeader() {
-    System.out.println("***************");
+    System.out.println("\n***************");
     System.out.println("BOAT MENU");
     System.out.println("***************");
   }
 
-  
   /**
    * Prompts the user for a member's ID.
 
@@ -168,19 +164,5 @@ class UserInterface {
       System.out.print((i + 1) + ". ");
       System.out.println("type: " + boats.get(i).getBoatType() + ", length: " + boats.get(i).getLength());
     }
-  }
-
-  /**
-   * Asks for a member and returns it.
-
-   * @return Member
-   */
-  public Member askForValidMember() {
-    Member memberToEdit;
-    do {
-      String memberId = promptForMemberId();
-      memberToEdit = memberHandler.getMember(memberId);
-    } while (memberToEdit == null);
-    return memberToEdit;
   }
 }

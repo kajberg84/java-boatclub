@@ -1,6 +1,5 @@
 package view;
 
-import controller.MemberHandler;
 import java.util.Scanner;
 import model.Member;
 
@@ -13,10 +12,9 @@ public class MemberView extends UserInterface {
    * An instance of a member view.
 
    * @param scan A scanner to get input from.
-   * @param memberHandler A member handler.
    */
-  public MemberView(Scanner scan, MemberHandler memberHandler) {
-    super(scan, memberHandler);
+  public MemberView(Scanner scan) {
+    super(scan);
   }
 
   /**
@@ -45,7 +43,7 @@ public class MemberView extends UserInterface {
    * Prints in the console that no member was found.
    */
   public void printNoMemberFound() {
-    System.out.println("No member found.\n");
+    System.out.println("No member found.");
   }
 
   /**
@@ -57,7 +55,7 @@ public class MemberView extends UserInterface {
   public int promptForEditMemberOptions(String name) {
     int userInput;
     do {
-      System.out.println("What do you want to edit for " + name + "?");
+      System.out.println("\nWhat do you want to edit for " + name + "?");
       System.out.println("1. Name");
       System.out.println("2. Social security number");
       System.out.println("0. Back");
@@ -76,7 +74,7 @@ public class MemberView extends UserInterface {
   public int promptForListOptions() {
     int userInput;
     do {
-      System.out.println("What do you want to list?");
+      System.out.println("\nWhat do you want to list?");
       System.out.println("1. Detailed list");
       System.out.println("2. Basic list");
       System.out.println("0. Back");
@@ -91,11 +89,11 @@ public class MemberView extends UserInterface {
 
    * @param member The member to view.
    */
-  public void printMemberDetailed(Member member) {
+  public void printDetailedMember(Member member) {
     if (member == null) {
       printNoMemberFound();
     } else {
-      System.out.println("Name: " + member.getName());
+      System.out.println("\nName: " + member.getName());
       System.out.println("Social security number: " + member.getSocialSecurityNumber());
       System.out.println("Member ID: " + member.getId());
       if (member.getBoats().size() > 0) {
@@ -103,7 +101,6 @@ public class MemberView extends UserInterface {
       } else {
         System.out.println("No registered boats.");
       }
-      System.out.println();
     }
   }
 
@@ -112,13 +109,58 @@ public class MemberView extends UserInterface {
 
    * @param member The member to view.
    */
-  public void printMemberBasic(Member member) {
+  public void printBasicMember(Member member) {
     if (member == null) {
       printNoMemberFound();
     } else {
-      System.out.println("Name: " + member.getName());
+      System.out.println("\nName: " + member.getName());
       System.out.println("Member ID: " + member.getId());
-      System.out.println("Registered boats: " + member.getBoats().size() + "\n");
+      System.out.println("Registered boats: " + member.getBoats().size());
     }
+  }
+
+  /**
+   * Prints register member header.
+   */
+  public void printRegisterMemberHeader() {
+    System.out.println("\n***************");
+    System.out.println("REGISTER MEMBER");
+    System.out.println("***************");
+  }
+
+  /**
+   * Prints edit member header.
+   */
+  public void printEditMemberHeader() {
+    System.out.println("\n***************");
+    System.out.println("EDIT MEMBER");
+    System.out.println("***************");
+  }
+
+  /**
+   * Prints member details header.
+   */
+  public void printMemberDetailsHeader() {
+    System.out.println("\n***************");
+    System.out.println("MEMBER DETAILS");
+    System.out.println("***************");
+  }
+
+  /**
+   * Prints all members header.
+   */
+  public void printAllMembersHeader() {
+    System.out.println("\n***************");
+    System.out.println("REGISTERED MEMBERS");
+    System.out.println("***************");
+  }
+
+  /**
+   * Prints delete member header.
+   */
+  public void printDeleteMemberHeader() {
+    System.out.println("\n***************");
+    System.out.println("DELETE MEMBER");
+    System.out.println("***************");
   }
 }
