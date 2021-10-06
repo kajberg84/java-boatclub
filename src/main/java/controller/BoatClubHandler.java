@@ -20,7 +20,7 @@ public class BoatClubHandler {
   private MemberHandler memberHandler = new MemberHandler(memberUi, registry);
   private BoatView boatUi = new BoatView(scan);
   private BoatHandler boatHandler = new BoatHandler(boatUi);
-  private PersistentData persistentData = new PersistentData(registry, boatHandler);
+  private PersistentData persistentData = new PersistentData(registry);
 
   public BoatClubHandler() {
   }

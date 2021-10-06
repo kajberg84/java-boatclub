@@ -76,7 +76,8 @@ public class Member {
    * @return ArrayList
    */
   public ArrayList<Boat> getBoats() {
-    return this.boats;
+    ArrayList<Boat> boatsCopy = this.boats;
+    return boatsCopy;
   }
 
   /**
