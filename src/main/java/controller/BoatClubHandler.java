@@ -15,13 +15,13 @@ import view.MemberView;
 public class BoatClubHandler {
   private Scanner scan = new Scanner(System.in, "UTF-8");
   private MemberView memberUi = new MemberView(scan);
+  // Add member registry --> send to member handler and persistent data.
   private MemberHandler memberHandler = new MemberHandler(memberUi);
   private BoatView boatUi = new BoatView(scan);
   private BoatHandler boatHandler = new BoatHandler(boatUi);
-  private PersistentData persistentData;
+  private PersistentData persistentData = new PersistentData();
 
   public BoatClubHandler() {
-    persistentData = new PersistentData(memberHandler, boatHandler);
   }
 
   public void start() {
