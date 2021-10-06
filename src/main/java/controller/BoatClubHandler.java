@@ -2,14 +2,13 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import model.Boat;
-import model.BoatType;
+import model.Action;
+import model.BoatAction;
 import model.Member;
+import model.MemberAction;
 import model.PersistentData;
 import view.BoatView;
-import view.BoatView.Action;
-import view.BoatView.BoatAction;
-import view.UserInterface.MemberAction;
+import view.MemberView;
 
 /**
  * Responsible for main operations in the boat club application.
@@ -17,13 +16,13 @@ import view.UserInterface.MemberAction;
 public class BoatClubHandler {
   private Scanner scan = new Scanner(System.in, "UTF-8");
   private MemberHandler memberHandler = new MemberHandler();
-  // private UserInterface boatUi = new UserInterface(scan, memberHandler);
   private BoatView boatUi = new BoatView(scan, memberHandler);
+  private MemberView memberUi = new MemberView(scan, memberHandler);
   private BoatHandler boatHandler = new BoatHandler(boatUi);
   private PersistentData persistentData;
 
   public BoatClubHandler() {
-    persistentData = new PersistentData(memberHandler);
+    persistentData = new PersistentData(memberHandler, boatHandler);
   }
 
   public void start() {
@@ -32,7 +31,7 @@ public class BoatClubHandler {
   }
 
   public void showMainMenu() {
-    Action action = boatUi.promptForAction();
+    Action action = boatUi.promptForMainAction();
     showSubMenu(action);
   }
 
@@ -88,38 +87,15 @@ public class BoatClubHandler {
   }
 
   private void handleAddBoat() {
-    boatUi.printHeader("register boat");
-    Member member = askForValidMember();
-    BoatType type = boatUi.promptForBoatType();
-    int length = boatUi.promptForBoatLength();
-    Boat boat = boatHandler.createBoat(type, length);
-    memberHandler.addNewBoat(member.getId(), boat);
+    boatHandler.addNewBoat();
   }
 
   private void handleEditBoat() {
-    boatUi.printHeader("edit boat");
-    Member member = askForValidMember();
-    int boatIndex = boatUi.promptForBoat(member);
-    int editOption = boatUi.promptForEditBoatOptions();
-    
-    switch (editOption) {
-      case 1: 
-        BoatType type = boatUi.promptForBoatType();
-        memberHandler.editBoatType(member, boatIndex, type);
-        break;
-      case 2:
-        int length = boatUi.promptForBoatLength();
-        memberHandler.editBoatLength(member, boatIndex, length);
-        break;
-      default: break;
-    }
+    boatHandler.editBoat();
   }
 
   private void handleDeleteBoat() {
-    boatUi.printHeader("delete boat");
-    Member member = askForValidMember();
-    int boatIndex = boatUi.promptForBoat(member);
-    memberHandler.deleteBoat(member, boatIndex);
+    boatHandler.deleteBoat();
   }
 
   /**
@@ -173,23 +149,23 @@ public class BoatClubHandler {
   
   private void handleAddMember() {
     boatUi.printHeader("register member");
-    String name = boatUi.promptForMemberName();
-    String number = boatUi.promptForSocialSecurityNumber();
+    String name = memberUi.promptForMemberName();
+    String number = memberUi.promptForSocialSecurityNumber();
     memberHandler.createMember(name, number);
   }
   
   private void handleEditMember() {
     boatUi.printHeader("edit member");
     Member member = askForValidMember();
-    int editOption = boatUi.promptForEditMemberOptions(member.getName());
+    int editOption = memberUi.promptForEditMemberOptions(member.getName());
     
     switch (editOption) {
       case 1: 
-        String name = boatUi.promptForMemberName();
+        String name = memberUi.promptForMemberName();
         memberHandler.editName(member, name);
         break;
       case 2:
-        String socialSecurityNumber = boatUi.promptForSocialSecurityNumber();
+        String socialSecurityNumber = memberUi.promptForSocialSecurityNumber();
         memberHandler.editSocialSecurityNumber(member, socialSecurityNumber);
         break;
       default: break;
@@ -200,11 +176,11 @@ public class BoatClubHandler {
     String memberId = boatUi.promptForMemberId();
     Member member = memberHandler.getMember(memberId);
     boatUi.printHeader("member details");
-    boatUi.printMemberDetailed(member);
+    memberUi.printMemberDetailed(member);
   }
   
   private void handleViewAllMembers() {
-    int viewOption = boatUi.promptForListOptions();
+    int viewOption = memberUi.promptForListOptions();
     if (viewOption > 0) {
       boatUi.printHeader("all members");
       handlePrintAllMembers(viewOption);
@@ -219,17 +195,17 @@ public class BoatClubHandler {
   private void handlePrintAllMembers(int option) {
     ArrayList<Member> members = memberHandler.getAllMembers();
     if (members.size() == 0) {
-      boatUi.printNoMemberFound();
+      memberUi.printNoMemberFound();
     }
     switch (option) {
       case 1: 
         for (Member member : members) {
-          boatUi.printMemberDetailed(member);
+          memberUi.printMemberDetailed(member);
         }
         break;
       case 2:
         for (Member member : members) {
-          boatUi.printMemberBasic(member);
+          memberUi.printMemberBasic(member);
         }
         break;
       default: break;
