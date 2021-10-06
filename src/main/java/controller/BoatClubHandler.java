@@ -1,49 +1,48 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.Scanner;
-import model.Boat;
-import model.BoatType;
+import model.Action;
+import model.BoatAction;
 import model.Member;
-import view.UserInterface;
-import view.UserInterface.Action;
-import view.UserInterface.BoatAction;
-import view.UserInterface.MemberAction;
+import model.MemberAction;
+import model.MemberRegistry;
+import model.PersistentData;
+import view.BoatView;
+import view.MemberView;
 
 /**
  * Responsible for main operations in the boat club application.
  */
 public class BoatClubHandler {
   private Scanner scan = new Scanner(System.in, "UTF-8");
-  private UserInterface ui = new UserInterface(scan);
-  private MemberHandler memberHandler = new MemberHandler();
-  private BoatHandler boatHandler = new BoatHandler();
+  private MemberView memberUi = new MemberView(scan);
+  private MemberRegistry registry = new MemberRegistry();
+  private MemberHandler memberHandler = new MemberHandler(memberUi, registry);
+  private BoatView boatUi = new BoatView(scan);
+  private BoatHandler boatHandler = new BoatHandler(boatUi);
+  private PersistentData persistentData = new PersistentData(registry, boatHandler);
 
   public BoatClubHandler() {
   }
-  
+
   public void start() {
+    persistentData.load();
     showMainMenu();
   }
 
-  public void showMainMenu() {
-    Action action = ui.promptForAction();
+  private void showMainMenu() {
+    Action action = boatUi.promptForMainAction();
     showSubMenu(action);
   }
 
-  /**
-   * Shows a sub menu to the user.
-
-   * @param action The action chosen by the user.
-   */
-  public void showSubMenu(Action action) {
+  private void showSubMenu(Action action) {
     switch (action) {
       case MEMBERS:
-        MemberAction memberAction = ui.promptForMemberAction();
+        MemberAction memberAction = boatUi.promptForMemberAction();
         handleMemberActions(memberAction);
         break;
       case BOATS:
-        BoatAction boatAction = ui.promptForBoatAction();
+        BoatAction boatAction = boatUi.promptForBoatAction();
         handleBoatAction(boatAction);
         break;
       case EXIT:
@@ -55,11 +54,6 @@ public class BoatClubHandler {
     }
   }
 
-  /**
-   * Handles adding, editing and deleting boats.
-
-   * @param action The action chosen by the user.
-   */
   private void handleBoatAction(BoatAction action) {
     switch (action) {
       case ADD:
@@ -83,46 +77,24 @@ public class BoatClubHandler {
   }
 
   private void handleAddBoat() {
-    ui.printHeader("register boat");
-    Member member = askForValidMember();
-    BoatType type = ui.promptForBoatType();
-    int length = ui.promptForBoatLength();
-    Boat boat = boatHandler.createBoat(type, length);
-    memberHandler.addNewBoat(member.getId(), boat);
+    boatUi.printRegisterBoatHeader();
+    Member member = memberHandler.askForValidMember();
+    boatHandler.addNewBoat(member);
   }
 
   private void handleEditBoat() {
-    ui.printHeader("edit boat");
-    Member member = askForValidMember();
-    int boatIndex = ui.promptForBoat(member);
-    int editOption = ui.promptForEditBoatOptions();
-    
-    switch (editOption) {
-      case 1: 
-        BoatType type = ui.promptForBoatType();
-        memberHandler.editBoatType(member, boatIndex, type);
-        break;
-      case 2:
-        int length = ui.promptForBoatLength();
-        memberHandler.editBoatLength(member, boatIndex, length);
-        break;
-      default: break;
-    }
+    boatUi.printEditBoatHeader();
+    Member member = memberHandler.askForValidMember();
+    boatHandler.editBoat(member);
   }
 
   private void handleDeleteBoat() {
-    ui.printHeader("delete boat");
-    Member member = askForValidMember();
-    int boatIndex = ui.promptForBoat(member);
-    memberHandler.deleteBoat(member, boatIndex);
+    boatUi.printDeleteBoatHeader();
+    Member member = memberHandler.askForValidMember();
+    boatHandler.deleteBoat(member);
   }
 
-  /**
-   * Handles adding, editing, viewing and deleting members.
-
-   * @param action The action chosen by the user.
-   */
-  public void handleMemberActions(MemberAction action) {
+  private void handleMemberActions(MemberAction action) {
     switch (action) {
       case ADD:
         handleAddMember();
@@ -152,88 +124,23 @@ public class BoatClubHandler {
     }
   }
 
-  /**
-   * Asks for a member and returns it.
-
-   * @return Member
-   */
-  private Member askForValidMember() {
-    Member memberToEdit;
-    do {
-      String memberId = ui.promptForMemberId();
-      memberToEdit = memberHandler.getMember(memberId);
-    } while (memberToEdit == null);
-    return memberToEdit;
-  }
-  
   private void handleAddMember() {
-    ui.printHeader("register member");
-    String name = ui.promptForMemberName();
-    String number = ui.promptForSocialSecurityNumber();
-    memberHandler.createMember(name, number);
+    memberHandler.registerMember();
   }
   
   private void handleEditMember() {
-    ui.printHeader("edit member");
-    Member member = askForValidMember();
-    int editOption = ui.promptForEditMemberOptions(member.getName());
-    
-    switch (editOption) {
-      case 1: 
-        String name = ui.promptForMemberName();
-        memberHandler.editName(member, name);
-        break;
-      case 2:
-        String socialSecurityNumber = ui.promptForSocialSecurityNumber();
-        memberHandler.editSocialSecurityNumber(member, socialSecurityNumber);
-        break;
-      default: break;
-    }
+    memberHandler.editMember();
   }
 
   private void handleViewMember() {
-    String memberId = ui.promptForMemberId();
-    Member member = memberHandler.getMember(memberId);
-    ui.printHeader("member details");
-    ui.printMemberDetailed(member);
+    memberHandler.viewMember();
   }
   
   private void handleViewAllMembers() {
-    int viewOption = ui.promptForListOptions();
-    if (viewOption > 0) {
-      ui.printHeader("all members");
-      handlePrintAllMembers(viewOption);
-    }
-  }
-
-  /**
-   * Handles the printing of member details.
-
-   * @param option The print view style chosen by the user.
-   */
-  private void handlePrintAllMembers(int option) {
-    ArrayList<Member> members = memberHandler.getAllMembers();
-    if (members.size() == 0) {
-      ui.printNoMemberFound();
-    }
-    switch (option) {
-      case 1: 
-        for (Member member : members) {
-          ui.printMemberDetailed(member);
-        }
-        break;
-      case 2:
-        for (Member member : members) {
-          ui.printMemberBasic(member);
-        }
-        break;
-      default: break;
-    }
+    memberHandler.viewAllMembers();
   }
 
   private void handleDeleteMember() {
-    ui.printHeader("delete member");
-    Member member = askForValidMember();
-    memberHandler.deleteMember(member);
+    memberHandler.deleteMember();
   }
 }

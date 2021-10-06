@@ -23,6 +23,4 @@ public class Id {
   public String getId() {
     return this.id;
   }
-
 }
-

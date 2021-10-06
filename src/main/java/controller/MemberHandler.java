@@ -1,128 +1,125 @@
 package controller;
 
 import java.util.ArrayList;
-import model.Boat;
-import model.BoatType;
 import model.Member;
+import model.MemberRegistry;
+import view.MemberView;
 
 /** 
  * Responsible for member operations.
  */
 public class MemberHandler {
-  private IdHandler handler = new IdHandler();
-  private MemberRegistry registry = new MemberRegistry();
-
-  /**
-   * Creates a new member.
-
-   * @param name The name of the new member.
-   * @param socialSecurityNumber The social security number of the new member.
-   */
-  public void createMember(String name, String socialSecurityNumber) {
-    model.Id memberId = handler.generateUniqueId();
-    model.Member newMember = new model.Member(name, socialSecurityNumber, memberId);
-    registry.addMember(newMember);
-    System.out.println("ID: " + newMember.getId());
-  }
-
-  /**
-   * Returns a member by member ID.
-
-   * @param memberId The ID of the member to get.
-   * @return Member
-   */
-  public Member getMember(String memberId) {
-    return registry.getMemberById(memberId);
-  }
-
-  /**
-   * Returns all members.
-
-   * @return ArrayList
-   */
-  public ArrayList<Member> getAllMembers() {
-    return registry.getAllMembers();
-  }
-
-  /**
-   * Registers a new boat to a member.
-
-   * @param memberId The ID of the member to register the boat to.
-   * @param boat The boat to register.
-   */
-  public void addNewBoat(String memberId, Boat boat) {
-    Member memberToUpdate = getMember(memberId);
-    ArrayList<Boat> boatsToUpdate = memberToUpdate.getBoats();
-    boatsToUpdate.add(boat);
-    memberToUpdate.setBoats(boatsToUpdate);
-  }
-
+  MemberView ui;
+  private MemberRegistry registry;
   
-  /** 
-   * Deletes a boat from a member.
+  public MemberHandler(MemberView ui, MemberRegistry registry) {
+    this.ui = ui;
+    this.registry = registry;
+  }
 
-   * @param member The member to delete the boat from.
-   * @param boatIndex The index of the boat to delete.
+  /**
+   * Registers a new member.
    */
-  public void deleteBoat(Member member, int boatIndex) {
-    ArrayList<Boat> boatsToUpdate = member.getBoats();
-    boatsToUpdate.remove(boatIndex);
-    member.setBoats(boatsToUpdate);
+  public void registerMember() {
+    ui.printRegisterMemberHeader();
+    String name = ui.promptForMemberName();
+    String number = ui.promptForSocialSecurityNumber();
+    createMember(name, number);
+  }
+  
+  private void createMember(String name, String socialSecurityNumber) {
+    registry.addMember(name, socialSecurityNumber);
+  }
+
+  /**
+   * Edits a member.
+   */
+  public void editMember() {
+    ui.printEditMemberHeader();
+    Member member = askForValidMember();
+    int editOption = ui.promptForEditMemberOptions(member.getName());
+
+    switch (editOption) {
+      case 1: 
+        editName(member);
+        break;
+      case 2:
+        editSocialSecurityNumber(member);
+        break;
+      default: break;
+    }
+  }
+
+  private void editName(Member member) {
+    String name = ui.promptForMemberName();
+    member.setName(name);
+  }
+
+  private void editSocialSecurityNumber(Member member) {
+    String socialSecurityNumber = ui.promptForSocialSecurityNumber();
+    member.setSocialSecurityNumber(socialSecurityNumber);
+  }
+
+  /**
+   * Prints one member.
+   */
+  public void viewMember() {
+    Member member = askForValidMember();
+    ui.printMemberDetailsHeader();
+    ui.printDetailedMember(member);
+  }
+
+  /**
+   * Prints all members.
+   */
+  public void viewAllMembers() {
+    int viewOption = ui.promptForListOptions();
+    if (viewOption > 0) {
+      ui.printAllMembersHeader();
+      ArrayList<Member> members = registry.getAllMembers();
+      if (members.size() == 0) {
+        ui.printNoMemberFound();
+      }
+      printMemberList(viewOption, members);
+    }
+  }
+
+  private void printMemberList(int viewOption, ArrayList<Member> members) {
+    switch (viewOption) {
+      case 1: 
+        for (Member member : members) {
+          ui.printDetailedMember(member);
+        }
+        break;
+      case 2:
+        for (Member member : members) {
+          ui.printBasicMember(member);
+        }
+        break;
+      default: break;
+    }
   }
 
   /**
    * Deletes a member.
-
-   * @param member The member to delete.
    */
-  public void deleteMember(Member member) {
-    ArrayList<Member> members = registry.getAllMembers();
-    members.remove(member);
+  public void deleteMember() {
+    ui.printDeleteMemberHeader();
+    Member member = askForValidMember();
+    registry.deleteMember(member);
   }
 
   /**
-   * Edits a member's name.
+   * Asks for a member and returns it.
 
-   * @param member The member to edit.
-   * @param name The new name of the member.
+   * @return Member
    */
-  public void editName(Member member, String name) {
-    member.setName(name);
-  }
-
-  /**
-   * Edits a member's social security number.
-
-   * @param member The member to edit.
-   * @param number The new social security number of the member.
-   */
-  public void editSocialSecurityNumber(Member member, String number) {
-    member.setSocialSecurityNumber(number);
-  }
-
-  /**
-   * Edits a boat's type.
-  
-   * @param member The member owning the boat to edit.
-   * @param boatIndex The index of the boat to edit.
-   * @param type The new type of the boat.
-   */
-  public void editBoatType(Member member, int boatIndex, BoatType type) {
-    ArrayList<Boat> boats = member.getBoats();
-    Boat boatToEdit = boats.get(boatIndex);
-    boatToEdit.setBoatType(type);
-  }
-
-  /**
-   * Edits a boat's length.
-
-   * @param member The member owning the boat to edit.
-   * @param boatIndex The index of the boat to edit.
-   * @param length The new length of the boat.
-   */
-  public void editBoatLength(Member member, int boatIndex, int length) {
-    ArrayList<Boat> boats = member.getBoats();
-    Boat boatToEdit = boats.get(boatIndex);
-    boatToEdit.setLength(length);
+  public Member askForValidMember() {
+    Member memberToEdit;
+    do {
+      String memberId = ui.promptForMemberId();
+      memberToEdit = registry.getMemberById(memberId);
+    } while (memberToEdit == null);
+    return memberToEdit;
   }
 }
