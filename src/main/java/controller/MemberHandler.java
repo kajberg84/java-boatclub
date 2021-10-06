@@ -75,7 +75,7 @@ public class MemberHandler {
     int viewOption = ui.promptForListOptions();
     if (viewOption > 0) {
       ui.printAllMembersHeader();
-      ArrayList<Member> members = getAllMembers();
+      ArrayList<Member> members = registry.getAllMembers();
       if (members.size() == 0) {
         ui.printNoMemberFound();
       }
@@ -99,14 +99,6 @@ public class MemberHandler {
     }
   }
 
-  private Member getMember(String memberId) {
-    return registry.getMemberById(memberId);
-  }
-
-  private ArrayList<Member> getAllMembers() {
-    return registry.getAllMembers();
-  }
-  
   /**
    * Deletes a member.
    */
@@ -125,7 +117,7 @@ public class MemberHandler {
     Member memberToEdit;
     do {
       String memberId = ui.promptForMemberId();
-      memberToEdit = getMember(memberId);
+      memberToEdit = registry.getMemberById(memberId);
     } while (memberToEdit == null);
     return memberToEdit;
   }
