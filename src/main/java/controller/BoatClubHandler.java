@@ -5,6 +5,7 @@ import model.Action;
 import model.BoatAction;
 import model.Member;
 import model.MemberAction;
+import model.MemberRegistry;
 import model.PersistentData;
 import view.BoatView;
 import view.MemberView;
@@ -15,11 +16,11 @@ import view.MemberView;
 public class BoatClubHandler {
   private Scanner scan = new Scanner(System.in, "UTF-8");
   private MemberView memberUi = new MemberView(scan);
-  // Add member registry --> send to member handler and persistent data.
-  private MemberHandler memberHandler = new MemberHandler(memberUi);
+  private MemberRegistry registry = new MemberRegistry();
+  private MemberHandler memberHandler = new MemberHandler(memberUi, registry);
   private BoatView boatUi = new BoatView(scan);
   private BoatHandler boatHandler = new BoatHandler(boatUi);
-  private PersistentData persistentData = new PersistentData();
+  private PersistentData persistentData = new PersistentData(registry, boatHandler);
 
   public BoatClubHandler() {
   }

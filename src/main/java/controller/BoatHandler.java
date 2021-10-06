@@ -38,6 +38,19 @@ public class BoatHandler {
   }
 
   /**
+   * Adds a boat to member from static data.
+   * Used when loading persistent data.
+
+   * @param member The member owning the boat.
+   * @param boat The new boat.
+   */
+  public void addStaticBoat(Member member, Boat boat) {
+    ArrayList<Boat> boatsToUpdate = member.getBoats();
+    boatsToUpdate.add(boat);
+    member.setBoats(boatsToUpdate);
+  }
+
+  /**
    * Edits a boat.
    */
   public void editBoat(Member member) {

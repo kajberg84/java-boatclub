@@ -10,10 +10,11 @@ import view.MemberView;
  */
 public class MemberHandler {
   MemberView ui;
-  private MemberRegistry registry = new MemberRegistry();
+  private MemberRegistry registry;
   
-  public MemberHandler(MemberView ui) {
+  public MemberHandler(MemberView ui, MemberRegistry registry) {
     this.ui = ui;
+    this.registry = registry;
   }
 
   /**
