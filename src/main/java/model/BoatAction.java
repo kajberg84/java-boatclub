@@ -8,6 +8,7 @@ public enum BoatAction {
   EDIT("Edit boat"), 
   DELETE("Delete boat"), 
   BACK("Go back");
+  
   public final String label;
 
   private BoatAction(String label) {
