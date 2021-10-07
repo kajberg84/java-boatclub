@@ -20,7 +20,7 @@ public class BoatClubHandler {
   private MemberHandler memberHandler = new MemberHandler(memberUi, registry);
   private BoatView boatUi = new BoatView(scan);
   private BoatHandler boatHandler = new BoatHandler(boatUi);
-  private PersistentData persistentData = new PersistentData(registry, boatHandler);
+  private PersistentData persistentData = new PersistentData(registry);
 
   public BoatClubHandler() {
   }
@@ -38,7 +38,7 @@ public class BoatClubHandler {
   private void showSubMenu(Action action) {
     switch (action) {
       case MEMBERS:
-        MemberAction memberAction = boatUi.promptForMemberAction();
+        MemberAction memberAction = memberUi.promptForMemberAction();
         handleMemberActions(memberAction);
         break;
       case BOATS:

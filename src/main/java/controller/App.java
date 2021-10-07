@@ -10,18 +10,13 @@ public class App {
    * @param args command line arguments.
    */
 
-
   public static void main(String[] args) {
-    // adapt to start the application in your way
-    // model.Simple m = new model.Simple();
-    // Simple c = new Simple();
-    // view.Simple v = new view.Simple();
-
-    // c.doSomethingSimple(m, v);
-
-    // IdHandler handler = new IdHandler();
-    // System.out.println(handler.generateUniqueId().getId());
-    BoatClubHandler boatClubHandler = new BoatClubHandler();
-    boatClubHandler.start();
+    try {
+      BoatClubHandler boatClubHandler = new BoatClubHandler();
+      boatClubHandler.start();
+    } catch (Exception e) {
+      System.out.println("Sorry - something went wrong.");
+      e.printStackTrace();
+    }
   }
 }

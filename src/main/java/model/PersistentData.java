@@ -1,6 +1,5 @@
 package model;
 
-import controller.BoatHandler;
 import java.util.ArrayList;
 
 /**
@@ -8,21 +7,26 @@ import java.util.ArrayList;
  */
 public class PersistentData implements Persistence {
   private MemberRegistry registry;
-  private BoatHandler boatHandler;
 
-  public PersistentData(MemberRegistry registry, BoatHandler boatHandler) {
+  public PersistentData(MemberRegistry registry) {
     this.registry = registry;
-    this.boatHandler = boatHandler;
   }
 
   @Override
   public void load() {
-    registry.addMember("Ellen Nu", "901224");
-    registry.addMember("John Doe", "880101");
-    registry.addMember("Jane Doe", "940606");
+    registry.createMemberWithId("Ellen Nu", "901224");
+    registry.createMemberWithId("John Doe", "880101");
+    registry.createMemberWithId("Jane Doe", "940606");
     ArrayList<Member> members = registry.getAllMembers();
-    boatHandler.addStaticBoat(members.get(0), new Boat(12, BoatType.SAILBOAT));
-    boatHandler.addStaticBoat(members.get(1), new Boat(6, BoatType.KAYAKCANOE));
-    boatHandler.addStaticBoat(members.get(2), new Boat(30, BoatType.OTHER));
+    addStaticBoat(members.get(0), new Boat(12, BoatType.SAILBOAT));
+    addStaticBoat(members.get(0), new Boat(6, BoatType.KAYAKCANOE));
+    addStaticBoat(members.get(1), new Boat(10, BoatType.MOTORSAILER));
+    addStaticBoat(members.get(2), new Boat(30, BoatType.OTHER));
+  }
+
+  private void addStaticBoat(Member member, Boat boat) {
+    ArrayList<Boat> boats = member.getBoats();
+    boats.add(boat);
+    member.setBoats(boats);
   }
 }
