@@ -38,7 +38,7 @@ public class BoatClubHandler {
   private void showSubMenu(Action action) {
     switch (action) {
       case MEMBERS:
-        MemberAction memberAction = boatUi.promptForMemberAction();
+        MemberAction memberAction = memberUi.promptForMemberAction();
         handleMemberActions(memberAction);
         break;
       case BOATS:

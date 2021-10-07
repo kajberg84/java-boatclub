@@ -28,10 +28,14 @@ public class MemberRegistry {
   * @param name The name of the new member.
   * @param socialSecurityNumber The social security number of the new member.
   */
-  public void addMember(String name, String socialSecurityNumber) {
+  public void createMemberWithId(String name, String socialSecurityNumber) {
     Id memberId = generateUniqueId();
     Member newMember = new Member(name, socialSecurityNumber, memberId);
-    members.add(newMember);
+    addMemberToRegistry(newMember);
+  }
+
+  private void addMemberToRegistry(Member member) {
+    members.add(member);
   }
 
   /**

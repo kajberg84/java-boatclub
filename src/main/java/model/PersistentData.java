@@ -14,9 +14,9 @@ public class PersistentData implements Persistence {
 
   @Override
   public void load() {
-    registry.addMember("Ellen Nu", "901224");
-    registry.addMember("John Doe", "880101");
-    registry.addMember("Jane Doe", "940606");
+    registry.createMemberWithId("Ellen Nu", "901224");
+    registry.createMemberWithId("John Doe", "880101");
+    registry.createMemberWithId("Jane Doe", "940606");
     ArrayList<Member> members = registry.getAllMembers();
     addStaticBoat(members.get(0), new Boat(12, BoatType.SAILBOAT));
     addStaticBoat(members.get(0), new Boat(6, BoatType.KAYAKCANOE));

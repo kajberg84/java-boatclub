@@ -28,7 +28,7 @@ public class MemberHandler {
   }
   
   private void createMember(String name, String socialSecurityNumber) {
-    registry.addMember(name, socialSecurityNumber);
+    registry.createMemberWithId(name, socialSecurityNumber);
   }
 
   /**
