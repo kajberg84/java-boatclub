@@ -1,13 +1,14 @@
 package controller;
 
 import java.util.Scanner;
-import model.Action;
-import model.BoatAction;
+
 import model.Member;
-import model.MemberAction;
 import model.MemberRegistry;
 import model.PersistentData;
+import view.Action;
+import view.BoatAction;
 import view.BoatView;
+import view.MemberAction;
 import view.MemberView;
 
 /**

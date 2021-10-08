@@ -2,11 +2,9 @@ package view;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import model.Action;
+
 import model.Boat;
-import model.BoatAction;
 import model.Member;
-import model.MemberAction;
 
 /** 
  * A class representing a user interface.

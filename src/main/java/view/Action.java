@@ -1,4 +1,4 @@
-package model;
+package view;
 
 /**
  * Actions to choose from in the main menu.
