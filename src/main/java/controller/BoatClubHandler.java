@@ -1,7 +1,6 @@
 package controller;
 
 import java.util.Scanner;
-
 import model.Member;
 import model.MemberRegistry;
 import model.PersistentData;
