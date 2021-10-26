@@ -7,6 +7,7 @@ import model.PersistentData;
 import view.Action;
 import view.BoatAction;
 import view.BoatView;
+import view.LoginView;
 import view.MemberAction;
 import view.MemberView;
 
@@ -21,13 +22,34 @@ public class BoatClubHandler {
   private BoatView boatUi = new BoatView(scan);
   private BoatHandler boatHandler = new BoatHandler(boatUi);
   private PersistentData persistentData = new PersistentData(registry);
+  private LoginView loginView = new LoginView(scan);
 
   public BoatClubHandler() {
   }
 
   public void start() {
-    persistentData.load();
-    showMainMenu();
+    if (login()) {
+      persistentData.load();
+      showMainMenu();
+    } else {
+      loginFailed();
+    }
+  }
+
+  private boolean login() {
+    String userName = loginView.promptForUserName();
+    String password = loginView.promptForPassword();
+    return validateCredentials(userName, password);
+  }
+
+  private boolean validateCredentials(String userName, String password) {
+    String correctUserName = "santa";
+    String correctPassword = "rudolph";
+    return (userName.equals(correctUserName) && password.equals(correctPassword));
+  }
+
+  private void loginFailed() {
+    loginView.printLoginFailed();
   }
 
   private void showMainMenu() {
