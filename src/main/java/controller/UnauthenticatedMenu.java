@@ -56,11 +56,11 @@ public class UnauthenticatedMenu extends Menu {
     }
   }
 
-  private void handleViewMember() {
-    memberHandler.viewMember();
-  }
+  // private void handleViewMember() {
+  //   memberHandler.viewMember();
+  // }
   
-  private void handleViewAllMembers() {
-    memberHandler.viewAllMembers();
-  }
+  // private void handleViewAllMembers() {
+  //   memberHandler.viewAllMembers();
+  // }
 }

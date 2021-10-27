@@ -121,13 +121,13 @@ public class AuthenticatedMenu extends Menu {
     memberHandler.editMember();
   }
 
-  private void handleViewMember() {
-    memberHandler.viewMember();
-  }
+  // private void handleViewMember() {
+  //   memberHandler.viewMember();
+  // }
   
-  private void handleViewAllMembers() {
-    memberHandler.viewAllMembers();
-  }
+  // private void handleViewAllMembers() {
+  //   memberHandler.viewAllMembers();
+  // }
 
   private void handleDeleteMember() {
     memberHandler.deleteMember();
