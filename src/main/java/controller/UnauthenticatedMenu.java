@@ -45,8 +45,7 @@ public class UnauthenticatedMenu extends Menu {
         showSubMenu(Action.MEMBERS);
         break;
       case SEARCH:
-        // TO DO
-        System.out.println("Search is a coming feature...");
+        handleSearch();
         break;
       case BACK:
         showMainMenu();
