@@ -99,6 +99,7 @@ public class AuthenticatedMenu extends Menu {
         break;
       case SEARCH:
         handleSearch();
+        showSubMenu(Action.MEMBERS);
         break;
       case DELETE:
         handleDeleteMember();

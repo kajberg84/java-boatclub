@@ -37,6 +37,7 @@ class Menu {
     switch (option) {
       case NAME:
         search = new NameSearchStrategy(scan);
+        search.search(registry);
         break;
       case BOAT:
         // search = new BoatSearchStrategy(scan);

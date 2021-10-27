@@ -46,6 +46,7 @@ public class UnauthenticatedMenu extends Menu {
         break;
       case SEARCH:
         handleSearch();
+        showSubMenu(Action.MEMBERS);
         break;
       case BACK:
         showMainMenu();
