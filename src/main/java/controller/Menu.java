@@ -1,7 +1,6 @@
 package controller;
 
 import java.util.Scanner;
-
 import model.MemberRegistry;
 import view.BoatView;
 import view.MemberView;
@@ -14,8 +13,8 @@ class Menu {
   protected MemberRegistry registry;
   protected MemberHandler memberHandler;
   
-  public Menu(MemberRegistry mRegistry) {
-    registry = mRegistry;
+  public Menu(MemberRegistry r) {
+    registry = r;
     memberHandler = new MemberHandler(memberUi, registry);
   }
 

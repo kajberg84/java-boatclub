@@ -1,9 +1,11 @@
 package controller;
 
 import java.util.Scanner;
-
 import view.LoginView;
 
+/**
+ * Responsible for authentication.
+ */
 public class Authenticator {
   private Scanner scan = new Scanner(System.in, "UTF-8");
   private LoginView loginView;
@@ -12,6 +14,11 @@ public class Authenticator {
     loginView = new LoginView(scan);
   }
 
+  /**
+   * Handles login of user.
+
+   * @return True when user us logged in successfully.
+   */
   public boolean login() {
     if (loginView.promptForAuthentication()) {
       Boolean isValidated = validateCredentials();

@@ -4,6 +4,9 @@ import model.MemberRegistry;
 import view.Action;
 import view.MemberAction;
 
+/**
+ * Responsible for handling the actions of an unauthenticated user.
+ */
 public class UnauthenticatedMenu extends Menu {
 
   public UnauthenticatedMenu(MemberRegistry registry) {
@@ -42,7 +45,7 @@ public class UnauthenticatedMenu extends Menu {
         showSubMenu(Action.MEMBERS);
         break;
       case SEARCH:
-      // TO DO
+        // TO DO
         System.out.println("Search is a coming feature...");
         break;
       case BACK:

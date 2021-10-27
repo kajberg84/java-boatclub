@@ -6,6 +6,9 @@ import view.Action;
 import view.BoatAction;
 import view.MemberAction;
 
+/**
+ * Responsible for handling user actions for an authenticated user.
+ */
 public class AuthenticatedMenu extends Menu {
 
   public AuthenticatedMenu(MemberRegistry registry) {
