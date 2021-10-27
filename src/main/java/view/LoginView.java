@@ -17,6 +17,23 @@ public class LoginView {
     this.scan = scan;
   }
 
+  public boolean promptForAuthentication() {
+    String str;
+    do {
+      System.out.println("\n***************");
+      System.out.println("BOAT CLUB");
+      System.out.println("***************\n");
+      System.out.print("Do you want to login? (y/n) ");
+      str = getString();
+      System.out.println(str.equals("n"));
+    } while (!isValidInput(str));
+    return str.equals("y");
+  }
+
+  private boolean isValidInput(String str) {
+    return str.equals("y") || str.equals("n");
+  }
+
   public void printLoginHeader() {
     System.out.println("\n***************");
     System.out.println("LOGIN");
@@ -43,6 +60,12 @@ public class LoginView {
   public void printLoginFailed() {
     System.out.println("\n***************");
     System.out.println("WRONG CREDENTIALS - LOGIN FAILED");
+    System.out.println("***************");
+  }
+
+  public void printLoginSuccesful() {
+    System.out.println("\n***************");
+    System.out.println("LOGIN SUCCESSFUL");
     System.out.println("***************");
   }
 }
