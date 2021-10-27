@@ -60,6 +60,21 @@ class UserInterface {
     return actions[(userInput - 1)];
   }
 
+  public Action promptForUnauthenticatedMainAction() {
+    int userInput;
+    do {
+      printMainMenuHeader();
+      System.out.println(("1. " + Action.MEMBERS.label));
+      System.out.println(("2. " + Action.EXIT.label));
+      System.out.print("Choose an option: ");
+      userInput = getInt();
+    } while (!isValidInput(userInput, 2));
+    if (userInput == 1) {
+      return Action.MEMBERS;
+    }
+    return Action.EXIT;
+  }
+
   protected boolean isValidInput(int input, int length) {
     boolean isValid = true;
     if (input < 1) {
@@ -101,6 +116,28 @@ class UserInterface {
     System.out.println("\n***************");
     System.out.println("MEMBER MENU");
     System.out.println("***************");
+  }
+
+  public MemberAction promptForUnauthenticatedMemberAction() {
+    int userInput;
+    do {
+      printMemberMenuHeader();
+      System.out.println("1. " + MemberAction.SEARCH.label);
+      System.out.println("2. " + MemberAction.VIEWALL.label);
+      System.out.println("3. " + MemberAction.VIEWONE.label);
+      System.out.println("4. " + MemberAction.BACK.label);
+      System.out.print("Choose an option: ");
+      userInput = getInt();
+    } while (userInput > 4 || userInput == 0);
+  
+    if (userInput == 1) {
+      return MemberAction.SEARCH;
+    } else if (userInput == 2) {
+      return MemberAction.VIEWALL;
+    } else if (userInput == 3) {
+      return MemberAction.VIEWONE;
+    }
+    return MemberAction.BACK;
   }
 
   /**

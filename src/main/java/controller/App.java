@@ -12,7 +12,8 @@ public class App {
 
   public static void main(String[] args) {
     try {
-      BoatClubHandler boatClubHandler = new BoatClubHandler();
+      Authenticator auth = new Authenticator();
+      BoatClubHandler boatClubHandler = new BoatClubHandler(auth);
       boatClubHandler.start();
     } catch (Exception e) {
       System.out.println("Sorry - something went wrong.");
