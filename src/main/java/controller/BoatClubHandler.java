@@ -23,10 +23,9 @@ public class BoatClubHandler {
     persistentData.load();
     if (authenticator.login()) {
       menu = new AuthenticatedMenu(registry);
-      menu.showMainMenu();
     } else {
       menu = new UnauthenticatedMenu(registry);
-      menu.showMainMenu();
     }
+    menu.showMainMenu();
   }
 }

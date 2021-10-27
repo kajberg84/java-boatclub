@@ -30,7 +30,6 @@ public class LoginView {
       System.out.println("***************\n");
       System.out.print("Do you want to login? (y/n) ");
       str = getString();
-      System.out.println(str.equals("n"));
     } while (!isValidInput(str));
     return str.equals("y");
   }
@@ -81,7 +80,7 @@ public class LoginView {
   public void printLoginFailed() {
     System.out.println("\n***************");
     System.out.println("WRONG CREDENTIALS - LOGIN FAILED");
-    System.out.println("***************");
+    System.out.println("***************\n");
   }
 
   /**

@@ -97,6 +97,10 @@ public class AuthenticatedMenu extends Menu {
         handleViewMember();
         showSubMenu(Action.MEMBERS);
         break;
+      case SEARCH:
+        // TO DO
+        System.out.println("Search is a coming feature...");
+        break;
       case DELETE:
         handleDeleteMember();
         showSubMenu(Action.MEMBERS);
