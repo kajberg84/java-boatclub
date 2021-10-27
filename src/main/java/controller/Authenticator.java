@@ -29,17 +29,21 @@ public class Authenticator {
   }
 
   private boolean validateCredentials() {
-    String userName = loginView.promptForUserName();
-    String password = loginView.promptForPassword();
     String correctUserName = "santa";
     String correctPassword = "rudolph";
-    if (userName.equals(correctUserName) && password.equals(correctPassword)) {
-      loginSuccessful();
-      return true;
-    } else {
-      loginFailed();
-      return false;
-    }
+
+    Boolean isValidCredentials = false;
+    while (!isValidCredentials) {
+      String userName = loginView.promptForUserName();
+      String password = loginView.promptForPassword();
+      if (userName.equals(correctUserName) && password.equals(correctPassword)) {
+        loginSuccessful();
+        isValidCredentials = true;
+      } else {
+        loginFailed();
+      }
+    } 
+    return isValidCredentials;
   }
 
   private void loginSuccessful() {
