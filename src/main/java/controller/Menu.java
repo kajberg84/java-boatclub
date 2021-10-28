@@ -40,7 +40,8 @@ class Menu {
         search.search(registry);
         break;
       case BOAT:
-        // search = new BoatSearchStrategy(scan);
+        search = new BoatTypeSearchStrategy(scan);
+        search.search(registry);
         break;
     }
   }
