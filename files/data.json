@@ -1,0 +1,17 @@
+[ {
+  "name" : "Ellen Nu",
+  "socialSecurityNumber" : "901111",
+  "id" : "IX6Pka",
+  "boats" : [ {
+    "length" : 12,
+    "boatType" : "SAILBOAT"
+  } ]
+}, {
+  "name" : "Jane Doe",
+  "socialSecurityNumber" : "880808",
+  "id" : "gV",
+  "boats" : [ {
+    "length" : 5,
+    "boatType" : "KAYAKCANOE"
+  } ]
+} ]
