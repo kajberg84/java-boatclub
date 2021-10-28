@@ -39,10 +39,10 @@ public class Boat {
   /**
    * Gets the type of the boat.
 
-   * @return String
+   * @return BoatType
    */
-  public String getBoatType() {
-    return type.label;
+  public BoatType getBoatType() {
+    return type;
   }
 
   /**
