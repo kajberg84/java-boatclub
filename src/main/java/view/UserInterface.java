@@ -183,7 +183,7 @@ class UserInterface {
     System.out.println("Registered boats:");
     for (int i = 0; i < boats.size(); i++) {
       System.out.print((i + 1) + ". ");
-      System.out.println("type: " + boats.get(i).getBoatType() + ", length: " + boats.get(i).getLength());
+      System.out.println("type: " + boats.get(i).getBoatType().label + ", length: " + boats.get(i).getLength());
     }
   }
 }

@@ -45,8 +45,8 @@ public class UnauthenticatedMenu extends Menu {
         showSubMenu(Action.MEMBERS);
         break;
       case SEARCH:
-        // TO DO
-        System.out.println("Search is a coming feature...");
+        handleSearch();
+        showSubMenu(Action.MEMBERS);
         break;
       case BACK:
         showMainMenu();
@@ -56,11 +56,11 @@ public class UnauthenticatedMenu extends Menu {
     }
   }
 
-  private void handleViewMember() {
-    memberHandler.viewMember();
-  }
+  // private void handleViewMember() {
+  //   memberHandler.viewMember();
+  // }
   
-  private void handleViewAllMembers() {
-    memberHandler.viewAllMembers();
-  }
+  // private void handleViewAllMembers() {
+  //   memberHandler.viewAllMembers();
+  // }
 }

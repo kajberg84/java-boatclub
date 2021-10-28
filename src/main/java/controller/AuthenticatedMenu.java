@@ -98,8 +98,8 @@ public class AuthenticatedMenu extends Menu {
         showSubMenu(Action.MEMBERS);
         break;
       case SEARCH:
-        // TO DO
-        System.out.println("Search is a coming feature...");
+        handleSearch();
+        showSubMenu(Action.MEMBERS);
         break;
       case DELETE:
         handleDeleteMember();
@@ -121,13 +121,13 @@ public class AuthenticatedMenu extends Menu {
     memberHandler.editMember();
   }
 
-  private void handleViewMember() {
-    memberHandler.viewMember();
-  }
+  // private void handleViewMember() {
+  //   memberHandler.viewMember();
+  // }
   
-  private void handleViewAllMembers() {
-    memberHandler.viewAllMembers();
-  }
+  // private void handleViewAllMembers() {
+  //   memberHandler.viewAllMembers();
+  // }
 
   private void handleDeleteMember() {
     memberHandler.deleteMember();
