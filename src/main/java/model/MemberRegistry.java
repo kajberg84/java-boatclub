@@ -34,7 +34,7 @@ public class MemberRegistry {
     addMemberToRegistry(newMember);
   }
 
-  private void addMemberToRegistry(Member member) {
+  public void addMemberToRegistry(Member member) {
     members.add(member);
   }
 
