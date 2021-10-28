@@ -16,7 +16,7 @@ public class NameSearchView {
 
    * @return The input string.
    */
-  public String promptForSearchString() {
+  public String promptForSearchParameter() {
     System.out.println("\n***************");
     System.out.println("SEARCH MEMBER");
     System.out.println("***************");

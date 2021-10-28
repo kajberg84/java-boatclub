@@ -17,7 +17,7 @@ public class NameSearchStrategy implements SearchStrategy{
 
   @Override
   public void search(MemberRegistry memberRegistry) {
-    String str = ui.promptForSearchString();
+    String str = ui.promptForSearchParameter();
     ArrayList<Member> searchResult = new ArrayList<>();
     ArrayList<Member> members = memberRegistry.getAllMembers();
     for (Member m : members) {
@@ -27,5 +27,4 @@ public class NameSearchStrategy implements SearchStrategy{
     }
     ui.printSearchResult(searchResult);
   }
-  
 }
