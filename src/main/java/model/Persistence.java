@@ -5,5 +5,6 @@ package model;
  */
 public interface Persistence {
   public void load();
+
   public void save();
 }

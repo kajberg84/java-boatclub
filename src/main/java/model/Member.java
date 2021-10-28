@@ -2,8 +2,6 @@ package model;
 
 import java.util.ArrayList;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 /** 
  * A class representing a member.
  */

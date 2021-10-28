@@ -14,4 +14,12 @@
     "length" : 5,
     "boatType" : "KAYAKCANOE"
   } ]
+}, {
+  "name" : "John Doe",
+  "socialSecurityNumber" : "940404",
+  "id" : "T",
+  "boats" : [ {
+    "length" : 4,
+    "boatType" : "OTHER"
+  } ]
 } ]
