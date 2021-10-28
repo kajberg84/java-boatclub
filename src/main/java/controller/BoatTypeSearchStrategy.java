@@ -23,19 +23,27 @@ public class BoatTypeSearchStrategy implements SearchStrategy {
   @Override
   public void search(MemberRegistry memberRegistry) {
     BoatType boatType = ui.promptForSearchParameter();
-    ArrayList<Member> searchResult = new ArrayList<>();
     ArrayList<Member> members = memberRegistry.getAllMembers();
+    ArrayList<Member> searchResult = getUsersWithBoatType(boatType, members);
+    ui.printSearchResult(searchResult);
+  }
+
+  private ArrayList<Member> getUsersWithBoatType(BoatType boatType, ArrayList<Member> members) {
+    ArrayList<Member> membersWithBoatType = new ArrayList<>();
     for (Member m : members) {
-      Boolean hasBoatType = false;
-      for (Boat boat : m.getBoats()) {
-        if (boat.getBoatType().equals(boatType)) {
-          hasBoatType = true;
-        }
-      }
-      if (hasBoatType) {
-        searchResult.add(m);
+      if (hasBoatType(boatType, m)) {
+        membersWithBoatType.add(m);
       }
     }
-    ui.printSearchResult(searchResult);
+    return membersWithBoatType;
+  }
+
+  private Boolean hasBoatType(BoatType boatType, Member member) {
+    for (Boat boat : member.getBoats()) {
+      if (boat.getBoatType().equals(boatType)) {
+        return true;
+      }
+    }
+    return false;
   }
 }
