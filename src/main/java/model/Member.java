@@ -2,26 +2,32 @@ package model;
 
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /** 
  * A class representing a member.
  */
 public class Member {
   private String name;
   private String socialSecurityNumber;
-  private Id memberId;
+  private Id id;
   private ArrayList<Boat> boats; 
+
+  public Member() {
+    super();
+  }
 
   /**
    * A member object.
 
    * @param name The name of the member.
    * @param socialSecurityNumber The social security number of the member.
-   * @param memberId The ID of the member.
+   * @param id The ID of the member.
    */
-  public Member(String name, String socialSecurityNumber, Id memberId) {
+  public Member(String name, String socialSecurityNumber, Id id) {
     this.name = name;
     this.socialSecurityNumber = socialSecurityNumber;
-    this.memberId = memberId;
+    this.id = id;
     this.boats = new ArrayList<>();
   }
 
@@ -67,7 +73,7 @@ public class Member {
    * @return String
    */
   public String getId() {
-    return memberId.getId();
+    return id.getId();
   }
 
   /**
