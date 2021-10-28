@@ -31,8 +31,7 @@ public class AuthenticatedMenu extends Menu {
         handleBoatAction(boatAction);
         break;
       case EXIT:
-        scan.close();
-        System.out.println("Goodbye!");
+        exit();
         break;
       default:
         break;

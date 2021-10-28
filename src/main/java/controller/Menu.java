@@ -47,4 +47,9 @@ class Menu {
         break;
     }
   }
+
+  protected void exit() {
+    scan.close();
+    memberUi.printGoodBye();
+  }
 }

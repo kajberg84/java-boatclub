@@ -26,8 +26,7 @@ public class UnauthenticatedMenu extends Menu {
         handleMemberActions(memberAction);
         break;
       case EXIT:
-        scan.close();
-        System.out.println("Goodbye!");
+        exit();
         break;
       default:
         break;

@@ -27,5 +27,6 @@ public class BoatClubHandler {
       menu = new UnauthenticatedMenu(registry);
     }
     menu.showMainMenu();
+    persistentData.save();
   }
 }

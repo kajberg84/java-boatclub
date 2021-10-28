@@ -32,4 +32,9 @@ public class PersistentData implements Persistence {
     boats.add(boat);
     member.setBoats(boats);
   }
+
+  @Override
+  public void save(){
+    System.out.print("Save");
+  }
 }

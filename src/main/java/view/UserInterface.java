@@ -186,4 +186,10 @@ class UserInterface {
       System.out.println("type: " + boats.get(i).getBoatType().label + ", length: " + boats.get(i).getLength());
     }
   }
+
+  public void printGoodBye() {
+    System.out.println("\n***************");
+    System.out.println("GOOD BYE!");
+    System.out.println("***************");
+  }
 }
