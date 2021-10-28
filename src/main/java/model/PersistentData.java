@@ -19,8 +19,11 @@ public class PersistentData implements Persistence {
     registry.createMemberWithId("Jane Doe", "940606");
     ArrayList<Member> members = registry.getAllMembers();
     addStaticBoat(members.get(0), new Boat(12, BoatType.SAILBOAT));
+    addStaticBoat(members.get(0), new Boat(12, BoatType.SAILBOAT));
     addStaticBoat(members.get(0), new Boat(6, BoatType.KAYAKCANOE));
     addStaticBoat(members.get(1), new Boat(10, BoatType.MOTORSAILER));
+    addStaticBoat(members.get(1), new Boat(12, BoatType.SAILBOAT));
+    addStaticBoat(members.get(1), new Boat(30, BoatType.OTHER));
     addStaticBoat(members.get(2), new Boat(30, BoatType.OTHER));
   }
 
