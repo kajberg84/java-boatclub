@@ -2,13 +2,15 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import model.Boat;
 import model.BoatType;
 import model.Member;
 import model.MemberRegistry;
 import view.BoatTypeSearchView;
 
+/**
+ * A class resonsible for searching for members by boat type.
+ */
 public class BoatTypeSearchStrategy implements SearchStrategy {
   private BoatTypeSearchView ui;
   private Scanner scan;

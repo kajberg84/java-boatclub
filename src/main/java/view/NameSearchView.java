@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import model.Member;
 
+/**
+ * Responsible for the name search view.
+ */
 public class NameSearchView {
   private Scanner scan;
 
@@ -33,7 +36,7 @@ public class NameSearchView {
   /**
    * Prints name and id of members in the console.
 
-   * @param member The member to view.
+   * @param members The members to view.
    */
   public void printSearchResult(ArrayList<Member> members) {
     System.out.println("\n***************");

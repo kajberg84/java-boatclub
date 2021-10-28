@@ -2,10 +2,12 @@ package view;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import model.BoatType;
 import model.Member;
 
+/**
+ * Represents the boat type search view.
+ */
 public class BoatTypeSearchView {
   private Scanner scan;
 
@@ -63,7 +65,7 @@ public class BoatTypeSearchView {
   /**
    * Prints name and id of members in the console.
 
-   * @param member The member to view.
+   * @param members The members to view.
    */
   public void printSearchResult(ArrayList<Member> members) {
     System.out.println("\n***************");

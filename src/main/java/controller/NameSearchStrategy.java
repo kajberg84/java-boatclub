@@ -6,7 +6,10 @@ import model.Member;
 import model.MemberRegistry;
 import view.NameSearchView;
 
-public class NameSearchStrategy implements SearchStrategy{
+/**
+ * A class resonsible for searching for members by name.
+ */
+public class NameSearchStrategy implements SearchStrategy {
   private NameSearchView ui;
   private Scanner scan;
 

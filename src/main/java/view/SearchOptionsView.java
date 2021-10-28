@@ -2,17 +2,33 @@ package view;
 
 import java.util.Scanner;
 
+/**
+ * Resoponsible for the search options view.
+ */
 public class SearchOptionsView {
   private Scanner scan;
 
+  /**
+   * Enumerations for search options.
+   */
   public enum SearchOption {
     NAME, BOAT
   }
 
+  /**
+   * The search options view.
+
+   * @param s A scanner object.
+   */
   public SearchOptionsView(Scanner s) {
     scan = s;
   }
 
+  /**
+   * Prompts for a search option.
+
+   * @return A search option.
+   */
   public SearchOption promptForSearchOption() {
     System.out.println("\n***************");
     System.out.println("SEARCH OPTIONS");

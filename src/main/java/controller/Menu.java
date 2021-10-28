@@ -43,6 +43,8 @@ class Menu {
         search = new BoatTypeSearchStrategy(scan);
         search.search(registry);
         break;
+      default:
+        break;
     }
   }
 }
