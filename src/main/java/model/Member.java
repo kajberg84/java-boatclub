@@ -92,4 +92,8 @@ public class Member {
   public void setBoats(ArrayList<Boat> value) {
     this.boats = value;
   }
+
+  public void deleteBoat(Boat boat) {
+    this.boats.remove(boat);
+  }
 }

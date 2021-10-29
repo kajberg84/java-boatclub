@@ -19,7 +19,7 @@
   "socialSecurityNumber" : "940404",
   "id" : "T",
   "boats" : [ {
-    "length" : 4,
+    "length" : 3,
     "boatType" : "OTHER"
   } ]
 } ]

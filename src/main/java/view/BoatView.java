@@ -1,6 +1,8 @@
 package view;
 
 import java.util.Scanner;
+
+import model.Boat;
 import model.BoatType;
 import model.Member;
 
@@ -24,7 +26,7 @@ public class BoatView extends UserInterface {
    * @param member The member owning the boat.
    * @return int
    */
-  public int promptForBoat(Member member) {
+  public Boat promptForBoat(Member member) {
     printBoatDetails(member);
     int memberBoatsLength = member.getBoats().size();
     int userInput;
@@ -33,7 +35,7 @@ public class BoatView extends UserInterface {
       System.out.print("Enter number: ");
       userInput = getInt();
     } while (!isValidInput(userInput, memberBoatsLength));
-    return userInput - 1;
+    return member.getBoats().get(userInput - 1);
   }
 
   /**
