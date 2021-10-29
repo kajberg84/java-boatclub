@@ -1,15 +1,25 @@
-package controller;
+package controller.menus;
 
+import controller.BoatHandler;
+import controller.MemberHandler;
+import controller.search.BoatTypeSearchStrategy;
+import controller.search.NameSearchStrategy;
+import controller.search.SearchStrategy;
 import java.util.Scanner;
 import model.MemberRegistry;
 import view.BoatView;
 import view.MemberView;
+import view.MenuView;
 import view.SearchOptionsView;
 
-class Menu {
+/**
+ * Represents a menu.
+ */
+public class Menu {
   protected Scanner scan = new Scanner(System.in, "UTF-8");
   protected MemberView memberUi = new MemberView(scan);
   protected BoatView boatUi = new BoatView(scan);
+  protected MenuView menuUi = new MenuView(scan);
   protected BoatHandler boatHandler = new BoatHandler(boatUi);
   protected MemberRegistry registry;
   protected MemberHandler memberHandler;
@@ -46,5 +56,10 @@ class Menu {
       default:
         break;
     }
+  }
+
+  protected void exit() {
+    scan.close();
+    menuUi.printGoodBye();
   }
 }

@@ -7,11 +7,10 @@ import model.Member;
 /**
  * Responsible for the name search view.
  */
-public class NameSearchView {
-  private Scanner scan;
+public class NameSearchView extends View {
 
-  public NameSearchView(Scanner s) {
-    scan = s;
+  public NameSearchView(Scanner scan) {
+    super(scan);
   }
 
   /**
@@ -26,11 +25,6 @@ public class NameSearchView {
     System.out.print("Search: ");
     String userInput = getString();
     return userInput;
-  }
-
-  private String getString() {
-    String str = scan.nextLine();
-    return str;
   }
 
   /**
@@ -51,5 +45,4 @@ public class NameSearchView {
       }
     }
   }
-
 }

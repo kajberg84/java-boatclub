@@ -1,26 +1,23 @@
 package controller;
 
+import controller.menus.AuthenticatedMenu;
+import controller.menus.Menu;
+import controller.menus.UnauthenticatedMenu;
 import model.MemberRegistry;
-import model.PersistentData;
 
 /**
  * Responsible for starting up the boat club application.
  */
-public class BoatClubHandler {
-  private MemberRegistry registry = new MemberRegistry();
-  private PersistentData persistentData = new PersistentData(registry);
+public class MenuHandler {
   private Menu menu;
-  private Authenticator authenticator;
 
-  public BoatClubHandler(Authenticator auth) {
-    authenticator = auth;
+  public MenuHandler() {
   }
 
   /**
    * Starts the application with correct menu.
    */
-  public void start() {
-    persistentData.load();
+  public void start(Authenticator authenticator, MemberRegistry registry) {
     if (authenticator.login()) {
       menu = new AuthenticatedMenu(registry);
     } else {

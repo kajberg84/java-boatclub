@@ -8,11 +8,10 @@ import model.Member;
 /**
  * Represents the boat type search view.
  */
-public class BoatTypeSearchView {
-  private Scanner scan;
+public class BoatTypeSearchView extends View {
 
-  public BoatTypeSearchView(Scanner s) {
-    scan = s;
+  public BoatTypeSearchView(Scanner scan) {
+    super(scan);
   }
 
   /**
@@ -43,25 +42,6 @@ public class BoatTypeSearchView {
     return BoatType.OTHER;
   }
 
-  // private String getString() {
-  //   String str = scan.nextLine();
-  //   return str;
-  // }
-
-  private int getInt() {
-    int i = 0;
-    do {
-      if (scan.hasNextInt()) {
-        i = scan.nextInt();
-        scan.nextLine();
-      } else {
-        scan.nextLine();
-        return 0;
-      }
-    } while (i < 0);
-    return i;
-  }
-
   /**
    * Prints name and id of members in the console.
 
@@ -80,5 +60,4 @@ public class BoatTypeSearchView {
       }
     }
   }
-
 }

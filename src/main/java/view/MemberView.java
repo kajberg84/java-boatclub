@@ -1,12 +1,13 @@
 package view;
 
 import java.util.Scanner;
+import model.Boat;
 import model.Member;
 
 /**
  * A class representing a member view.
  */
-public class MemberView extends UserInterface {
+public class MemberView extends View {
 
   /**
    * An instance of a member view.
@@ -37,6 +38,17 @@ public class MemberView extends UserInterface {
     System.out.print("Enter social security number: ");
     String number = getString();
     return number;
+  }
+
+  /**
+   * Prompts the user for a member's ID.
+
+   * @return String
+   */
+  public String promptForMemberId() {
+    System.out.print("Enter member ID: ");
+    String memberId = getString();
+    return memberId;
   }
 
   /**
@@ -96,11 +108,20 @@ public class MemberView extends UserInterface {
       System.out.println("\nName: " + member.getName());
       System.out.println("Social security number: " + member.getSocialSecurityNumber());
       System.out.println("Member ID: " + member.getId());
-      if (member.getBoats().size() > 0) {
+      if (member.getNumberOfBoats() > 0) {
         printBoatDetails(member);
       } else {
         System.out.println("No registered boats.");
       }
+    }
+  }
+
+  private void printBoatDetails(Member member) {
+    System.out.println("Registered boats:");
+    int index = 1;
+    for (Boat b : member.getBoats()) {
+      System.out.println(index + ". " + "type: " + b.getBoatType().label + ", length: " + b.getLength());
+      index++;
     }
   }
 
@@ -115,7 +136,7 @@ public class MemberView extends UserInterface {
     } else {
       System.out.println("\nName: " + member.getName());
       System.out.println("Member ID: " + member.getId());
-      System.out.println("Registered boats: " + member.getBoats().size());
+      System.out.println("Registered boats: " + member.getNumberOfBoats());
     }
   }
 

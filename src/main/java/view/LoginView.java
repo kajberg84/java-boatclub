@@ -5,8 +5,7 @@ import java.util.Scanner;
 /** 
  * A class representing a user interface.
  */
-public class LoginView {
-  private Scanner scan;
+public class LoginView extends View {
 
   /**
    * An instance of a user interface.
@@ -14,7 +13,7 @@ public class LoginView {
    * @param scan A scanner to get user input from.
    */
   public LoginView(Scanner scan) {
-    this.scan = scan;
+    super(scan);
   }
 
   /**
@@ -67,11 +66,6 @@ public class LoginView {
     System.out.print("Enter password: ");
     String userName = getString();
     return userName;
-  }
-
-  private String getString() {
-    String str = scan.nextLine();
-    return str;
   }
 
   /**

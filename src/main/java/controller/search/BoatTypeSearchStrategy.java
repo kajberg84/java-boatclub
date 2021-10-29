@@ -1,4 +1,4 @@
-package controller;
+package controller.search;
 
 import java.util.ArrayList;
 import java.util.Scanner;

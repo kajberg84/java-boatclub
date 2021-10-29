@@ -1,8 +1,8 @@
-package controller;
+package controller.menus;
 
 import model.MemberRegistry;
-import view.Action;
-import view.MemberAction;
+import view.actions.Action;
+import view.actions.MemberAction;
 
 /**
  * Responsible for handling the actions of an unauthenticated user.
@@ -15,19 +15,18 @@ public class UnauthenticatedMenu extends Menu {
 
   @Override
   public void showMainMenu() {
-    Action action = memberUi.promptForUnauthenticatedMainAction();
+    Action action = menuUi.promptForUnauthenticatedMainAction();
     showSubMenu(action);
   }
 
   private void showSubMenu(Action action) {
     switch (action) {
       case MEMBERS:
-        MemberAction memberAction = memberUi.promptForUnauthenticatedMemberAction();
+        MemberAction memberAction = menuUi.promptForUnauthenticatedMemberAction();
         handleMemberActions(memberAction);
         break;
       case EXIT:
-        scan.close();
-        System.out.println("Goodbye!");
+        exit();
         break;
       default:
         break;
@@ -55,12 +54,4 @@ public class UnauthenticatedMenu extends Menu {
         break;
     }
   }
-
-  // private void handleViewMember() {
-  //   memberHandler.viewMember();
-  // }
-  
-  // private void handleViewAllMembers() {
-  //   memberHandler.viewAllMembers();
-  // }
 }

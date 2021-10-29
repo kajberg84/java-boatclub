@@ -1,42 +1,17 @@
 package view;
 
-import java.util.ArrayList;
 import java.util.Scanner;
-import model.Boat;
-import model.Member;
+import view.actions.Action;
+import view.actions.BoatAction;
+import view.actions.MemberAction;
 
-/** 
- * A class representing a user interface.
+/**
+ * Represents a menu view.
  */
-class UserInterface {
-  private Scanner scan;
+public class MenuView extends View {
 
-  /**
-   * An instance of a user interface.
-
-   * @param scan A scanner to get user input from.
-   */
-  public UserInterface(Scanner scan) {
-    this.scan = scan;
-  }
-
-  protected int getInt() {
-    int i = 0;
-    do {
-      if (scan.hasNextInt()) {
-        i = scan.nextInt();
-        scan.nextLine();
-      } else {
-        scan.nextLine();
-        return 0;
-      }
-    } while (i < 0);
-    return i;
-  }
-
-  protected String getString() {
-    String str = scan.nextLine();
-    return str;
+  public MenuView(Scanner scan) {
+    super(scan);
   }
 
   /**
@@ -60,6 +35,11 @@ class UserInterface {
     return actions[(userInput - 1)];
   }
 
+  /**
+   * Prints menu and prompts for action for an unauthenticated user.
+
+   * @return The chosen action.
+   */
   public Action promptForUnauthenticatedMainAction() {
     int userInput;
     do {
@@ -73,16 +53,6 @@ class UserInterface {
       return Action.MEMBERS;
     }
     return Action.EXIT;
-  }
-
-  protected boolean isValidInput(int input, int length) {
-    boolean isValid = true;
-    if (input < 1) {
-      isValid = false;
-    } else if (input > length) {
-      isValid = false;
-    }
-    return isValid;
   }
 
   private void printMainMenuHeader() {
@@ -101,15 +71,16 @@ class UserInterface {
     MemberAction[] memberActions = MemberAction.values();
     do {
       printMemberMenuHeader();
-      int index = 0;
+      int index = 1;
       for (MemberAction memberAction : memberActions) {
-        System.out.println((index + 1) + ". " + memberAction.label);
+        System.out.println((index) + ". " + memberAction.label);
         index++;
       }
       System.out.print("Choose an option: ");
       userInput = getInt();
     } while (userInput > memberActions.length || userInput == 0);
-    return memberActions[(userInput - 1)];
+    int menuChoice = userInput - 1;
+    return memberActions[(menuChoice)];
   }
 
   private void printMemberMenuHeader() {
@@ -118,6 +89,11 @@ class UserInterface {
     System.out.println("***************");
   }
 
+  /**
+   * Prints the members sub menu for an unauthenticated user in the console and prompts for an action to be taken.
+
+   * @return MemberAction
+   */
   public MemberAction promptForUnauthenticatedMemberAction() {
     int userInput;
     do {
@@ -150,15 +126,16 @@ class UserInterface {
     BoatAction[] boatActions = BoatAction.values();
     do {
       printBoatMenuHeader();
-      int index = 0;
+      int index = 1;
       for (BoatAction boatAction : boatActions) {
-        System.out.println((index + 1) + ". " + boatAction.label);
+        System.out.println((index) + ". " + boatAction.label);
         index++;
       }
       System.out.print("Choose an option: ");
       userInput = getInt();
     } while (userInput > boatActions.length || userInput == 0);
-    return boatActions[(userInput - 1)];
+    int menuChoice = userInput - 1;
+    return boatActions[menuChoice];
   }
 
   private void printBoatMenuHeader() {
@@ -168,22 +145,11 @@ class UserInterface {
   }
 
   /**
-   * Prompts the user for a member's ID.
-
-   * @return String
+   * Prints a good bye message.
    */
-  public String promptForMemberId() {
-    System.out.print("Enter member ID: ");
-    String memberId = getString();
-    return memberId;
-  }
-
-  protected void printBoatDetails(Member member) {
-    ArrayList<Boat> boats = member.getBoats();
-    System.out.println("Registered boats:");
-    for (int i = 0; i < boats.size(); i++) {
-      System.out.print((i + 1) + ". ");
-      System.out.println("type: " + boats.get(i).getBoatType().label + ", length: " + boats.get(i).getLength());
-    }
+  public void printGoodBye() {
+    System.out.println("\n***************");
+    System.out.println("GOOD BYE!");
+    System.out.println("***************");
   }
 }

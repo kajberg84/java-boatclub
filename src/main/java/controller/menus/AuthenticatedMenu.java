@@ -1,10 +1,10 @@
-package controller;
+package controller.menus;
 
 import model.Member;
 import model.MemberRegistry;
-import view.Action;
-import view.BoatAction;
-import view.MemberAction;
+import view.actions.Action;
+import view.actions.BoatAction;
+import view.actions.MemberAction;
 
 /**
  * Responsible for handling user actions for an authenticated user.
@@ -16,23 +16,22 @@ public class AuthenticatedMenu extends Menu {
   }
 
   public void showMainMenu() {
-    Action action = boatUi.promptForMainAction();
+    Action action = menuUi.promptForMainAction();
     showSubMenu(action);
   }
 
   private void showSubMenu(Action action) {
     switch (action) {
       case MEMBERS:
-        MemberAction memberAction = memberUi.promptForMemberAction();
+        MemberAction memberAction = menuUi.promptForMemberAction();
         handleMemberActions(memberAction);
         break;
       case BOATS:
-        BoatAction boatAction = boatUi.promptForBoatAction();
+        BoatAction boatAction = menuUi.promptForBoatAction();
         handleBoatAction(boatAction);
         break;
       case EXIT:
-        scan.close();
-        System.out.println("Goodbye!");
+        exit();
         break;
       default:
         break;
@@ -120,14 +119,6 @@ public class AuthenticatedMenu extends Menu {
   private void handleEditMember() {
     memberHandler.editMember();
   }
-
-  // private void handleViewMember() {
-  //   memberHandler.viewMember();
-  // }
-  
-  // private void handleViewAllMembers() {
-  //   memberHandler.viewAllMembers();
-  // }
 
   private void handleDeleteMember() {
     memberHandler.deleteMember();

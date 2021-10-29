@@ -7,6 +7,10 @@ public class Boat {
   private int length;
   private BoatType type;
 
+  public Boat() {
+    super();
+  }
+
   /**
    * A boat object.
 
