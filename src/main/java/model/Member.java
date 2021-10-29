@@ -77,7 +77,7 @@ public class Member {
   /**
    * Returns an ArrayList of all boats registered to a member.
 
-   * @return ArrayList
+   * @return ArrayList of boat objects.
    */
   public ArrayList<Boat> getBoats() {
     ArrayList<Boat> boatsCopy = this.boats;
