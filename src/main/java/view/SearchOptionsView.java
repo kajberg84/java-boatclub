@@ -11,7 +11,8 @@ public class SearchOptionsView extends View {
    * Enumerations for search options.
    */
   public enum SearchOption {
-    NAME, BOAT
+    NAME,
+    BOAT
   }
 
   public SearchOptionsView(Scanner scan) {
