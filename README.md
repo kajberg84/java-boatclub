@@ -12,6 +12,10 @@
 
 - Navigate through the application by choosing among the presented menu options.
 
+### :key: To log in: 
+  - username: `santa`
+  - password: `rudolph`
+
 ### :sparkles: Functionality
 
 - Handle members (add, edit, delete)
@@ -25,6 +29,5 @@
 
 ## Creators
 
-- Kaj Berg <kb223aw@student.lnu.se>
-- Mirjam Arvidsson <margl08@student.lnu.se>
-- Rebecca Axelsson <ra223ai@student.lnu.se>
+Kaj Berg <kb223aw@student.lnu.se>  
+Rebecca Axelsson <ra223ai@student.lnu.se>
