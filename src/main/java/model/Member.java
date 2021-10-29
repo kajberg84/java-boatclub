@@ -75,13 +75,11 @@ public class Member {
   }
 
   /**
-   * Returns an ArrayList of all boats registered to a member.
+   * Returns an Iterable of all boats registered to a member.
 
-   * @return ArrayList of boat objects.
+   * @return Iterable of boat objects.
    */
   public Iterable<Boat> getBoats() {
-    // ArrayList<Boat> boatsCopy = this.boats;
-    // return boatsCopy;
     return this.boats;
   }
 

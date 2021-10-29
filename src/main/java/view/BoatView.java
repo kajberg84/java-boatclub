@@ -1,7 +1,6 @@
 package view;
 
 import java.util.Scanner;
-
 import model.Boat;
 import model.BoatType;
 import model.Member;
