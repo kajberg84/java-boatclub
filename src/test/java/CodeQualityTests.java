@@ -1,3 +1,5 @@
+// This work is licensed under a CC BY 4.0 license. https://creativecommons.org/licenses/by/4.0/
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -7,10 +9,6 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.Test;
-
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -19,14 +17,18 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
 public class CodeQualityTests {
   final static String checkStyleXmlFile = "./build/reports/checkstyle/main.xml";
   final static String findBugsXmlFile = "./build/reports/spotbugs/spotbugs.xml";
   final static String codeQualityJSONFile = "./build/reports/gl-code-quality-report.json";
   final static String checkStyleJUnitFile = "./build/test-results/TEST-checkstyle.xml";
   final static String findBugsJUnitFile = "./build/test-results/TEST-findbugs.xml";
-  final static int maxQualityErrors = 5;
-  final static String rootPackage = "";
+  final static int maxQualityErrors = 50;
+  final static String srcRoot = "src/main/java";  // set this accordingly
+  final static String buildRoot = "build/classes/java/main";  // set this accordingly
 
   static class TestCase {
     String name;
@@ -49,6 +51,10 @@ public class CodeQualityTests {
     assertTrue(errors < maxQualityErrors, "Max amount (" + maxQualityErrors +") of quality issues exceeded:" + errors);
   }
 
+  
+  /** 
+   * @return int
+   */
   public int findBugsTest() {
     DocumentBuilder dBuilder = null;
     int errors = 0;
@@ -75,7 +81,7 @@ public class CodeQualityTests {
       for (int cnIx = 0; cnIx < classNodes.getLength(); cnIx++) {
         String fileName = classNodes.item(cnIx).getTextContent();
         fileName = fileName.replace("\\", "/");
-        fileName = fileName.substring(fileName.indexOf(rootPackage + "/"));
+        fileName = fileName.substring(fileName.indexOf(buildRoot + "/") + buildRoot.length() + 1);
         if (!fileName.contains("$")) {
           fileName = fileName.replace(".class", ".java");
           TestCase tc = new TestCase();
@@ -131,6 +137,10 @@ public class CodeQualityTests {
     return errors;
   }
 
+  
+  /** 
+   * @param values
+   */
   private void reportTestCaseToConsole(Collection<TestCase> values) {
     for(TestCase t : values) {
       System.out.println(t.failures.size() + " " + t.className + " in " + t.fileName);
@@ -140,6 +150,11 @@ public class CodeQualityTests {
     }
   }
 
+  
+  /** 
+   * @param str
+   * @return String
+   */
   private String fixBugPatternText(String str) {
 
     // we can treat this text as an hmtl (xml) document to and do the rendering based on this...
@@ -148,12 +163,14 @@ public class CodeQualityTests {
       dBuilder = getDocumentBuilder();
       String htmlstr = "<html>" + str + "</html>";
 
-      // this xml parser does not handle html enties like :&nbsp;
+      // this xml parser does not handle html enties like: &nbsp;
       htmlstr = htmlstr.replace("&nbsp;", " "); // for some reason it seems the parser does not want to handle the nbsp
       htmlstr = htmlstr.replace("&amp;", "&");
-      htmlstr = htmlstr.replace("&lt;", "<");
-      htmlstr = htmlstr.replace("&gt;", ">");
       
+      // oddly it handles these... maybe part of the xml standards...
+      //htmlstr = htmlstr.replace("&lt;", "<");
+      //htmlstr = htmlstr.replace("&gt;", ">");
+    
       Document doc = dBuilder.parse(new ByteArrayInputStream(htmlstr.getBytes()));
       doc.getDocumentElement().normalize();
 
@@ -182,8 +199,12 @@ public class CodeQualityTests {
     return ret;
   }
 
+  
+  /** 
+   * @param item
+   * @return String
+   */
   private String getHTMLNodeText(Node item) {
-
     if (item.getNodeName() == "pre") {
       return System.lineSeparator() + item.getTextContent();
     } else if (item.getNodeName() == "br") {
@@ -200,6 +221,10 @@ public class CodeQualityTests {
     return item.getNodeName().equalsIgnoreCase("p") ? System.lineSeparator() + text + System.lineSeparator() : text;
   }
 
+  
+  /** 
+   * @return int
+   */
   public int checkStyleTest() {
     ArrayList<TestCase> testCases = new ArrayList<>();
     int errors = 0;
@@ -219,7 +244,7 @@ public class CodeQualityTests {
         TestCase tc = new TestCase();
         testCases.add(tc);
         fileName = fileName.replace('\\', '/');
-        tc.name = fileName.substring(fileName.indexOf(rootPackage +  "/"));
+        tc.name = fileName.substring(fileName.indexOf(srcRoot+  "/") + srcRoot.length() + 1);
         tc.className = "CheckStyle Issues";
         tc.fileName = fileName;
 
@@ -261,6 +286,12 @@ public class CodeQualityTests {
     return errors;
   }
 
+  
+  /** 
+   * @param str
+   * @param maxLen
+   * @return String
+   */
   private String fixSingleStringLength(String str, final int maxLen) {
     str = str.replace("    ", "\t");
     String[] parts = str.split(" ");
@@ -281,6 +312,12 @@ public class CodeQualityTests {
     return ret.replace("\t", "  ");
   }
 
+  
+  /** 
+   * @param str
+   * @param maxLen
+   * @return String
+   */
   private String fixStringLength(final String str, final int maxLen) {
     String[] parts = str.split("\r\n|\n");
     String ret = "";
@@ -296,6 +333,14 @@ public class CodeQualityTests {
     return ret.trim();
   }
 
+  
+  /** 
+   * @param testCases
+   * @param a_fileName
+   * @param suitePackage
+   * @param suiteName
+   * @throws IOException
+   */
   private void saveTestCasesAsXML(Collection<TestCase> testCases, String a_fileName, String suitePackage, String suiteName) throws IOException {
 
     final String ls = System.lineSeparator();
@@ -330,32 +375,13 @@ public class CodeQualityTests {
 
   }
 
+  
+  /** 
+   * @return DocumentBuilder
+   * @throws ParserConfigurationException
+   */
   private DocumentBuilder getDocumentBuilder() throws ParserConfigurationException {
     DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
     return dbFactory.newDocumentBuilder();
-  }
-
-  //@Test
-  public void fixCodeQualityJSON() {
-    Path path = Paths.get(codeQualityJSONFile);
-    Charset charset = StandardCharsets.US_ASCII;
-
-    String content = null;
-    try {
-      content = new String(Files.readAllBytes(path), charset);
-
-      content = content.replaceAll("\\\\n", "\n");
-      content = content.replaceAll("\\\\u003c", "<");
-      content = content.replaceAll("\\\\u003e", ">");
-
-      try {
-        Files.write(path, content.getBytes(charset));
-      } catch (IOException e) {
-        assertTrue(false, "Could not write to file : " + codeQualityJSONFile);
-      }
-    } catch (IOException e) {
-      assertTrue(false, "Could not open file: " + codeQualityJSONFile);
-    }
-
   }
 }

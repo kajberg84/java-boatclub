@@ -1,13 +1,30 @@
-# A2
+# :sailboat: A2 - Boat Club
 
-Project for Assignment 2
+## How to Build and Run the Application
 
-A project template based on gradle and a gitlab pipeline. You should always build and run the application using gradle regularely.
-
+### :hammer: Build
 `./gradlew build`
 
+### :rocket: Run
 `./gradlew run -q --console=plain`
 
-Adhere to the git versioning instructions according to the assignment.
+## How to Use the Application
 
-Note that this assignment will be automatically checked for plagiarism of source code.
+- Navigate through the application by choosing among the presented menu options.
+
+### :sparkles: Functionality
+
+- Handle members (add, edit, delete)
+- View one or all members (detailed or basic list)
+- Handle boats (add, edit, delete)
+
+### :memo: Design Overview
+[Design Document](design.md)
+
+---
+
+## Creators
+
+- Kaj Berg <kb223aw@student.lnu.se>
+- Mirjam Arvidsson <margl08@student.lnu.se>
+- Rebecca Axelsson <ra223ai@student.lnu.se>
