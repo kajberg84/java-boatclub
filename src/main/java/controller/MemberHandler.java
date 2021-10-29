@@ -2,7 +2,6 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import model.Member;
 import model.MemberRegistry;
 import view.MemberView;
