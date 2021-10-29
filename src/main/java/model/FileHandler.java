@@ -14,15 +14,9 @@ import java.util.ArrayList;
  * Responsible for loading and saving data.
  */
 public class FileHandler implements Persistence {
-
-  private MemberRegistry registry;
-
-  public FileHandler(MemberRegistry registry) {
-    this.registry = registry;
-  }
-
   @Override
-  public void load() {
+  public MemberRegistry load() {
+    MemberRegistry registry = new MemberRegistry();
     String currentDir = System.getProperty("user.dir");
     ObjectMapper mapper = new ObjectMapper();
     try {
@@ -37,10 +31,11 @@ public class FileHandler implements Persistence {
     } catch (Exception e) {
       e.printStackTrace();
     }
+    return registry;
   }
 
   @Override
-  public void save() {    
+  public void save(MemberRegistry registry) {    
     ArrayList<Member> members = registry.getAllMembers();
     ObjectMapper mapper = new ObjectMapper();
     String currentDir = System.getProperty("user.dir");
