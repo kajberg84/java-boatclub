@@ -15,14 +15,14 @@ public class UnauthenticatedMenu extends Menu {
 
   @Override
   public void showMainMenu() {
-    Action action = memberUi.promptForUnauthenticatedMainAction();
+    Action action = menuUi.promptForUnauthenticatedMainAction();
     showSubMenu(action);
   }
 
   private void showSubMenu(Action action) {
     switch (action) {
       case MEMBERS:
-        MemberAction memberAction = memberUi.promptForUnauthenticatedMemberAction();
+        MemberAction memberAction = menuUi.promptForUnauthenticatedMemberAction();
         handleMemberActions(memberAction);
         break;
       case EXIT:
@@ -54,12 +54,4 @@ public class UnauthenticatedMenu extends Menu {
         break;
     }
   }
-
-  // private void handleViewMember() {
-  //   memberHandler.viewMember();
-  // }
-  
-  // private void handleViewAllMembers() {
-  //   memberHandler.viewAllMembers();
-  // }
 }

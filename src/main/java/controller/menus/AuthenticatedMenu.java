@@ -16,18 +16,18 @@ public class AuthenticatedMenu extends Menu {
   }
 
   public void showMainMenu() {
-    Action action = boatUi.promptForMainAction();
+    Action action = menuUi.promptForMainAction();
     showSubMenu(action);
   }
 
   private void showSubMenu(Action action) {
     switch (action) {
       case MEMBERS:
-        MemberAction memberAction = memberUi.promptForMemberAction();
+        MemberAction memberAction = menuUi.promptForMemberAction();
         handleMemberActions(memberAction);
         break;
       case BOATS:
-        BoatAction boatAction = boatUi.promptForBoatAction();
+        BoatAction boatAction = menuUi.promptForBoatAction();
         handleBoatAction(boatAction);
         break;
       case EXIT:

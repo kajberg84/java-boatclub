@@ -9,6 +9,7 @@ import java.util.Scanner;
 import model.MemberRegistry;
 import view.BoatView;
 import view.MemberView;
+import view.MenuView;
 import view.SearchOptionsView;
 
 /**
@@ -18,6 +19,7 @@ public class Menu {
   protected Scanner scan = new Scanner(System.in, "UTF-8");
   protected MemberView memberUi = new MemberView(scan);
   protected BoatView boatUi = new BoatView(scan);
+  protected MenuView menuUi = new MenuView(scan);
   protected BoatHandler boatHandler = new BoatHandler(boatUi);
   protected MemberRegistry registry;
   protected MemberHandler memberHandler;
@@ -58,6 +60,6 @@ public class Menu {
 
   protected void exit() {
     scan.close();
-    memberUi.printGoodBye();
+    menuUi.printGoodBye();
   }
 }

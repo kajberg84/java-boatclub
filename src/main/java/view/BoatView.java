@@ -8,7 +8,7 @@ import model.Member;
 /**
  * A class representing a boat view.
  */
-public class BoatView extends UserInterface {
+public class BoatView extends View {
 
   /**
    * An instance of a boat view.
@@ -44,6 +44,15 @@ public class BoatView extends UserInterface {
       index++;
     }
     return boat;
+  }
+
+  private void printBoatDetails(Member member) {
+    System.out.println("Registered boats:");
+    int index = 1;
+    for (Boat b : member.getBoats()) {
+      System.out.println(index + ". " + "type: " + b.getBoatType().label + ", length: " + b.getLength());
+      index++;
+    }
   }
 
   /**

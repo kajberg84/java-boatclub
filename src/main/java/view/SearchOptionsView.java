@@ -5,8 +5,7 @@ import java.util.Scanner;
 /**
  * Resoponsible for the search options view.
  */
-public class SearchOptionsView {
-  private Scanner scan;
+public class SearchOptionsView extends View {
 
   /**
    * Enumerations for search options.
@@ -20,8 +19,8 @@ public class SearchOptionsView {
 
    * @param s A scanner object.
    */
-  public SearchOptionsView(Scanner s) {
-    scan = s;
+  public SearchOptionsView(Scanner scan) {
+    super(scan);
   }
 
   /**
@@ -44,19 +43,5 @@ public class SearchOptionsView {
       return SearchOption.NAME;
     }
     return SearchOption.BOAT;
-  }
-
-  protected int getInt() {
-    int i = 0;
-    do {
-      if (scan.hasNextInt()) {
-        i = scan.nextInt();
-        scan.nextLine();
-      } else {
-        scan.nextLine();
-        return 0;
-      }
-    } while (i < 0);
-    return i;
   }
 }

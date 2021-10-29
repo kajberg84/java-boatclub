@@ -1,44 +1,15 @@
 package view;
 
 import java.util.Scanner;
-import model.Boat;
-import model.Member;
+
 import view.actions.Action;
 import view.actions.BoatAction;
 import view.actions.MemberAction;
 
-/** 
- * A class representing a user interface.
- */
-class UserInterface {
-  private Scanner scan;
+public class MenuView extends View {
 
-  /**
-   * An instance of a user interface.
-
-   * @param scan A scanner to get user input from.
-   */
-  public UserInterface(Scanner scan) {
-    this.scan = scan;
-  }
-
-  protected int getInt() {
-    int i = 0;
-    do {
-      if (scan.hasNextInt()) {
-        i = scan.nextInt();
-        scan.nextLine();
-      } else {
-        scan.nextLine();
-        return 0;
-      }
-    } while (i < 0);
-    return i;
-  }
-
-  protected String getString() {
-    String str = scan.nextLine();
-    return str;
+  public MenuView(Scanner scan) {
+    super(scan);
   }
 
   /**
@@ -75,16 +46,6 @@ class UserInterface {
       return Action.MEMBERS;
     }
     return Action.EXIT;
-  }
-
-  protected boolean isValidInput(int input, int length) {
-    boolean isValid = true;
-    if (input < 1) {
-      isValid = false;
-    } else if (input > length) {
-      isValid = false;
-    }
-    return isValid;
   }
 
   private void printMainMenuHeader() {
@@ -169,26 +130,6 @@ class UserInterface {
     System.out.println("\n***************");
     System.out.println("BOAT MENU");
     System.out.println("***************");
-  }
-
-  /**
-   * Prompts the user for a member's ID.
-
-   * @return String
-   */
-  public String promptForMemberId() {
-    System.out.print("Enter member ID: ");
-    String memberId = getString();
-    return memberId;
-  }
-
-  protected void printBoatDetails(Member member) {
-    System.out.println("Registered boats:");
-    int index = 1;
-    for (Boat b : member.getBoats()) {
-      System.out.println(index + ". " + "type: " + b.getBoatType().label + ", length: " + b.getLength());
-      index++;
-    }
   }
 
   public void printGoodBye() {

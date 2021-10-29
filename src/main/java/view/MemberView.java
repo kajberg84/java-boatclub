@@ -1,12 +1,14 @@
 package view;
 
 import java.util.Scanner;
+
+import model.Boat;
 import model.Member;
 
 /**
  * A class representing a member view.
  */
-public class MemberView extends UserInterface {
+public class MemberView extends View {
 
   /**
    * An instance of a member view.
@@ -37,6 +39,17 @@ public class MemberView extends UserInterface {
     System.out.print("Enter social security number: ");
     String number = getString();
     return number;
+  }
+
+    /**
+   * Prompts the user for a member's ID.
+
+   * @return String
+   */
+  public String promptForMemberId() {
+    System.out.print("Enter member ID: ");
+    String memberId = getString();
+    return memberId;
   }
 
   /**
@@ -101,6 +114,15 @@ public class MemberView extends UserInterface {
       } else {
         System.out.println("No registered boats.");
       }
+    }
+  }
+
+  private void printBoatDetails(Member member) {
+    System.out.println("Registered boats:");
+    int index = 1;
+    for (Boat b : member.getBoats()) {
+      System.out.println(index + ". " + "type: " + b.getBoatType().label + ", length: " + b.getLength());
+      index++;
     }
   }
 
