@@ -59,5 +59,4 @@ public class SearchOptionsView {
     } while (i < 0);
     return i;
   }
-
 }

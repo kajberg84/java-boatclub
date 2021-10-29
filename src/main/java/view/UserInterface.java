@@ -103,15 +103,16 @@ class UserInterface {
     MemberAction[] memberActions = MemberAction.values();
     do {
       printMemberMenuHeader();
-      int index = 0;
+      int index = 1;
       for (MemberAction memberAction : memberActions) {
-        System.out.println((index + 1) + ". " + memberAction.label);
+        System.out.println((index) + ". " + memberAction.label);
         index++;
       }
       System.out.print("Choose an option: ");
       userInput = getInt();
     } while (userInput > memberActions.length || userInput == 0);
-    return memberActions[(userInput - 1)];
+    int menuChoice = userInput - 1;
+    return memberActions[(menuChoice)];
   }
 
   private void printMemberMenuHeader() {
@@ -152,15 +153,16 @@ class UserInterface {
     BoatAction[] boatActions = BoatAction.values();
     do {
       printBoatMenuHeader();
-      int index = 0;
+      int index = 1;
       for (BoatAction boatAction : boatActions) {
-        System.out.println((index + 1) + ". " + boatAction.label);
+        System.out.println((index) + ". " + boatAction.label);
         index++;
       }
       System.out.print("Choose an option: ");
       userInput = getInt();
     } while (userInput > boatActions.length || userInput == 0);
-    return boatActions[(userInput - 1)];
+    int menuChoice = userInput - 1;
+    return boatActions[menuChoice];
   }
 
   private void printBoatMenuHeader() {
@@ -187,12 +189,6 @@ class UserInterface {
       System.out.println(index + ". " + "type: " + b.getBoatType().label + ", length: " + b.getLength());
       index++;
     }
-    // ArrayList<Boat> boats = member.getBoats();
-    // System.out.println("Registered boats:");
-    // for (int i = 0; i < boats.size(); i++) {
-    //   System.out.print((i + 1) + ". ");
-    //   System.out.println("type: " + boats.get(i).getBoatType().label + ", length: " + boats.get(i).getLength());
-    // }
   }
 
   public void printGoodBye() {
