@@ -1,7 +1,6 @@
 package view;
 
 import java.util.Scanner;
-
 import model.Boat;
 import model.Member;
 
@@ -41,7 +40,7 @@ public class MemberView extends View {
     return number;
   }
 
-    /**
+  /**
    * Prompts the user for a member's ID.
 
    * @return String

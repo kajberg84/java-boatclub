@@ -1,11 +1,13 @@
 package view;
 
 import java.util.Scanner;
-
 import view.actions.Action;
 import view.actions.BoatAction;
 import view.actions.MemberAction;
 
+/**
+ * Represents a menu view.
+ */
 public class MenuView extends View {
 
   public MenuView(Scanner scan) {
@@ -33,6 +35,11 @@ public class MenuView extends View {
     return actions[(userInput - 1)];
   }
 
+  /**
+   * Prints menu and prompts for action for an unauthenticated user.
+
+   * @return The chosen action.
+   */
   public Action promptForUnauthenticatedMainAction() {
     int userInput;
     do {
@@ -82,6 +89,11 @@ public class MenuView extends View {
     System.out.println("***************");
   }
 
+  /**
+   * Prints the members sub menu for an unauthenticated user in the console and prompts for an action to be taken.
+
+   * @return MemberAction
+   */
   public MemberAction promptForUnauthenticatedMemberAction() {
     int userInput;
     do {
@@ -132,6 +144,9 @@ public class MenuView extends View {
     System.out.println("***************");
   }
 
+  /**
+   * Prints a good bye message.
+   */
   public void printGoodBye() {
     System.out.println("\n***************");
     System.out.println("GOOD BYE!");

@@ -14,11 +14,6 @@ public class SearchOptionsView extends View {
     NAME, BOAT
   }
 
-  /**
-   * The search options view.
-
-   * @param s A scanner object.
-   */
   public SearchOptionsView(Scanner scan) {
     super(scan);
   }
