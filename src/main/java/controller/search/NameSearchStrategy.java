@@ -11,10 +11,8 @@ import view.NameSearchView;
  */
 public class NameSearchStrategy implements SearchStrategy {
   private NameSearchView ui;
-  private Scanner scan;
 
-  public NameSearchStrategy(Scanner s) {
-    scan = s;
+  public NameSearchStrategy(Scanner scan) {
     ui = new NameSearchView(scan);
   }
 

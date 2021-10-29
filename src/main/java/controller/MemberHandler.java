@@ -1,6 +1,8 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Scanner;
+
 import model.Member;
 import model.MemberRegistry;
 import view.MemberView;
@@ -9,11 +11,11 @@ import view.MemberView;
  * Responsible for member operations.
  */
 public class MemberHandler {
-  MemberView ui;
+  private MemberView ui;
   private MemberRegistry registry;
   
-  public MemberHandler(MemberView ui, MemberRegistry registry) {
-    this.ui = ui;
+  public MemberHandler(Scanner scan, MemberRegistry registry) {
+    ui = new MemberView(scan);
     this.registry = registry;
   }
 

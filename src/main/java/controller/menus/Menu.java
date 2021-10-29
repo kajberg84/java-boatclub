@@ -1,34 +1,29 @@
 package controller.menus;
 
-import controller.BoatHandler;
 import controller.MemberHandler;
 import controller.search.BoatTypeSearchStrategy;
 import controller.search.NameSearchStrategy;
 import controller.search.SearchStrategy;
 import java.util.Scanner;
 import model.MemberRegistry;
-import view.BoatView;
-import view.MemberView;
 import view.MenuView;
 import view.SearchOptionsView;
+import view.SearchOptionsView.SearchOption;
 
 /**
  * Represents a menu.
  */
 public class Menu {
   protected Scanner scan = new Scanner(System.in, "UTF-8");
-  protected MemberView memberUi = new MemberView(scan);
-  protected BoatView boatUi = new BoatView(scan);
   protected MenuView menuUi = new MenuView(scan);
-  protected BoatHandler boatHandler = new BoatHandler(boatUi);
   protected MemberRegistry registry;
   protected MemberHandler memberHandler;
   private SearchOptionsView searchUi = new SearchOptionsView(scan);
   private SearchStrategy search;
 
-  public Menu(MemberRegistry r) {
-    registry = r;
-    memberHandler = new MemberHandler(memberUi, registry);
+  public Menu(MemberRegistry registry) {
+    this.registry = registry;
+    memberHandler = new MemberHandler(scan, registry);
   }
 
   public void showMainMenu() {
@@ -43,7 +38,7 @@ public class Menu {
   }
 
   protected void handleSearch() {
-    SearchOptionsView.SearchOption option = searchUi.promptForSearchOption();
+    SearchOption option = searchUi.promptForSearchOption();
     switch (option) {
       case NAME:
         search = new NameSearchStrategy(scan);

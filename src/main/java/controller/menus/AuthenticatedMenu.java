@@ -1,7 +1,9 @@
 package controller.menus;
 
+import controller.BoatHandler;
 import model.Member;
 import model.MemberRegistry;
+import view.BoatView;
 import view.actions.Action;
 import view.actions.BoatAction;
 import view.actions.MemberAction;
@@ -10,6 +12,8 @@ import view.actions.MemberAction;
  * Responsible for handling user actions for an authenticated user.
  */
 public class AuthenticatedMenu extends Menu {
+  private BoatView boatUi = new BoatView(scan);
+  private BoatHandler boatHandler = new BoatHandler(boatUi);
 
   public AuthenticatedMenu(MemberRegistry registry) {
     super(registry);
