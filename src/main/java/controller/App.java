@@ -1,5 +1,8 @@
 package controller;
 
+import model.FileHandler;
+import model.MemberRegistry;
+
 /**
  * Responsible for starting the application.
  */
@@ -12,11 +15,14 @@ public class App {
 
   public static void main(String[] args) {
     try {
+      FileHandler fileHandler = new FileHandler();
+      MemberRegistry registry = fileHandler.load();
       Authenticator auth = new Authenticator();
-      BoatClubHandler boatClubHandler = new BoatClubHandler(auth);
-      boatClubHandler.start();
+      MenuHandler menuHandler = new MenuHandler();
+      menuHandler.start(auth, registry);
+      fileHandler.save(registry);
     } catch (Exception e) {
-      System.out.println("Sorry - something went wrong.");
+      System.out.println("\nSorry - something went wrong.\n");
       e.printStackTrace();
     }
   }
