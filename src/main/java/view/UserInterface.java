@@ -1,6 +1,5 @@
 package view;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 import model.Boat;
 import model.Member;
@@ -182,12 +181,18 @@ class UserInterface {
   }
 
   protected void printBoatDetails(Member member) {
-    ArrayList<Boat> boats = member.getBoats();
     System.out.println("Registered boats:");
-    for (int i = 0; i < boats.size(); i++) {
-      System.out.print((i + 1) + ". ");
-      System.out.println("type: " + boats.get(i).getBoatType().label + ", length: " + boats.get(i).getLength());
+    int index = 1;
+    for (Boat b : member.getBoats()) {
+      System.out.println(index + ". " + "type: " + b.getBoatType().label + ", length: " + b.getLength());
+      index++;
     }
+    // ArrayList<Boat> boats = member.getBoats();
+    // System.out.println("Registered boats:");
+    // for (int i = 0; i < boats.size(); i++) {
+    //   System.out.print((i + 1) + ". ");
+    //   System.out.println("type: " + boats.get(i).getBoatType().label + ", length: " + boats.get(i).getLength());
+    // }
   }
 
   public void printGoodBye() {

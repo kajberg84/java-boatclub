@@ -96,7 +96,7 @@ public class MemberView extends UserInterface {
       System.out.println("\nName: " + member.getName());
       System.out.println("Social security number: " + member.getSocialSecurityNumber());
       System.out.println("Member ID: " + member.getId());
-      if (member.getBoats().size() > 0) {
+      if (member.getNumberOfBoats() > 0) {
         printBoatDetails(member);
       } else {
         System.out.println("No registered boats.");
@@ -115,7 +115,7 @@ public class MemberView extends UserInterface {
     } else {
       System.out.println("\nName: " + member.getName());
       System.out.println("Member ID: " + member.getId());
-      System.out.println("Registered boats: " + member.getBoats().size());
+      System.out.println("Registered boats: " + member.getNumberOfBoats());
     }
   }
 

@@ -28,14 +28,23 @@ public class BoatView extends UserInterface {
    */
   public Boat promptForBoat(Member member) {
     printBoatDetails(member);
-    int memberBoatsLength = member.getBoats().size();
+    int memberBoatsLength = member.getNumberOfBoats();
     int userInput;
     do {
       System.out.println("\nChoose a boat.");
       System.out.print("Enter number: ");
       userInput = getInt();
     } while (!isValidInput(userInput, memberBoatsLength));
-    return member.getBoats().get(userInput - 1);
+  
+    int index = 1;
+    Boat boat = null;
+    for (Boat b : member.getBoats()) {
+      if (index == userInput) {
+        boat = b;
+      }
+      index++;
+    }
+    return boat;
   }
 
   /**

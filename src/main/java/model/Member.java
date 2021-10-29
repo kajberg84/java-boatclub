@@ -79,18 +79,18 @@ public class Member {
 
    * @return ArrayList of boat objects.
    */
-  public ArrayList<Boat> getBoats() {
-    ArrayList<Boat> boatsCopy = this.boats;
-    return boatsCopy;
+  public Iterable<Boat> getBoats() {
+    // ArrayList<Boat> boatsCopy = this.boats;
+    // return boatsCopy;
+    return this.boats;
   }
 
-  /**
-   * Sets all boats registered to a member.
+  public int getNumberOfBoats() {
+    return this.boats.size();
+  }
 
-   * @param value An ArrayList of boat objects.
-   */
-  public void setBoats(ArrayList<Boat> value) {
-    this.boats = value;
+  public void addBoat(Boat boat) {
+    this.boats.add(boat);
   }
 
   public void deleteBoat(Boat boat) {

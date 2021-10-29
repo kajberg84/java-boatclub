@@ -1,6 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
 import model.Boat;
 import model.BoatType;
 import model.Member;
@@ -21,9 +20,7 @@ public class BoatHandler {
    */
   public void addNewBoat(Member member) {
     Boat boat = promptForBoatDetails();
-    ArrayList<Boat> boatsToUpdate = member.getBoats();
-    boatsToUpdate.add(boat);
-    member.setBoats(boatsToUpdate);
+    member.addBoat(boat);
   }
 
   private Boat promptForBoatDetails() {
@@ -58,16 +55,10 @@ public class BoatHandler {
   }
 
   private void editBoatType(Boat boat, BoatType type) {
-    // ArrayList<Boat> boats = member.getBoats();
-    // Boat boatToEdit = boats.get(boatIndex);
-    // boatToEdit.setBoatType(type);
     boat.setBoatType(type);
   }
 
   private void editBoatLength(Boat boat, int length) {
-    // ArrayList<Boat> boats = member.getBoats();
-    // Boat boatToEdit = boats.get(boatIndex);
-    // boatToEdit.setLength(length);
     boat.setLength(length);
   }
 
@@ -77,8 +68,5 @@ public class BoatHandler {
   public void deleteBoat(Member member) {
     Boat boat = ui.promptForBoat(member);
     member.deleteBoat(boat);
-    // ArrayList<Boat> boatsToUpdate = member.getBoats();
-    // boatsToUpdate.remove(boatIndex);
-    // member.setBoats(boatsToUpdate);
   }
 }
