@@ -1,8 +1,8 @@
-package controller;
+package controller.menus;
 
 import model.MemberRegistry;
-import view.Action;
-import view.MemberAction;
+import view.actions.Action;
+import view.actions.MemberAction;
 
 /**
  * Responsible for handling the actions of an unauthenticated user.

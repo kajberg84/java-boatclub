@@ -1,7 +1,7 @@
 package controller;
 
-import model.FileHandler;
 import model.MemberRegistry;
+import model.persistence.FileHandler;
 
 /**
  * Responsible for starting the application.

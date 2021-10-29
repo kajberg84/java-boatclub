@@ -1,4 +1,6 @@
-package model;
+package model.persistence;
+
+import model.MemberRegistry;
 
 /**
  * Responsible for handling persistent data.

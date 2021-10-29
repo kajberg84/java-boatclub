@@ -1,4 +1,4 @@
-package view;
+package view.actions;
 
 /** 
  * Actions to choose from in the boats sub menu.

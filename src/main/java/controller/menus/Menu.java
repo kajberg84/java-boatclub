@@ -1,12 +1,17 @@
-package controller;
+package controller.menus;
 
 import java.util.Scanner;
+import controller.BoatHandler;
+import controller.MemberHandler;
+import controller.search.BoatTypeSearchStrategy;
+import controller.search.NameSearchStrategy;
+import controller.search.SearchStrategy;
 import model.MemberRegistry;
 import view.BoatView;
 import view.MemberView;
 import view.SearchOptionsView;
 
-class Menu {
+public class Menu {
   protected Scanner scan = new Scanner(System.in, "UTF-8");
   protected MemberView memberUi = new MemberView(scan);
   protected BoatView boatUi = new BoatView(scan);

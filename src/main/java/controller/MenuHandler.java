@@ -1,5 +1,8 @@
 package controller;
 
+import controller.menus.AuthenticatedMenu;
+import controller.menus.Menu;
+import controller.menus.UnauthenticatedMenu;
 import model.MemberRegistry;
 
 /**

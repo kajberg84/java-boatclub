@@ -43,11 +43,6 @@ public class BoatTypeSearchView {
     return BoatType.OTHER;
   }
 
-  // private String getString() {
-  //   String str = scan.nextLine();
-  //   return str;
-  // }
-
   private int getInt() {
     int i = 0;
     do {
@@ -80,5 +75,4 @@ public class BoatTypeSearchView {
       }
     }
   }
-
 }

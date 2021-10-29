@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import model.Boat;
 import model.Member;
+import view.actions.Action;
+import view.actions.BoatAction;
+import view.actions.MemberAction;
 
 /** 
  * A class representing a user interface.

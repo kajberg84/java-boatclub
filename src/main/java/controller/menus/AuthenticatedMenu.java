@@ -1,10 +1,10 @@
-package controller;
+package controller.menus;
 
 import model.Member;
 import model.MemberRegistry;
-import view.Action;
-import view.BoatAction;
-import view.MemberAction;
+import view.actions.Action;
+import view.actions.BoatAction;
+import view.actions.MemberAction;
 
 /**
  * Responsible for handling user actions for an authenticated user.
