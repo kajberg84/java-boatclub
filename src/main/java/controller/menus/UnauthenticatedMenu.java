@@ -1,5 +1,6 @@
 package controller.menus;
 
+import java.util.Scanner;
 import model.MemberRegistry;
 import view.actions.Action;
 import view.actions.MemberAction;
@@ -9,8 +10,8 @@ import view.actions.MemberAction;
  */
 public class UnauthenticatedMenu extends Menu {
 
-  public UnauthenticatedMenu(MemberRegistry registry) {
-    super(registry);
+  public UnauthenticatedMenu(MemberRegistry registry, Scanner scan) {
+    super(registry, scan);
   }
 
   @Override

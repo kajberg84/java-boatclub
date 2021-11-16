@@ -69,15 +69,6 @@ public class LoginView extends View {
   }
 
   /**
-   * Prints log in failed message.
-   */
-  public void printLoginFailed() {
-    System.out.println("\n***************");
-    System.out.println("WRONG CREDENTIALS - LOGIN FAILED");
-    System.out.println("***************\n");
-  }
-
-  /**
    * Prints log in successful message.
    */
   public void printLoginSuccesful() {

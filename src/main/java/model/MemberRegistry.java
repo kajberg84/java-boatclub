@@ -8,6 +8,8 @@ import java.util.Random;
  */
 public class MemberRegistry {
   private ArrayList<Member> members = new ArrayList<>();
+  private Authentication authentication = new Authentication();
+
 
   /**
    * Interface for member searching strategy pattern.
@@ -17,6 +19,10 @@ public class MemberRegistry {
   }
 
   public MemberRegistry() {
+  }
+
+  public boolean login(String userName, String password) {
+    return authentication.login(userName, password);
   }
 
   /**
@@ -32,13 +38,21 @@ public class MemberRegistry {
   /**
    * Adds a new member to the registry.
 
-   * @param name                 The name of the new member.
+   * @param name The name of the new member.
    * @param socialSecurityNumber The social security number of the new member.
    */
   public void createMemberWithId(String name, String socialSecurityNumber) {
-    Id memberId = generateUniqueId();
-    Member newMember = new Member(name, socialSecurityNumber, memberId);
-    addMemberToRegistry(newMember);
+    try {
+      if (authentication.isAuthenticated()) {
+        Id memberId = generateUniqueId();
+        Member newMember = new Member(name, socialSecurityNumber, memberId, authentication);
+        addMemberToRegistry(newMember);
+      } else {
+        throw new Exception("Unauthorized");
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   public void addMemberToRegistry(Member member) {
