@@ -49,6 +49,7 @@ public class MenuHandler {
   }
 
   private boolean isLoggedInSuccesfully(MemberRegistry registry) {
+    loginView.printLoginHeader();
     String userName = loginView.promptForUserName();
     String password = loginView.promptForPassword();
     return registry.login(userName, password);
