@@ -1,7 +1,6 @@
 package controller.menus;
 
 import controller.MemberHandler;
-
 import java.util.Scanner;
 import model.MemberRegistry;
 import model.search.BoatTypeSearchStrategy;
@@ -40,16 +39,16 @@ public class Menu {
   protected void handleSearch() {
     SearchOption option = searchUi.promptForSearchOption();
     switch (option) {
-    case NAME:
-      searchCriteria = new NameSearchStrategy(searchUi.promptForNameSearchParameter());
-      searchUi.printSearchResult(registry.search(searchCriteria));
-      break;
-    case BOAT:
-      searchCriteria = new BoatTypeSearchStrategy(searchUi.promptForBoatTypeSearchParameter());
-      searchUi.printSearchResult(registry.search(searchCriteria));
-      break;
-    default:
-      break;
+      case NAME:
+        searchCriteria = new NameSearchStrategy(searchUi.promptForNameSearchParameter());
+        searchUi.printSearchResult(registry.search(searchCriteria));
+        break;
+      case BOAT:
+        searchCriteria = new BoatTypeSearchStrategy(searchUi.promptForBoatTypeSearchParameter());
+        searchUi.printSearchResult(registry.search(searchCriteria));
+        break;
+      default:
+        break;
     }
   }
 

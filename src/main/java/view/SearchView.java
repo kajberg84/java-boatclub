@@ -2,7 +2,6 @@ package view;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import model.BoatType;
 import model.Member;
 
@@ -24,7 +23,7 @@ public class SearchView extends View {
 
   /**
    * Prompts for a search option.
-   * 
+
    * @return A search option.
    */
   public SearchOption promptForSearchOption() {
@@ -46,7 +45,7 @@ public class SearchView extends View {
 
   /**
    * Prompts for a search string.
-   * 
+
    * @return The input string.
    */
   public String promptForNameSearchParameter() {
@@ -60,7 +59,7 @@ public class SearchView extends View {
 
   /**
    * Prompts for a search string.
-   * 
+
    * @return The input string.
    */
   public BoatType promptForBoatTypeSearchParameter() {
@@ -88,7 +87,7 @@ public class SearchView extends View {
 
   /**
    * Prints name and id of members in the console.
-   * 
+
    * @param members The members to view.
    */
   public void printSearchResult(ArrayList<Member> members) {

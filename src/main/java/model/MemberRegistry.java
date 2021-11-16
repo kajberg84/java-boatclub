@@ -21,7 +21,7 @@ public class MemberRegistry {
 
   /**
    * Returns all members.
-   * 
+
    * @return ArrayList
    */
   public ArrayList<Member> getAllMembers() {
@@ -31,7 +31,7 @@ public class MemberRegistry {
 
   /**
    * Adds a new member to the registry.
-   * 
+
    * @param name                 The name of the new member.
    * @param socialSecurityNumber The social security number of the new member.
    */
@@ -47,7 +47,7 @@ public class MemberRegistry {
 
   /**
    * Gets a member by member ID.
-   * 
+
    * @param memberId The ID of the member to get.
    * @return Member
    */
@@ -97,7 +97,7 @@ public class MemberRegistry {
 
   /**
    * Deletes a member.
-   * 
+
    * @param member The member to delete.
    */
   public void deleteMember(Member member) {
@@ -106,7 +106,7 @@ public class MemberRegistry {
 
   /**
    * Provides a way to search for members.
-   * 
+
    * @param searchCriteria the search object to use.
    * @return all members that match the search criteria.
    */
