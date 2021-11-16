@@ -9,7 +9,8 @@ public class Member {
   private String name;
   private String socialSecurityNumber;
   private Id id;
-  private ArrayList<Boat> boats; 
+  private ArrayList<Boat> boats;
+  private Authentication authentication; 
 
   public Member() {
     super();
@@ -21,12 +22,14 @@ public class Member {
    * @param name The name of the member.
    * @param socialSecurityNumber The social security number of the member.
    * @param id The ID of the member.
+   * @param authentication The authentication object.
    */
-  public Member(String name, String socialSecurityNumber, Id id) {
+  public Member(String name, String socialSecurityNumber, Id id, Authentication authentication) {
     this.name = name;
     this.socialSecurityNumber = socialSecurityNumber;
     this.id = id;
     this.boats = new ArrayList<>();
+    this.authentication = authentication;
   }
 
   /**
@@ -44,7 +47,15 @@ public class Member {
    * @param value The member's new name.
    */
   public void setName(String value) {
-    this.name = value;
+    try {
+      if (authentication.isAuthenticated()) {
+        this.name = value;
+      } else {
+        throw new Exception("Unauthorized");
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    } 
   }
 
   /**
@@ -87,8 +98,22 @@ public class Member {
     return this.boats.size();
   }
 
-  public void addBoat(Boat boat) {
-    this.boats.add(boat);
+  /**
+   * Adds a boat to the member.
+
+   * @param type The type of the new boat.
+   * @param length The length of the new boat.
+   */
+  public void addBoat(BoatType type, int length) {
+    try {
+      if (authentication.isAuthenticated()) {
+        this.boats.add(new Boat(length, type, authentication));
+      } else {
+        throw new Exception("Unauthorized");
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   public void deleteBoat(Boat boat) {
