@@ -13,15 +13,24 @@ import view.SearchView.SearchOption;
  * Represents a menu.
  */
 public class Menu {
-  protected Scanner scan = new Scanner(System.in, "UTF-8");
-  protected MenuView menuUi = new MenuView(scan);
+  protected Scanner scan;
+  protected MenuView menuUi;
   protected MemberRegistry registry;
   protected MemberHandler memberHandler;
-  private SearchView searchUi = new SearchView(scan);
+  private SearchView searchUi;
   private MemberRegistry.SearchStrategy searchCriteria;
 
-  public Menu(MemberRegistry registry) {
+  /**
+   * A menu object.
+
+   * @param registry A member registry.
+   * @param scan A scanner object. 
+   */
+  public Menu(MemberRegistry registry, Scanner scan) {
     this.registry = registry;
+    this.scan = scan;
+    menuUi = new MenuView(scan);
+    searchUi = new SearchView(scan);
     memberHandler = new MemberHandler(scan, registry);
   }
 

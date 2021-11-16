@@ -1,6 +1,7 @@
 package controller.menus;
 
 import controller.BoatHandler;
+import java.util.Scanner;
 import model.Member;
 import model.MemberRegistry;
 import view.BoatView;
@@ -15,8 +16,8 @@ public class AuthenticatedMenu extends Menu {
   private BoatView boatUi = new BoatView(scan);
   private BoatHandler boatHandler = new BoatHandler(boatUi);
 
-  public AuthenticatedMenu(MemberRegistry registry) {
-    super(registry);
+  public AuthenticatedMenu(MemberRegistry registry, Scanner scan) {
+    super(registry, scan);
   }
 
   public void showMainMenu() {
