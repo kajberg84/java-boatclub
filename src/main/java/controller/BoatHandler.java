@@ -24,17 +24,6 @@ public class BoatHandler {
     member.addBoat(type, length);
   }
 
-  // private Boat promptForBoatDetails() {
-  //   BoatType type = ui.promptForBoatType();
-  //   int length = ui.promptForBoatLength();
-  //   Boat boat = createBoat(type, length);
-  //   return boat;
-  // }
-
-  // private Boat createBoat(BoatType type, int length) {
-  //   return new Boat(length, type);
-  // }
-
   /**
    * Edits a boat.
    */
