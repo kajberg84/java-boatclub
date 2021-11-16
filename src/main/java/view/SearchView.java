@@ -6,12 +6,41 @@ import model.BoatType;
 import model.Member;
 
 /**
- * Represents the boat type search view.
+ * Resoponsible for the search options view.
  */
-public class BoatTypeSearchView extends View {
+public class SearchView extends View {
 
-  public BoatTypeSearchView(Scanner scan) {
+  /**
+   * Enumerations for search options.
+   */
+  public enum SearchOption {
+    NAME, BOAT
+  }
+
+  public SearchView(Scanner scan) {
     super(scan);
+  }
+
+  /**
+   * Prompts for a search option.
+
+   * @return A search option.
+   */
+  public SearchOption promptForSearchOption() {
+    System.out.println("\n***************");
+    System.out.println("SEARCH OPTIONS");
+    System.out.println("***************");
+    System.out.println("1. Search by name");
+    System.out.println("2. Search by boat type");
+    System.out.print("Choose an option: ");
+    int i;
+    do {
+      i = getInt();
+    } while (i < 1 || i > 2);
+    if (i == 1) {
+      return SearchOption.NAME;
+    }
+    return SearchOption.BOAT;
   }
 
   /**
@@ -19,7 +48,21 @@ public class BoatTypeSearchView extends View {
 
    * @return The input string.
    */
-  public BoatType promptForSearchParameter() {
+  public String promptForNameSearchParameter() {
+    System.out.println("\n***************");
+    System.out.println("SEARCH MEMBER");
+    System.out.println("***************");
+    System.out.print("Search: ");
+    String userInput = getString();
+    return userInput;
+  }
+
+  /**
+   * Prompts for a search string.
+
+   * @return The input string.
+   */
+  public BoatType promptForBoatTypeSearchParameter() {
     System.out.println("\n**************************");
     System.out.println("SEARCH MEMBER BY BOAT TYPE");
     System.out.println("**************************");
