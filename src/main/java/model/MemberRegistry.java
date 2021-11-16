@@ -3,31 +3,38 @@ package model;
 import java.util.ArrayList;
 import java.util.Random;
 
-/** 
+/**
  * Responsible for member registry operations.
  */
 public class MemberRegistry {
   private ArrayList<Member> members = new ArrayList<>();
-  
+
+  /**
+   * Interface for member searching strategy pattern.
+   */
+  public static interface SearchStrategy {
+    boolean isSelected(Member member);
+  }
+
   public MemberRegistry() {
   }
 
   /**
    * Returns all members.
-
+   * 
    * @return ArrayList
    */
   public ArrayList<Member> getAllMembers() {
     ArrayList<Member> membersCopy = members;
     return membersCopy;
   }
-  
-  /**
-  * Adds a new member to the registry.
 
-  * @param name The name of the new member.
-  * @param socialSecurityNumber The social security number of the new member.
-  */
+  /**
+   * Adds a new member to the registry.
+   * 
+   * @param name                 The name of the new member.
+   * @param socialSecurityNumber The social security number of the new member.
+   */
   public void createMemberWithId(String name, String socialSecurityNumber) {
     Id memberId = generateUniqueId();
     Member newMember = new Member(name, socialSecurityNumber, memberId);
@@ -40,7 +47,7 @@ public class MemberRegistry {
 
   /**
    * Gets a member by member ID.
-
+   * 
    * @param memberId The ID of the member to get.
    * @return Member
    */
@@ -90,10 +97,29 @@ public class MemberRegistry {
 
   /**
    * Deletes a member.
-
+   * 
    * @param member The member to delete.
    */
   public void deleteMember(Member member) {
     members.remove(member);
   }
+
+  /**
+   * Provides a way to search for members.
+   * 
+   * @param searchCriteria the search object to use.
+   * @return all members that match the search criteria.
+   */
+  public ArrayList<Member> search(SearchStrategy searchCriteria) {
+    ArrayList<Member> searchResult = new ArrayList<>();
+
+    for (Member member : members) {
+      if (searchCriteria.isSelected(member)) {
+        searchResult.add(member);
+      }
+    }
+
+    return searchResult;
+  }
+
 }

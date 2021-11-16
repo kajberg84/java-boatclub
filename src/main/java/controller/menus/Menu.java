@@ -1,14 +1,14 @@
 package controller.menus;
 
 import controller.MemberHandler;
-import controller.search.BoatTypeSearchStrategy;
-import controller.search.NameSearchStrategy;
-import controller.search.SearchStrategy;
+
 import java.util.Scanner;
 import model.MemberRegistry;
+import model.search.BoatTypeSearchStrategy;
+import model.search.NameSearchStrategy;
 import view.MenuView;
-import view.SearchOptionsView;
-import view.SearchOptionsView.SearchOption;
+import view.SearchView;
+import view.SearchView.SearchOption;
 
 /**
  * Represents a menu.
@@ -18,8 +18,8 @@ public class Menu {
   protected MenuView menuUi = new MenuView(scan);
   protected MemberRegistry registry;
   protected MemberHandler memberHandler;
-  private SearchOptionsView searchUi = new SearchOptionsView(scan);
-  private SearchStrategy search;
+  private SearchView searchUi = new SearchView(scan);
+  private MemberRegistry.SearchStrategy searchCriteria;
 
   public Menu(MemberRegistry registry) {
     this.registry = registry;
@@ -40,16 +40,16 @@ public class Menu {
   protected void handleSearch() {
     SearchOption option = searchUi.promptForSearchOption();
     switch (option) {
-      case NAME:
-        search = new NameSearchStrategy(scan);
-        search.search(registry);
-        break;
-      case BOAT:
-        search = new BoatTypeSearchStrategy(scan);
-        search.search(registry);
-        break;
-      default:
-        break;
+    case NAME:
+      searchCriteria = new NameSearchStrategy(searchUi.promptForNameSearchParameter());
+      searchUi.printSearchResult(registry.search(searchCriteria));
+      break;
+    case BOAT:
+      searchCriteria = new BoatTypeSearchStrategy(searchUi.promptForBoatTypeSearchParameter());
+      searchUi.printSearchResult(registry.search(searchCriteria));
+      break;
+    default:
+      break;
     }
   }
 
