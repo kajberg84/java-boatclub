@@ -19,20 +19,21 @@ public class BoatHandler {
    * Registers a new boat to a member.
    */
   public void addNewBoat(Member member) {
-    Boat boat = promptForBoatDetails();
-    member.addBoat(boat);
-  }
-
-  private Boat promptForBoatDetails() {
     BoatType type = ui.promptForBoatType();
     int length = ui.promptForBoatLength();
-    Boat boat = createBoat(type, length);
-    return boat;
+    member.addBoat(type, length);
   }
 
-  private Boat createBoat(BoatType type, int length) {
-    return new Boat(length, type);
-  }
+  // private Boat promptForBoatDetails() {
+  //   BoatType type = ui.promptForBoatType();
+  //   int length = ui.promptForBoatLength();
+  //   Boat boat = createBoat(type, length);
+  //   return boat;
+  // }
+
+  // private Boat createBoat(BoatType type, int length) {
+  //   return new Boat(length, type);
+  // }
 
   /**
    * Edits a boat.
