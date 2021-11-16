@@ -32,7 +32,7 @@ public class MemberRegistry {
   /**
    * Adds a new member to the registry.
 
-   * @param name                 The name of the new member.
+   * @param name The name of the new member.
    * @param socialSecurityNumber The social security number of the new member.
    */
   public void createMemberWithId(String name, String socialSecurityNumber) {

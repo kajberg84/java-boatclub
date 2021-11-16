@@ -9,6 +9,7 @@ import view.LoginView;
 public class Authenticator {
   private Scanner scan = new Scanner(System.in, "UTF-8");
   private LoginView loginView;
+  private boolean isLoggedIn = false;
 
   public Authenticator() {
     loginView = new LoginView(scan);
@@ -17,33 +18,29 @@ public class Authenticator {
   /**
    * Handles login of user.
 
-   * @return True when user us logged in successfully.
+   * @return True when user is logged in successfully.
    */
   public boolean login() {
     if (loginView.promptForAuthentication()) {
-      Boolean isValidated = validateCredentials();
-      return isValidated;
-    } else {
-      return false;
-    }
+      validateCredentials();
+    } 
+    return isLoggedIn;
   }
 
-  private boolean validateCredentials() {
+  private void validateCredentials() {
     String correctUserName = "santa";
     String correctPassword = "rudolph";
 
-    Boolean isValidCredentials = false;
-    while (!isValidCredentials) {
+    while (!isLoggedIn) {
       String userName = loginView.promptForUserName();
       String password = loginView.promptForPassword();
       if (userName.equals(correctUserName) && password.equals(correctPassword)) {
         loginSuccessful();
-        isValidCredentials = true;
+        isLoggedIn = true;
       } else {
         loginFailed();
       }
-    } 
-    return isValidCredentials;
+    }
   }
 
   private void loginSuccessful() {
@@ -53,4 +50,14 @@ public class Authenticator {
   private void loginFailed() {
     loginView.printLoginFailed();
   }
+
+  /**
+   * Returns authentication status for the current session.
+
+   * @return True when user is authenticated.
+   */
+  public boolean isAuthenticated() {
+    return this.isLoggedIn;
+  }
+
 }
