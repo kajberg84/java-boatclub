@@ -17,9 +17,8 @@ public class App {
     try {
       FileHandler fileHandler = new FileHandler();
       MemberRegistry registry = fileHandler.load();
-      Authenticator auth = new Authenticator();
       MenuHandler menuHandler = new MenuHandler();
-      menuHandler.start(auth, registry);
+      menuHandler.start(registry);
       fileHandler.save(registry);
     } catch (Exception e) {
       System.out.println("\nSorry - something went wrong.\n");
