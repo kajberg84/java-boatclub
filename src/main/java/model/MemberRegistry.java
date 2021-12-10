@@ -3,13 +3,26 @@ package model;
 import java.util.ArrayList;
 import java.util.Random;
 
-/** 
+/**
  * Responsible for member registry operations.
  */
 public class MemberRegistry {
   private ArrayList<Member> members = new ArrayList<>();
-  
+  private Authentication authentication = new Authentication();
+
+
+  /**
+   * Interface for member searching strategy pattern.
+   */
+  public static interface SearchStrategy {
+    boolean isSelected(Member member);
+  }
+
   public MemberRegistry() {
+  }
+
+  public boolean login(String userName, String password) {
+    return authentication.login(userName, password);
   }
 
   /**
@@ -21,20 +34,28 @@ public class MemberRegistry {
     ArrayList<Member> membersCopy = members;
     return membersCopy;
   }
-  
-  /**
-  * Adds a new member to the registry.
 
-  * @param name The name of the new member.
-  * @param socialSecurityNumber The social security number of the new member.
-  */
+  /**
+   * Adds a new member to the registry.
+
+   * @param name The name of the new member.
+   * @param socialSecurityNumber The social security number of the new member.
+   */
   public void createMemberWithId(String name, String socialSecurityNumber) {
-    Id memberId = generateUniqueId();
-    Member newMember = new Member(name, socialSecurityNumber, memberId);
-    addMemberToRegistry(newMember);
+    try {
+      if (authentication.isAuthenticated()) {
+        Id memberId = generateUniqueId();
+        Member newMember = new Member(name, socialSecurityNumber, memberId, authentication);
+        addMemberToRegistry(newMember);
+      } else {
+        throw new Exception("Unauthorized");
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
-  private void addMemberToRegistry(Member member) {
+  public void addMemberToRegistry(Member member) {
     members.add(member);
   }
 
@@ -96,4 +117,23 @@ public class MemberRegistry {
   public void deleteMember(Member member) {
     members.remove(member);
   }
+
+  /**
+   * Provides a way to search for members.
+
+   * @param searchCriteria the search object to use.
+   * @return all members that match the search criteria.
+   */
+  public ArrayList<Member> search(SearchStrategy searchCriteria) {
+    ArrayList<Member> searchResult = new ArrayList<>();
+
+    for (Member member : members) {
+      if (searchCriteria.isSelected(member)) {
+        searchResult.add(member);
+      }
+    }
+
+    return searchResult;
+  }
+
 }

@@ -1,0 +1,31 @@
+[ {
+  "name" : "Ellen Nu",
+  "socialSecurityNumber" : "901111",
+  "id" : "IX6Pka",
+  "boats" : [ {
+    "length" : 12,
+    "boatType" : "SAILBOAT"
+  } ],
+  "numberOfBoats" : 1
+}, {
+  "name" : "Jane Doe",
+  "socialSecurityNumber" : "880808",
+  "id" : "gV",
+  "boats" : [ {
+    "length" : 5,
+    "boatType" : "KAYAKCANOE"
+  } ],
+  "numberOfBoats" : 1
+}, {
+  "name" : "John Doe",
+  "socialSecurityNumber" : "940404",
+  "id" : "T",
+  "boats" : [ {
+    "length" : 4,
+    "boatType" : "OTHER"
+  }, {
+    "length" : 12,
+    "boatType" : "SAILBOAT"
+  } ],
+  "numberOfBoats" : 2
+} ]

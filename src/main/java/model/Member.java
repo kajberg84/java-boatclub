@@ -8,21 +8,28 @@ import java.util.ArrayList;
 public class Member {
   private String name;
   private String socialSecurityNumber;
-  private Id memberId;
-  private ArrayList<Boat> boats; 
+  private Id id;
+  private ArrayList<Boat> boats;
+  private Authentication authentication; 
+
+  public Member() {
+    super();
+  }
 
   /**
    * A member object.
 
    * @param name The name of the member.
    * @param socialSecurityNumber The social security number of the member.
-   * @param memberId The ID of the member.
+   * @param id The ID of the member.
+   * @param authentication The authentication object.
    */
-  public Member(String name, String socialSecurityNumber, Id memberId) {
+  public Member(String name, String socialSecurityNumber, Id id, Authentication authentication) {
     this.name = name;
     this.socialSecurityNumber = socialSecurityNumber;
-    this.memberId = memberId;
+    this.id = id;
     this.boats = new ArrayList<>();
+    this.authentication = authentication;
   }
 
   /**
@@ -40,7 +47,15 @@ public class Member {
    * @param value The member's new name.
    */
   public void setName(String value) {
-    this.name = value;
+    try {
+      if (authentication.isAuthenticated()) {
+        this.name = value;
+      } else {
+        throw new Exception("Unauthorized");
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    } 
   }
 
   /**
@@ -67,25 +82,41 @@ public class Member {
    * @return String
    */
   public String getId() {
-    return memberId.getId();
+    return id.getId();
   }
 
   /**
-   * Returns an ArrayList of all boats registered to a member.
+   * Returns an Iterable of all boats registered to a member.
 
-   * @return ArrayList
+   * @return Iterable of boat objects.
    */
-  public ArrayList<Boat> getBoats() {
-    ArrayList<Boat> boatsCopy = this.boats;
-    return boatsCopy;
+  public Iterable<Boat> getBoats() {
+    return this.boats;
+  }
+
+  public int getNumberOfBoats() {
+    return this.boats.size();
   }
 
   /**
-   * Sets all boats registered to a member.
+   * Adds a boat to the member.
 
-   * @param value An ArrayList of boat objects.
+   * @param type The type of the new boat.
+   * @param length The length of the new boat.
    */
-  public void setBoats(ArrayList<Boat> value) {
-    this.boats = value;
+  public void addBoat(BoatType type, int length) {
+    try {
+      if (authentication.isAuthenticated()) {
+        this.boats.add(new Boat(length, type, authentication));
+      } else {
+        throw new Exception("Unauthorized");
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  public void deleteBoat(Boat boat) {
+    this.boats.remove(boat);
   }
 }

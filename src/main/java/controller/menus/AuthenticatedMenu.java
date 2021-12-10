@@ -1,53 +1,42 @@
-package controller;
+package controller.menus;
 
+import controller.BoatHandler;
 import java.util.Scanner;
 import model.Member;
 import model.MemberRegistry;
-import model.PersistentData;
-import view.Action;
-import view.BoatAction;
 import view.BoatView;
-import view.MemberAction;
-import view.MemberView;
+import view.actions.Action;
+import view.actions.BoatAction;
+import view.actions.MemberAction;
 
 /**
- * Responsible for main operations in the boat club application.
+ * Responsible for handling user actions for an authenticated user.
  */
-public class BoatClubHandler {
-  private Scanner scan = new Scanner(System.in, "UTF-8");
-  private MemberView memberUi = new MemberView(scan);
-  private MemberRegistry registry = new MemberRegistry();
-  private MemberHandler memberHandler = new MemberHandler(memberUi, registry);
+public class AuthenticatedMenu extends Menu {
   private BoatView boatUi = new BoatView(scan);
   private BoatHandler boatHandler = new BoatHandler(boatUi);
-  private PersistentData persistentData = new PersistentData(registry);
 
-  public BoatClubHandler() {
+  public AuthenticatedMenu(MemberRegistry registry, Scanner scan) {
+    super(registry, scan);
   }
 
-  public void start() {
-    persistentData.load();
-    showMainMenu();
-  }
-
-  private void showMainMenu() {
-    Action action = boatUi.promptForMainAction();
+  public void showMainMenu() {
+    Action action = menuUi.promptForMainAction();
     showSubMenu(action);
   }
 
   private void showSubMenu(Action action) {
     switch (action) {
       case MEMBERS:
-        MemberAction memberAction = memberUi.promptForMemberAction();
+        MemberAction memberAction = menuUi.promptForMemberAction();
         handleMemberActions(memberAction);
         break;
       case BOATS:
-        BoatAction boatAction = boatUi.promptForBoatAction();
+        BoatAction boatAction = menuUi.promptForBoatAction();
         handleBoatAction(boatAction);
         break;
       case EXIT:
-        scan.close();
-        System.out.println("Goodbye!");
+        exit();
         break;
       default:
         break;
@@ -112,6 +101,10 @@ public class BoatClubHandler {
         handleViewMember();
         showSubMenu(Action.MEMBERS);
         break;
+      case SEARCH:
+        handleSearch();
+        showSubMenu(Action.MEMBERS);
+        break;
       case DELETE:
         handleDeleteMember();
         showSubMenu(Action.MEMBERS);
@@ -130,14 +123,6 @@ public class BoatClubHandler {
   
   private void handleEditMember() {
     memberHandler.editMember();
-  }
-
-  private void handleViewMember() {
-    memberHandler.viewMember();
-  }
-  
-  private void handleViewAllMembers() {
-    memberHandler.viewAllMembers();
   }
 
   private void handleDeleteMember() {

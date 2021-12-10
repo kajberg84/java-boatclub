@@ -6,6 +6,11 @@ package model;
 public class Boat {
   private int length;
   private BoatType type;
+  private Authentication authentication;
+
+  public Boat() {
+    super();
+  }
 
   /**
    * A boat object.
@@ -13,9 +18,10 @@ public class Boat {
    * @param length The length of the boat.
    * @param type The type of the boat.
    */
-  public Boat(int length, BoatType type) {
+  public Boat(int length, BoatType type, Authentication authentication) {
     this.length = length;
     this.type = type;
+    this.authentication = authentication;
   }
 
   /**
@@ -33,16 +39,24 @@ public class Boat {
    * @param value An integer.
    */
   public void setLength(int value) {
-    this.length = value;
+    try {
+      if (authentication.isAuthenticated()) {
+        this.length = value;
+      } else {
+        throw new Exception("Unauthorized");
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   /**
    * Gets the type of the boat.
 
-   * @return String
+   * @return BoatType
    */
-  public String getBoatType() {
-    return type.label;
+  public BoatType getBoatType() {
+    return type;
   }
 
   /**

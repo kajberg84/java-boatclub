@@ -1,13 +1,14 @@
 package view;
 
 import java.util.Scanner;
+import model.Boat;
 import model.BoatType;
 import model.Member;
 
 /**
  * A class representing a boat view.
  */
-public class BoatView extends UserInterface {
+public class BoatView extends View {
 
   /**
    * An instance of a boat view.
@@ -24,16 +25,34 @@ public class BoatView extends UserInterface {
    * @param member The member owning the boat.
    * @return int
    */
-  public int promptForBoat(Member member) {
+  public Boat promptForBoat(Member member) {
     printBoatDetails(member);
-    int memberBoatsLength = member.getBoats().size();
+    int memberBoatsLength = member.getNumberOfBoats();
     int userInput;
     do {
       System.out.println("\nChoose a boat.");
       System.out.print("Enter number: ");
       userInput = getInt();
     } while (!isValidInput(userInput, memberBoatsLength));
-    return userInput - 1;
+  
+    int index = 1;
+    Boat boat = null;
+    for (Boat b : member.getBoats()) {
+      if (index == userInput) {
+        boat = b;
+      }
+      index++;
+    }
+    return boat;
+  }
+
+  private void printBoatDetails(Member member) {
+    System.out.println("Registered boats:");
+    int index = 1;
+    for (Boat b : member.getBoats()) {
+      System.out.println(index + ". " + "type: " + b.getBoatType().label + ", length: " + b.getLength());
+      index++;
+    }
   }
 
   /**
